@@ -12,10 +12,12 @@ import {
 } from '@skyux/i18n';
 
 import {
+  first
+} from 'rxjs/operators';
+
+import {
   StacheNavLink
 } from '../nav/nav-link';
-
-import { first } from 'rxjs/operators';
 
 const _get = require('lodash.get');
 

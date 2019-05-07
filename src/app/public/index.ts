@@ -41,8 +41,6 @@ export * from './modules/router/route-metadata.service';
 export * from './modules/router/route.service';
 export * from './modules/router/router.module';
 
-export * from './modules/shared/http.service';
-
 export * from './modules/sidebar/sidebar.module';
 
 export * from './modules/table-of-contents/table-of-contents.module';

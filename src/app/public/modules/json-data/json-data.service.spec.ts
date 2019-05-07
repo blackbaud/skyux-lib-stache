@@ -7,9 +7,12 @@ import {
 } from '@skyux-sdk/testing';
 
 import {
-  StacheJsonDataService,
-  STACHE_JSON_DATA_SERVICE_CONFIG
+  StacheJsonDataService
 } from './json-data.service';
+
+import {
+  STACHE_JSON_DATA_SERVICE_CONFIG
+} from './json-data-service-config-token';
 
 describe('StacheJsonDataService', () => {
   let dataService: StacheJsonDataService;

@@ -3,7 +3,9 @@ import {
   Injectable
 } from '@angular/core';
 
-import { STACHE_JSON_DATA_SERVICE_CONFIG } from './json-data-service-config-token';
+import {
+  STACHE_JSON_DATA_SERVICE_CONFIG
+} from './json-data-service-config-token';
 
 @Injectable()
 export class StacheJsonDataService {

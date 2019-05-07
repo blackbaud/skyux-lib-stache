@@ -7,6 +7,10 @@ import {
 } from '@angular/common';
 
 import {
+  SkyAppConfig
+} from '@skyux/config';
+
+import {
   StacheFooterComponent
 } from './footer.component'
 ;
@@ -17,7 +21,6 @@ import {
 import {
   StacheResourcesModule
 } from '../shared/stache-resources.module';
-import { SkyAppConfig } from '@skyux/config';
 
 @NgModule({
   imports: [
