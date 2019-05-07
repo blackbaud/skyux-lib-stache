@@ -116,7 +116,6 @@ export * from './modules/shared/json-data.service';
 export * from './modules/shared/route.service';
 export * from './modules/shared/route-metadata.service';
 export * from './modules/shared/omnibar-adapter.service';
-export * from './modules/shared/http.service';
 
 @NgModule({
   exports: [
