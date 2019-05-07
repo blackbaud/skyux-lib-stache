@@ -13,16 +13,16 @@ import {
 } from '@angular/router';
 
 import {
+  SkyAppConfig
+} from '@skyux/config';
+
+import {
   Subject
 } from 'rxjs';
 
 import {
   StacheTitleService
 } from './title.service';
-
-import {
-  StacheConfigService
-} from '../shared/config.service';
 
 import {
   StacheJsonDataService
@@ -104,7 +104,7 @@ export class StacheWrapperComponent implements OnInit, AfterViewInit, OnDestroy 
   private ngUnsubscribe = new Subject();
 
   public constructor(
-    private config: StacheConfigService,
+    private config: SkyAppConfig,
     private dataService: StacheJsonDataService,
     private pageAnchorService: StachePageAnchorService,
     private titleService: StacheTitleService,

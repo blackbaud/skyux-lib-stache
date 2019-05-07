@@ -10,18 +10,18 @@ import {
 } from '@angular/router';
 
 import {
-  StacheRouteService
-} from './route.service';
+  SkyAppConfig
+} from '@skyux/config';
 
 import {
-  StacheConfigService
-} from './config.service';
+  StacheRouteService
+} from './route.service';
 
 import {
   StacheRouteMetadataService
 } from './route-metadata.service';
 
-class MockStacheConfigService {
+class MockSkyAppConfig {
   public runtime: any = {
     routes: [
       {
@@ -189,18 +189,18 @@ class MockStacheRouteMetadataService {
 
 describe('StacheRouteService', () => {
   let routeService: StacheRouteService;
-  let configService: MockStacheConfigService;
+  let configService: MockSkyAppConfig;
   let router: MockRouter;
   let routeMetadataService: MockStacheRouteMetadataService;
 
   beforeEach(() => {
-    configService = new MockStacheConfigService();
+    configService = new MockSkyAppConfig();
     router = new MockRouter();
     routeMetadataService = new MockStacheRouteMetadataService();
 
     routeService = new StacheRouteService(
       router as Router,
-      configService as StacheConfigService,
+      configService as SkyAppConfig,
       routeMetadataService as StacheRouteMetadataService
     );
   });
@@ -219,7 +219,7 @@ describe('StacheRouteService', () => {
     spyOn(StacheRouteService.prototype, 'clearActiveRoutes');
     routeService = new StacheRouteService(
       router as Router,
-      configService as StacheConfigService,
+      configService as SkyAppConfig,
       routeMetadataService as StacheRouteMetadataService
     );
     expect(StacheRouteService.prototype.clearActiveRoutes).not.toHaveBeenCalled();

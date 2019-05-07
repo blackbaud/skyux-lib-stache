@@ -7,14 +7,14 @@ import {
 } from '@angular/platform-browser';
 
 import {
-  StacheConfigService
-} from '../shared/config.service';
+  SkyAppConfig
+} from '@skyux/config';
 
 @Injectable()
 export class StacheTitleService {
   constructor(
     private title: Title,
-    private configService: StacheConfigService
+    private configService: SkyAppConfig
   ) { }
 
   public setTitle(...parts: string[]) {

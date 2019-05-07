@@ -24,13 +24,12 @@
   "peerDependencies": {
     "@angular/common": "^7.0.0",
     "@angular/core": "^7.0.0",
-    "@blackbaud/skyux-builder-plugin-stache": "https://github.com/blackbaud/skyux-builder-plugin-stache.git#migrate-skyux-3",
     "@skyux/core": "^3.0.0",
+    "@skyux/config": "^3.0.0",
     "@skyux/i18n": "^3.0.0",
     "@skyux/theme": "^3.0.0",
     "@skyux/layout": "^3.0.0",
-    "@skyux/lookup": "^3.0.0",
-    "rxjs-compat": "^6.0.0"
+    "@skyux/lookup": "^3.0.0"
   },
   "dependencies": {
     "es6-object-assign": "1.1.0",

@@ -12,16 +12,16 @@ import {
 } from '@skyux-sdk/testing';
 
 import {
+  SkyAppConfig
+} from '@skyux/config';
+
+import {
   StacheFooterComponent
 } from './footer.component';
 
 import {
   StacheFooterModule
 } from './footer.module';
-
-import {
-  StacheConfigService
-} from '../shared/config.service';
 
 import {
   StacheWindowRef
@@ -85,7 +85,7 @@ describe('StacheFooterComponent', () => {
       providers: [
         StacheWindowRef,
         { provide: StacheRouteService, useValue: mockRouterService },
-        { provide: StacheConfigService, useValue: mockConfigService }
+        { provide: SkyAppConfig, useValue: mockConfigService }
       ]
     }).compileComponents();
 

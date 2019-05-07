@@ -25,6 +25,10 @@ import {
 } from '@skyux/i18n';
 
 import {
+  SkyAppConfig
+} from '@skyux/config';
+
+import {
   of as observableOf,
   Observable,
   Subject
@@ -65,10 +69,6 @@ import {
 import {
   StacheRouteService
 } from '../shared/route.service';
-
-import {
-  StacheConfigService
-} from '../shared/config.service';
 
 import {
   StacheOmnibarAdapterService
@@ -294,7 +294,7 @@ describe('StacheWrapperComponent', () => {
         { provide: ActivatedRoute, useValue: mockActivatedRoute },
         { provide: StacheTitleService, useValue: mockTitleService },
         { provide: StacheWindowRef, useValue: mockWindowService },
-        { provide: StacheConfigService, useValue: mockConfigService },
+        { provide: SkyAppConfig, useValue: mockConfigService },
         STACHE_ROUTE_METADATA_PROVIDERS
       ]
     })

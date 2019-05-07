@@ -8,12 +8,12 @@ import {
 } from '@angular/http';
 
 import {
-  StacheWindowRef
-} from './window-ref';
+  SkyAppConfig
+} from '@skyux/config';
 
 import {
-  StacheConfigService
-} from './config.service';
+  StacheWindowRef
+} from './window-ref';
 
 import {
   StacheRouteService
@@ -40,7 +40,7 @@ import {
     HttpModule
   ],
   providers: [
-    StacheConfigService,
+    SkyAppConfig,
     StacheHttpService,
     StacheRouteService,
     StacheWindowRef,

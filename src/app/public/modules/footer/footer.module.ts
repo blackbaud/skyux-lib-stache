@@ -11,6 +11,10 @@ import {
 } from '@skyux/i18n';
 
 import {
+  SkyAppConfig
+} from '@skyux/config';
+
+import {
   StacheFooterComponent
 } from './footer.component'
 ;
@@ -33,6 +37,9 @@ import {
     StacheResourcesModule,
     StacheNavModule,
     SkyI18nModule
+  ],
+  providers: [
+    SkyAppConfig
   ],
   declarations: [
     StacheFooterComponent

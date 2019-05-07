@@ -16,16 +16,16 @@ import {
 } from '@skyux-sdk/testing';
 
 import {
+  SkyAppConfig
+} from '@skyux/config';
+
+import {
   StacheEditButtonComponent
 } from './edit-button.component';
 
 import {
   StacheEditButtonModule
 } from './edit-button.module';
-
-import {
-  StacheConfigService
-} from '../shared/config.service';
 
 import {
   StacheRouteService
@@ -63,7 +63,7 @@ describe('StacheEditButtonComponent', () => {
         StacheEditButtonModule
       ],
       providers: [
-        { provide: StacheConfigService, useValue: mockConfigService },
+        { provide: SkyAppConfig, useValue: mockConfigService },
         { provide: StacheRouteService, useValue: mockRouteService }
       ]
     })

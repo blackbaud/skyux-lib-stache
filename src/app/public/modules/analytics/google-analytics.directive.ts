@@ -9,8 +9,8 @@ import {
 } from '@angular/router';
 
 import {
-  StacheConfigService
-} from '../shared/config.service';
+  SkyAppConfig
+} from '@skyux/config';
 
 import {
   StacheWindowRef
@@ -27,7 +27,7 @@ export class StacheGoogleAnalyticsDirective implements OnInit {
 
   public constructor(
     private windowRef: StacheWindowRef,
-    private configService: StacheConfigService,
+    private configService: SkyAppConfig,
     private router: Router) { }
 
   public ngOnInit(): void {

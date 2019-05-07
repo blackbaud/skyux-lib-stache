@@ -8,8 +8,8 @@ import {
 } from '@angular/router';
 
 import {
-  StacheConfigService
-} from './config.service';
+  SkyAppConfig
+} from '@skyux/config';
 
 import {
   StacheRouteMetadataService
@@ -25,7 +25,7 @@ export class StacheRouteService {
 
   public constructor(
     private router: Router,
-    private configService: StacheConfigService,
+    private configService: SkyAppConfig,
     private routeMetadataService: StacheRouteMetadataService
   ) {
     router.events.subscribe((val: any) => {

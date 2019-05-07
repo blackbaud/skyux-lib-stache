@@ -4,8 +4,8 @@ import {
 } from '@angular/core';
 
 import {
-  StacheConfigService
-} from '../shared/config.service';
+  SkyAppConfig
+} from '@skyux/config';
 
 import {
   StacheRouteService
@@ -27,7 +27,7 @@ export class StacheEditButtonComponent implements OnInit {
   private readonly vstsFilePathRoot: string = '?path=%2Fsrc%2Fapp';
 
   constructor(
-    private config: StacheConfigService,
+    private config: SkyAppConfig,
     private routeService: StacheRouteService
   ) { }
 

@@ -3,14 +3,14 @@ import {
 } from '@angular/platform-browser';
 
 import {
+  SkyAppConfig
+} from '@skyux/config';
+
+import {
   StacheTitleService
 } from './title.service';
 
-import {
-  StacheConfigService
-} from '../shared/config.service';
-
-class MockStacheConfigService {
+class MockSkyAppConfig {
   public skyux = {
     app: {
       title: 'My Title'
@@ -31,7 +31,7 @@ describe('StacheTitleService', () => {
   let ngTitle: MockTitle;
 
   beforeEach(() => {
-    const appConfig = new MockStacheConfigService() as StacheConfigService;
+    const appConfig = new MockSkyAppConfig() as SkyAppConfig;
     ngTitle = new MockTitle();
     titleService = new StacheTitleService(ngTitle as Title, appConfig);
   });

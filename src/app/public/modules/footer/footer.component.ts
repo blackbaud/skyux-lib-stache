@@ -8,12 +8,13 @@ import {
 } from '@skyux/i18n';
 
 import {
-  take
-} from 'rxjs/operators';
+  SkyAppConfig
+} from '@skyux/config';
+
 
 import {
-  StacheConfigService
-} from '../shared/config.service';
+  take
+} from 'rxjs/operators';
 
 import {
   StacheNavLink
@@ -33,7 +34,7 @@ export class StacheFooterComponent implements OnInit {
   public footerLinks: StacheNavLink[];
 
   constructor(
-    private configService: StacheConfigService,
+    private configService: SkyAppConfig,
     private resourcesService: SkyLibResourcesService
   ) { }
 
