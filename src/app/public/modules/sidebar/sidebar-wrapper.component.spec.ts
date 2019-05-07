@@ -58,7 +58,7 @@ import {
 
 import {
   RouterLinkStubDirective
-} from './fixtures/router-link-stub.directive';
+} from './fixtures/router-link-stub.directive.fixture';
 
 describe('StacheSidebarWrapperComponent', () => {
   const CONTAINER_SIDEBAR_CLASSNAME = 'stache-sidebar-enabled';

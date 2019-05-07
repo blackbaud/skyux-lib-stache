@@ -1,5 +1,3 @@
-const objectAssign = require('es6-object-assign');
-objectAssign.polyfill();
 import {
   NgModule
 } from '@angular/core';
