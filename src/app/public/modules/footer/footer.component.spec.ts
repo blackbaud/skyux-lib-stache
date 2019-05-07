@@ -25,10 +25,6 @@ import {
 } from './footer.module';
 
 import {
-  StacheWindowRef
-} from '../shared/window-ref';
-
-import {
   StacheRouteService
 } from '../router/route.service';
 
@@ -84,7 +80,6 @@ describe('StacheFooterComponent', () => {
         StacheFooterModule
       ],
       providers: [
-        StacheWindowRef,
         { provide: StacheRouteService, useValue: mockRouterService },
         { provide: SkyAppConfig, useValue: mockConfigService }
       ]

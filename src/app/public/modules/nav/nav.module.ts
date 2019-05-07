@@ -27,6 +27,10 @@ import {
 } from '../shared/stache-resources.module';
 
 import {
+  StacheWindowRef
+} from '../shared/window-ref';
+
+import {
   StacheNavService
  } from './nav.service';
 
@@ -46,7 +50,8 @@ import {
     StacheRouterLinkDirective
   ],
   providers: [
-    StacheNavService
+    StacheNavService,
+    StacheWindowRef
   ]
 })
 export class StacheNavModule { }

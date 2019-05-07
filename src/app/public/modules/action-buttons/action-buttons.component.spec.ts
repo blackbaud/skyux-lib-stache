@@ -21,10 +21,6 @@ import {
 } from '../router/route.service';
 
 import {
-  StacheWindowRef
-} from '../shared/window-ref';
-
-import {
   StacheActionButtonsComponent
 } from './action-buttons.component';
 
@@ -75,7 +71,6 @@ describe('StacheActionButtonsComponent', () => {
         RouterTestingModule
       ],
       providers: [
-        StacheWindowRef,
         { provide: StacheRouteService, useValue: mockRouteService }
       ]
     })

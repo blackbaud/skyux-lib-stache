@@ -16,6 +16,10 @@ import {
 } from '@skyux-sdk/testing';
 
 import {
+  SkyAppConfig
+} from '@skyux/config';
+
+import {
   StacheEditButtonComponent
 } from './edit-button.component';
 
@@ -59,6 +63,7 @@ describe('StacheEditButtonComponent', () => {
         StacheEditButtonModule
       ],
       providers: [
+        { provide: SkyAppConfig, useValue: mockConfigService },
         { provide: StacheRouteService, useValue: mockRouteService }
       ]
     })

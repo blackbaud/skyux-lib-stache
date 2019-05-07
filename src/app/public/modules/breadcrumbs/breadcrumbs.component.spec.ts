@@ -28,10 +28,6 @@ import {
 } from '../router/route.service';
 
 import {
-  StacheWindowRef
-} from '../shared/window-ref';
-
-import {
   StacheRouteMetadataService
 } from '../router/route-metadata.service';
 
@@ -80,7 +76,6 @@ describe('StacheBreadcrumbsComponent', () => {
         StacheBreadcrumbsModule
       ],
       providers: [
-        StacheWindowRef,
         { provide: StacheRouteService, useClass: MockRouteService },
         { provide: StacheRouteMetadataService, useValue: { routes: [] } }
       ]

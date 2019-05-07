@@ -22,6 +22,10 @@ import {
 } from '@skyux-sdk/testing';
 
 import {
+  SkyAppConfig
+} from '@skyux/config';
+
+import {
   StacheWindowRef
 } from '../shared/window-ref';
 
@@ -93,6 +97,7 @@ describe('StacheGoogleAnalyticsDirective', () => {
         StacheAnalyticsModule
       ],
       providers: [
+        { provide: SkyAppConfig, useValue: mockConfigService },
         { provide: StacheWindowRef, useValue: mockWindowService },
         { provide: Router, useValue: mockRouter }
       ]

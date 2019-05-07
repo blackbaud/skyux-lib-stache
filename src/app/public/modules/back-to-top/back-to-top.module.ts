@@ -11,6 +11,10 @@ import {
 } from '../shared/stache-resources.module';
 
 import {
+  StacheWindowRef
+} from '../shared/window-ref';
+
+import {
   StacheBackToTopComponent
 } from './back-to-top.component';
 
@@ -24,6 +28,9 @@ import {
   ],
   exports: [
     StacheBackToTopComponent
+  ],
+  providers: [
+    StacheWindowRef
   ]
 })
 export class StacheBackToTopModule { }

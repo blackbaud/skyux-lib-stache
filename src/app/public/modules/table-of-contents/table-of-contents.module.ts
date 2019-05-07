@@ -26,6 +26,10 @@ import {
   StacheResourcesModule
 } from '../shared/stache-resources.module';
 
+import {
+  StacheWindowRef
+} from '../shared/window-ref';
+
 @NgModule({
   declarations: [
     StacheTableOfContentsWrapperComponent,
@@ -40,6 +44,9 @@ import {
   exports: [
     StacheTableOfContentsWrapperComponent,
     StacheTableOfContentsComponent
+  ],
+  providers: [
+    StacheWindowRef
   ]
 })
 export class StacheTableOfContentsModule { }

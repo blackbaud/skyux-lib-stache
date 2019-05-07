@@ -29,11 +29,11 @@ import {
 
 import {
   StacheRouteService
-} from '../shared/route.service';
+} from '../router/route.service';
 
 import {
   StacheRouteMetadataService
-} from '../shared/route-metadata.service';
+} from '../router/route-metadata.service';
 
 let mockRoutes = [
   {

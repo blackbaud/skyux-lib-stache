@@ -7,6 +7,14 @@ import {
 } from '@angular/common';
 
 import {
+  StacheOmnibarAdapterService
+} from '../shared/omnibar-adapter.service';
+
+import {
+  StacheWindowRef
+} from '../shared/window-ref';
+
+import {
   StacheAffixComponent
 } from './affix.component';
 
@@ -25,6 +33,10 @@ import {
   exports: [
     StacheAffixComponent,
     StacheAffixTopDirective
+  ],
+  providers: [
+    StacheOmnibarAdapterService,
+    StacheWindowRef
   ]
 })
 export class StacheAffixModule { }

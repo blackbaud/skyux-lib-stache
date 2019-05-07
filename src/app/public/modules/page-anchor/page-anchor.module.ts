@@ -11,6 +11,10 @@ import {
 } from '@angular/router';
 
 import {
+  StacheWindowRef
+} from '../shared/window-ref';
+
+import {
   StachePageAnchorComponent
 } from './page-anchor.component';
 
@@ -27,7 +31,8 @@ import {
     RouterModule
   ],
   providers: [
-    StachePageAnchorService
+    StachePageAnchorService,
+    StacheWindowRef
   ],
   exports: [
     StachePageAnchorComponent

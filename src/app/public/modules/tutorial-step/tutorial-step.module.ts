@@ -11,6 +11,10 @@ import {
 } from '../page-anchor/page-anchor.module';
 
 import {
+  StacheRouterModule
+} from '../router/router.module';
+
+import {
   StacheTutorialStepComponent
 } from './tutorial-step.component';
 
@@ -30,7 +34,8 @@ import {
   ],
   imports: [
     CommonModule,
-    StachePageAnchorModule
+    StachePageAnchorModule,
+    StacheRouterModule
   ],
   exports: [
     StacheTutorialStepComponent,

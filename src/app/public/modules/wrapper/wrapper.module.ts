@@ -43,6 +43,10 @@ import {
 } from '../shared/omnibar-adapter.service';
 
 import {
+  StacheWindowRef
+} from '../shared/window-ref';
+
+import {
   StacheWrapperComponent
 } from './wrapper.component';
 
@@ -65,6 +69,7 @@ import {
   providers: [
     StacheOmnibarAdapterService,
     StacheTitleService,
+    StacheWindowRef,
     SkyAppConfig
   ]
 })

@@ -22,6 +22,10 @@ import {
   StacheResourcesModule
 } from '../shared/stache-resources.module';
 
+import {
+  StacheWindowRef
+} from '../shared/window-ref';
+
 @NgModule({
   declarations: [
     StacheSidebarComponent,
@@ -35,6 +39,9 @@ import {
   exports: [
     StacheSidebarComponent,
     StacheSidebarWrapperComponent
+  ],
+  providers: [
+    StacheWindowRef
   ]
 })
 export class StacheSidebarModule { }
