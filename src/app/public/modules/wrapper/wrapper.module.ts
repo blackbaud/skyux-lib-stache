@@ -39,6 +39,10 @@ import {
 } from '../json-data/json-data.module';
 
 import {
+  StacheOmnibarAdapterService
+} from '../shared/omnibar-adapter.service';
+
+import {
   StacheWrapperComponent
 } from './wrapper.component';
 
@@ -59,6 +63,7 @@ import {
     StacheWrapperComponent
   ],
   providers: [
+    StacheOmnibarAdapterService,
     StacheTitleService,
     SkyAppConfig
   ]

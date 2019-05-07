@@ -12,19 +12,10 @@ import {
 } from '@skyux/i18n';
 
 import {
-  SkyAppConfig
-} from '@skyux/config';
-
-import {
-<<<<<<< Updated upstream
-  take
-} from 'rxjs/operators';
-
-import {
-=======
->>>>>>> Stashed changes
   StacheNavLink
 } from '../nav/nav-link';
+
+import { first } from 'rxjs/operators';
 
 const _get = require('lodash.get');
 
@@ -63,8 +54,9 @@ export class StacheFooterComponent implements OnInit {
       } as StacheNavLink;
     });
 
-    this.resourcesService.getString('stache_copyright_label').pipe(
-      take(1)
+    this.resourcesService.getString('stache_copyright_label')
+      .pipe(
+        first()
       )
       .subscribe((value) => {
         this.copyrightLabel = _get(

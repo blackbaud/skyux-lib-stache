@@ -19,6 +19,10 @@ import {
 } from './nav.component';
 
 import {
+  StacheRouterModule
+} from '../router/router.module';
+
+import {
   StacheResourcesModule
 } from '../shared/stache-resources.module';
 
@@ -34,7 +38,8 @@ import {
   imports: [
     CommonModule,
     RouterModule,
-    StacheResourcesModule
+    StacheResourcesModule,
+    StacheRouterModule
   ],
   exports: [
     StacheNavComponent,

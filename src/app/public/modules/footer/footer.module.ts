@@ -7,17 +7,6 @@ import {
 } from '@angular/common';
 
 import {
-<<<<<<< Updated upstream
-  SkyI18nModule
-} from '@skyux/i18n';
-
-import {
-  SkyAppConfig
-} from '@skyux/config';
-
-import {
-=======
->>>>>>> Stashed changes
   StacheFooterComponent
 } from './footer.component'
 ;
@@ -28,6 +17,7 @@ import {
 import {
   StacheResourcesModule
 } from '../shared/stache-resources.module';
+import { SkyAppConfig } from '@skyux/config';
 
 @NgModule({
   imports: [

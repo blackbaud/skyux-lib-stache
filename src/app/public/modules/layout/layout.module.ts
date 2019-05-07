@@ -55,6 +55,10 @@ import {
 } from '../page-summary/page-summary.module';
 
 import {
+  StacheWindowRef
+} from '../shared/window-ref';
+
+import {
   StacheContainerComponent
 } from './container.component';
 
@@ -100,6 +104,9 @@ import {
   exports: [
     StacheLayoutComponent,
     StacheContainerComponent
+  ],
+  providers: [
+    StacheWindowRef
   ]
 })
 export class StacheLayoutModule { }
