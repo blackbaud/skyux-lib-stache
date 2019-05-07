@@ -11,6 +11,10 @@ import {
 } from '@angular/router';
 
 import {
+  SkyAppConfig
+} from '@skyux/config';
+
+import {
   StacheTitleService
 } from './title.service';
 
@@ -55,7 +59,8 @@ import {
     StacheWrapperComponent
   ],
   providers: [
-    StacheTitleService
+    StacheTitleService,
+    SkyAppConfig
   ]
 })
 export class StacheWrapperModule { }

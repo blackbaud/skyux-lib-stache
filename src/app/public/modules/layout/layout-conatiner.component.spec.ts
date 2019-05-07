@@ -12,6 +12,10 @@ import {
 } from '@skyux-sdk/testing';
 
 import {
+  SkyAppConfig
+} from '@skyux/config';
+
+import {
   StacheLayoutContainerComponent
 } from './layout-container.component';
 
@@ -23,6 +27,50 @@ import {
   StacheLayoutModule
 } from './layout.module';
 
+import {
+  StacheRouteService
+} from '../shared/route.service';
+
+import {
+  StacheRouteMetadataService
+} from '../shared/route-metadata.service';
+
+let mockRoutes = [
+  {
+    path: '',
+    children: [
+      {
+        path: 'parent',
+        children: [
+          {
+            path: 'parent/child',
+            children: [
+              {
+                path: 'parent/child/grandchild'
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+];
+
+class MockSkyAppConfig {
+  public runtime: any = {
+    routes: mockRoutes
+  };
+}
+
+class MockRouteService {
+  public getActiveRoutes() {
+    return mockRoutes;
+  }
+  public getActiveUrl() {
+    return '';
+  }
+}
+
 describe('StacheLayoutContainerComponent', () => {
   let component: StacheLayoutContainerComponent;
   let fixture: ComponentFixture<StacheLayoutContainerComponent>;
@@ -33,6 +81,11 @@ describe('StacheLayoutContainerComponent', () => {
       imports: [
         StacheLayoutModule,
         RouterTestingModule
+      ],
+      providers: [
+        { provide: StacheRouteService, useClass: MockRouteService },
+        { provide: SkyAppConfig, useClass: MockSkyAppConfig },
+        { provide: StacheRouteMetadataService, useValue: { routes: [] } }
       ],
       schemas: [
         NO_ERRORS_SCHEMA

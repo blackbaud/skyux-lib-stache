@@ -11,7 +11,6 @@ import {
   SkyAppConfig
 } from '@skyux/config';
 
-
 import {
   take
 } from 'rxjs/operators';

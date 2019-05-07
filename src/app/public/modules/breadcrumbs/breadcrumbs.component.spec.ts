@@ -39,7 +39,6 @@ import {
   StacheRouteMetadataService
 } from '../shared/route-metadata.service';
 
-
 describe('StacheBreadcrumbsComponent', () => {
   let component: StacheBreadcrumbsComponent;
   let fixture: ComponentFixture<StacheBreadcrumbsComponent>;

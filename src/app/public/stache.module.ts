@@ -111,7 +111,6 @@ import {
 } from './app-sky.module';
 
 export * from './modules/shared/input-converter';
-export * from './modules/shared/config.service';
 export * from './modules/shared/window-ref';
 export * from './modules/shared/json-data.service';
 export * from './modules/shared/route.service';
