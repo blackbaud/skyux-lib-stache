@@ -65,7 +65,7 @@
   },
   "testSettings": {
     "unit": {
-      "browserSet": "speedy"
+      "browserSet": "paranoid"
     }
   }
 }

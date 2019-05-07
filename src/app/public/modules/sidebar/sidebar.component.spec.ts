@@ -37,7 +37,7 @@ import {
 
 import {
   RouterLinkStubDirective
-} from './fixtures/router-link-stub.directive';
+} from './fixtures/router-link-stub.directive.fixture';
 
 import {
   StacheSidebarModule
