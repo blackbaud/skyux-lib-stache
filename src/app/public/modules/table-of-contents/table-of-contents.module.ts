@@ -7,10 +7,6 @@ import {
 } from '@angular/common';
 
 import {
-  SkyI18nModule
-} from '@skyux/i18n';
-
-import {
   StacheAffixModule
 } from '../affix/affix.module';
 
@@ -39,7 +35,6 @@ import {
     CommonModule,
     StacheNavModule,
     StacheAffixModule,
-    SkyI18nModule,
     StacheResourcesModule
   ],
   exports: [

@@ -14,18 +14,13 @@ import {
   StacheBreadcrumbsComponent
 } from './breadcrumbs.component';
 
-import {
-  StacheSharedModule
-} from '../shared/shared.module';
-
 @NgModule({
   declarations: [
     StacheBreadcrumbsComponent
   ],
   imports: [
     CommonModule,
-    StacheNavModule,
-    StacheSharedModule
+    StacheNavModule
   ],
   exports: [
     StacheBreadcrumbsComponent

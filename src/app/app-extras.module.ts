@@ -1,15 +1,14 @@
-import { NgModule } from '@angular/core';
+import {
+  NgModule
+} from '@angular/core';
 
-import { StacheModule } from './public';
+import {
+  StacheWrapperModule
+} from './public';
 
 @NgModule({
-  imports: [
-    StacheModule
-  ],
   exports: [
-    StacheModule
-  ],
-  providers: [],
-  declarations: []
+    StacheWrapperModule
+  ]
 })
 export class AppExtrasModule { }

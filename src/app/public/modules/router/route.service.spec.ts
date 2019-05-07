@@ -21,7 +21,7 @@ import {
   StacheRouteMetadataService
 } from './route-metadata.service';
 
-class MockSkyAppConfig {
+class MockStacheConfigService {
   public runtime: any = {
     routes: [
       {
@@ -189,12 +189,12 @@ class MockStacheRouteMetadataService {
 
 describe('StacheRouteService', () => {
   let routeService: StacheRouteService;
-  let configService: MockSkyAppConfig;
+  let configService: MockStacheConfigService;
   let router: MockRouter;
   let routeMetadataService: MockStacheRouteMetadataService;
 
   beforeEach(() => {
-    configService = new MockSkyAppConfig();
+    configService = new MockStacheConfigService();
     router = new MockRouter();
     routeMetadataService = new MockStacheRouteMetadataService();
 

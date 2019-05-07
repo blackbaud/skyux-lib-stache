@@ -26,7 +26,7 @@ import {
 
 import {
   StacheJsonDataService
-} from '../shared/json-data.service';
+} from '../json-data/json-data.service';
 
 import {
   StacheOmnibarAdapterService

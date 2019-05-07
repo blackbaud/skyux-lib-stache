@@ -55,10 +55,6 @@ import {
 } from '../page-summary/page-summary.module';
 
 import {
-  StacheSharedModule
-} from '../shared/shared.module';
-
-import {
   StacheContainerComponent
 } from './container.component';
 
@@ -89,7 +85,6 @@ import {
     StacheBreadcrumbsModule,
     StacheEditButtonModule,
     StacheSidebarModule,
-    StacheSharedModule,
     StacheTableOfContentsModule,
     StachePageSummaryModule,
     StachePageHeaderModule,

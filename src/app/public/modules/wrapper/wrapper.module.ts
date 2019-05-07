@@ -35,8 +35,8 @@ import {
 } from '../footer/footer.module';
 
 import {
-  StacheSharedModule
-} from '../shared/shared.module';
+  StacheJsonDataModule
+} from '../json-data/json-data.module';
 
 import {
   StacheWrapperComponent
@@ -46,8 +46,8 @@ import {
   imports: [
     CommonModule,
     RouterModule,
-    StacheSharedModule,
     StacheAnalyticsModule,
+    StacheJsonDataModule,
     StachePageAnchorModule,
     StacheLayoutModule,
     StacheFooterModule

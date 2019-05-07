@@ -17,16 +17,12 @@ import {
 } from '@skyux-sdk/testing';
 
 import {
-  SkyMediaQueryModule
-} from '@skyux/core';
-
-import {
-  SkyI18nModule
-} from '@skyux/i18n';
-
-import {
   SkyAppConfig
 } from '@skyux/config';
+
+import {
+  SkyMediaQueryModule
+} from '@skyux/core';
 
 import {
   of as observableOf,
@@ -68,7 +64,7 @@ import {
 
 import {
   StacheRouteService
-} from '../shared/route.service';
+} from '../router/route.service';
 
 import {
   StacheOmnibarAdapterService
@@ -76,11 +72,7 @@ import {
 
 import {
   StacheJsonDataService
-} from '../shared/json-data.service';
-
-import {
-  STACHE_ROUTE_METADATA_PROVIDERS
-} from '../shared/route-metadata.service';
+} from '../json-data/json-data.service';
 
 import {
   StacheLayoutModule
@@ -279,8 +271,7 @@ describe('StacheWrapperComponent', () => {
         StacheLayoutModule,
         StacheFooterModule,
         StacheWrapperModule,
-        SkyMediaQueryModule,
-        SkyI18nModule
+        SkyMediaQueryModule
       ],
       declarations: [
         StacheWrapperTestComponent
@@ -294,8 +285,7 @@ describe('StacheWrapperComponent', () => {
         { provide: ActivatedRoute, useValue: mockActivatedRoute },
         { provide: StacheTitleService, useValue: mockTitleService },
         { provide: StacheWindowRef, useValue: mockWindowService },
-        { provide: SkyAppConfig, useValue: mockConfigService },
-        STACHE_ROUTE_METADATA_PROVIDERS
+        { provide: SkyAppConfig, useValue: mockConfigService }
       ]
     })
     .compileComponents();

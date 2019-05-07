@@ -18,16 +18,11 @@ import {
   StachePageAnchorService
 } from './page-anchor.service';
 
-import {
-  StacheSharedModule
-} from '../shared/shared.module';
-
 @NgModule({
   declarations: [
     StachePageAnchorComponent
   ],
   imports: [
-    StacheSharedModule,
     CommonModule,
     RouterModule
   ],

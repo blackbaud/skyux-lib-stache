@@ -4,6 +4,10 @@ import {
 } from '@angular/core';
 
 import {
+  SkyAppConfig
+} from '@skyux/config';
+
+import {
   SkyLibResourcesService
 } from '@skyux/i18n';
 
@@ -12,10 +16,13 @@ import {
 } from '@skyux/config';
 
 import {
+<<<<<<< Updated upstream
   take
 } from 'rxjs/operators';
 
 import {
+=======
+>>>>>>> Stashed changes
   StacheNavLink
 } from '../nav/nav-link';
 

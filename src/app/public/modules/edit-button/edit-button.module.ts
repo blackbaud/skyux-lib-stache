@@ -10,10 +10,6 @@ import {
   StacheEditButtonComponent
 } from './edit-button.component';
 
-import {
-  StacheSharedModule
-} from '../shared/shared.module';
-
 @NgModule({
   declarations: [
     StacheEditButtonComponent
@@ -22,7 +18,6 @@ import {
     CommonModule
   ],
   exports: [
-    StacheSharedModule,
     StacheEditButtonComponent
   ]
 })

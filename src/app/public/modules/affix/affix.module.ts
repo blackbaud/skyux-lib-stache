@@ -14,17 +14,12 @@ import {
   StacheAffixTopDirective
 } from './affix-top.directive';
 
-import {
-  StacheSharedModule
-} from '../shared/shared.module';
-
 @NgModule({
   declarations: [
     StacheAffixComponent,
     StacheAffixTopDirective
   ],
   imports: [
-    StacheSharedModule,
     CommonModule
   ],
   exports: [

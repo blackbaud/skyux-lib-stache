@@ -7,10 +7,6 @@ import {
 } from '@angular/common';
 
 import {
-  SkyI18nModule
-} from '@skyux/i18n';
-
-import {
   StacheNavModule
 } from '../nav/nav.module';
 
@@ -34,7 +30,6 @@ import {
   imports: [
     CommonModule,
     StacheNavModule,
-    SkyI18nModule,
     StacheResourcesModule
   ],
   exports: [

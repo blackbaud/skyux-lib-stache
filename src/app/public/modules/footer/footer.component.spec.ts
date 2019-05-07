@@ -1,7 +1,8 @@
 import {
   ComponentFixture,
   TestBed,
-  async } from '@angular/core/testing';
+  async
+} from '@angular/core/testing';
 
 import {
   RouterTestingModule
@@ -29,7 +30,7 @@ import {
 
 import {
   StacheRouteService
-} from '../shared/route.service';
+} from '../router/route.service';
 
 import {
   SkyMediaQueryModule

@@ -26,10 +26,6 @@ import {
   StacheNavService
  } from './nav.service';
 
-import {
-  StacheSharedModule
-} from '../shared/shared.module';
-
 @NgModule({
   declarations: [
     StacheNavComponent,
@@ -38,7 +34,6 @@ import {
   imports: [
     CommonModule,
     RouterModule,
-    StacheSharedModule,
     StacheResourcesModule
   ],
   exports: [

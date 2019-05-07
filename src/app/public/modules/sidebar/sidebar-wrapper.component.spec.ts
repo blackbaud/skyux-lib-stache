@@ -13,10 +13,6 @@ import {
 } from '@skyux-sdk/testing';
 
 import {
-  SkyI18nModule
-} from '@skyux/i18n';
-
-import {
   SkyMediaQueryModule
 } from '@skyux/core';
 
@@ -46,11 +42,11 @@ import {
 
 import {
   StacheRouteMetadataService
-} from '../shared/route-metadata.service';
+} from '../router/route-metadata.service';
 
 import {
   StacheRouteService
-} from '../shared/route.service';
+} from '../router/route.service';
 
 import {
   StacheOmnibarAdapterService
@@ -130,8 +126,7 @@ describe('StacheSidebarWrapperComponent', () => {
         RouterTestingModule,
         StacheNavModule,
         StacheSidebarModule,
-        SkyMediaQueryModule,
-        SkyI18nModule
+        SkyMediaQueryModule
       ],
       providers: [
         StacheNavService,

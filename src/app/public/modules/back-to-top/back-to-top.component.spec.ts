@@ -20,10 +20,6 @@ import {
 } from '@skyux-sdk/testing/test-utility/test-utility';
 
 import {
-  SkyI18nModule
-} from '@skyux/i18n';
-
-import {
   StacheWindowRef
 } from '../shared/window-ref';
 
@@ -44,8 +40,7 @@ describe('StacheBackToTopComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        StacheBackToTopModule,
-        SkyI18nModule
+        StacheBackToTopModule
       ]
     })
     .compileComponents();

@@ -29,11 +29,11 @@ import {
 
 import {
   StacheRouteMetadataService
-} from '../shared/route-metadata.service';
+} from '../router/route-metadata.service';
 
 import {
   StacheRouteService
-} from '../shared/route.service';
+} from '../router/route.service';
 
 import {
   RouterLinkStubDirective

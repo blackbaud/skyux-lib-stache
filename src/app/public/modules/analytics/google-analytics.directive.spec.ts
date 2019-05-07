@@ -13,10 +13,6 @@ import {
 } from '@angular/core/testing';
 
 import {
-  SkyAppConfig
-} from '@skyux/config';
-
-import {
   Router,
   NavigationEnd
 } from '@angular/router';
@@ -98,7 +94,6 @@ describe('StacheGoogleAnalyticsDirective', () => {
       ],
       providers: [
         { provide: StacheWindowRef, useValue: mockWindowService },
-        { provide: SkyAppConfig, useValue: mockConfigService },
         { provide: Router, useValue: mockRouter }
       ]
     })
