@@ -31,17 +31,12 @@ import {
   StacheOmnibarAdapterService
 } from './omnibar-adapter.service';
 
-import {
-  StacheHttpService
-} from './http.service';
-
 @NgModule({
   imports: [
     HttpModule
   ],
   providers: [
     SkyAppConfig,
-    StacheHttpService,
     StacheRouteService,
     StacheWindowRef,
     StacheOmnibarAdapterService,

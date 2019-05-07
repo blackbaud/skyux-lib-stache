@@ -15,6 +15,10 @@ import {
 } from '../nav/nav.module';
 
 import {
+  StacheSharedModule
+} from '../shared/shared.module';
+
+import {
   StacheSidebarComponent
 } from './sidebar.component';
 
@@ -33,6 +37,7 @@ import {
   ],
   imports: [
     CommonModule,
+    StacheSharedModule,
     StacheNavModule,
     SkyI18nModule,
     StacheResourcesModule
