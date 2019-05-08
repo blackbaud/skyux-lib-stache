@@ -3,10 +3,6 @@ import {
 } from '@angular/core';
 
 import {
-  EventManager
-} from '@angular/platform-browser';
-
-import {
   Observable
 } from 'rxjs/Observable';
 
@@ -25,7 +21,7 @@ function getWindow(): any {
 @Injectable()
 export class StacheWindowRef {
 
-  get nativeWindow(): any {
+  public get nativeWindow(): any {
     return getWindow();
   }
 
@@ -37,11 +33,10 @@ export class StacheWindowRef {
 
   private resizeSubject: ReplaySubject<Window>;
 
-  constructor(
-    private eventManager: EventManager
-  ) {
+  constructor() {
     this.resizeSubject = new ReplaySubject();
-    this.eventManager.addGlobalEventListener('window', 'resize', (event: UIEvent) => {
+
+    this.nativeWindow.addEventListener('resize', (event: UIEvent) => {
       this.onResize(event);
     });
   }

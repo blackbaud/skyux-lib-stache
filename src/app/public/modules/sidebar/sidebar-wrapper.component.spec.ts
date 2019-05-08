@@ -171,7 +171,6 @@ describe('StacheSidebarWrapperComponent', () => {
   it(`should add the class ${ CONTAINER_SIDEBAR_CLASSNAME } to the body if one exists`, () => {
     component.ngAfterViewInit();
     expect(mockElement.className).toContain(CONTAINER_SIDEBAR_CLASSNAME);
-    mockElement.remove();
   });
 
   it(`should remove the class ${ CONTAINER_SIDEBAR_CLASSNAME } from the body on destroy`, () => {
@@ -179,6 +178,5 @@ describe('StacheSidebarWrapperComponent', () => {
     expect(mockElement.className).toContain(CONTAINER_SIDEBAR_CLASSNAME);
     component.ngOnDestroy();
     expect(mockElement.className).not.toContain(CONTAINER_SIDEBAR_CLASSNAME);
-    mockElement.remove();
   });
 });
