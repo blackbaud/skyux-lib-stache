@@ -7,6 +7,10 @@ import {
 } from '@angular/common';
 
 import {
+  SkyFluidGridModule
+} from '@skyux/layout';
+
+import {
   StacheActionButtonsModule
 } from '../action-buttons/action-buttons.module';
 
@@ -37,10 +41,6 @@ import {
 import {
   StacheTableOfContentsModule
 } from '../table-of-contents/table-of-contents.module';
-
-import {
-  StacheGridModule
-} from '../grid/grid.module';
 
 import {
   StachePageHeaderModule
@@ -81,10 +81,10 @@ import {
 @NgModule({
   imports: [
     CommonModule,
+    SkyFluidGridModule,
     StacheActionButtonsModule,
     StacheAffixModule,
     StacheBackToTopModule,
-    StacheGridModule,
     StacheNavModule,
     StacheBreadcrumbsModule,
     StacheEditButtonModule,

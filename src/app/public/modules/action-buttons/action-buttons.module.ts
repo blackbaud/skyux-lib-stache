@@ -2,18 +2,20 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {
-  SkyActionButtonModule
+  SkyActionButtonModule, SkyFluidGridModule
 } from '@skyux/layout';
 
 import {
   SkySearchModule
 } from '@skyux/lookup';
 
-import { StacheGridModule } from '../grid/grid.module';
-import { StacheActionButtonsComponent } from './action-buttons.component';
 import {
   StacheNavModule
 } from '../nav/nav.module';
+
+import {
+  StacheActionButtonsComponent
+} from './action-buttons.component';
 
 @NgModule({
   declarations: [
@@ -22,9 +24,9 @@ import {
   imports: [
     CommonModule,
     SkyActionButtonModule,
+    SkyFluidGridModule,
     SkySearchModule,
-    StacheNavModule,
-    StacheGridModule
+    StacheNavModule
   ],
   exports: [
     StacheActionButtonsComponent
