@@ -7,12 +7,12 @@ import {
 } from '@angular/common';
 
 import {
-  StacheEditButtonComponent
-} from './edit-button.component';
+  SkyAppConfig
+} from '@skyux/config';
 
 import {
-  StacheSharedModule
-} from '../shared/shared.module';
+  StacheEditButtonComponent
+} from './edit-button.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +22,10 @@ import {
     CommonModule
   ],
   exports: [
-    StacheSharedModule,
     StacheEditButtonComponent
+  ],
+  providers: [
+    SkyAppConfig
   ]
 })
 export class StacheEditButtonModule { }

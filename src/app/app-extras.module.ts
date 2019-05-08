@@ -1,15 +1,38 @@
-import { NgModule } from '@angular/core';
+import {
+  NgModule
+} from '@angular/core';
 
-import { StacheModule } from './public';
+import {
+  StacheActionButtonsModule,
+  StacheBlockquoteModule,
+  StacheCodeModule,
+  StacheGridModule,
+  StacheHeroModule,
+  StacheIncludeModule,
+  StacheMarkdownModule,
+  StachePageAnchorModule,
+  StachePageSummaryModule,
+  StacheSidebarModule,
+  StacheTutorialModule,
+  StacheVideoModule,
+  StacheWrapperModule
+} from './public';
 
 @NgModule({
-  imports: [
-    StacheModule
-  ],
   exports: [
-    StacheModule
-  ],
-  providers: [],
-  declarations: []
+    StacheActionButtonsModule,
+    StacheBlockquoteModule,
+    StacheCodeModule,
+    StacheGridModule,
+    StacheHeroModule,
+    StacheIncludeModule,
+    StacheMarkdownModule,
+    StachePageAnchorModule,
+    StachePageSummaryModule,
+    StacheSidebarModule,
+    StacheTutorialModule,
+    StacheVideoModule,
+    StacheWrapperModule
+  ]
 })
 export class AppExtrasModule { }

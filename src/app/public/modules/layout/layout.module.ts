@@ -7,6 +7,10 @@ import {
 } from '@angular/common';
 
 import {
+  SkyFluidGridModule
+} from '@skyux/layout';
+
+import {
   StacheActionButtonsModule
 } from '../action-buttons/action-buttons.module';
 
@@ -39,10 +43,6 @@ import {
 } from '../table-of-contents/table-of-contents.module';
 
 import {
-  StacheGridModule
-} from '../grid/grid.module';
-
-import {
   StachePageHeaderModule
 } from '../page-header/page-header.module';
 
@@ -55,8 +55,8 @@ import {
 } from '../page-summary/page-summary.module';
 
 import {
-  StacheSharedModule
-} from '../shared/shared.module';
+  StacheWindowRef
+} from '../shared/window-ref';
 
 import {
   StacheContainerComponent
@@ -81,15 +81,14 @@ import {
 @NgModule({
   imports: [
     CommonModule,
+    SkyFluidGridModule,
     StacheActionButtonsModule,
     StacheAffixModule,
     StacheBackToTopModule,
-    StacheGridModule,
     StacheNavModule,
     StacheBreadcrumbsModule,
     StacheEditButtonModule,
     StacheSidebarModule,
-    StacheSharedModule,
     StacheTableOfContentsModule,
     StachePageSummaryModule,
     StachePageHeaderModule,
@@ -105,6 +104,9 @@ import {
   exports: [
     StacheLayoutComponent,
     StacheContainerComponent
+  ],
+  providers: [
+    StacheWindowRef
   ]
 })
 export class StacheLayoutModule { }

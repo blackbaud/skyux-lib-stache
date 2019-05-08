@@ -7,16 +7,8 @@ import {
 } from '@angular/common';
 
 import {
-  SkyI18nModule
-} from '@skyux/i18n';
-
-import {
   StacheNavModule
 } from '../nav/nav.module';
-
-import {
-  StacheSharedModule
-} from '../shared/shared.module';
 
 import {
   StacheSidebarComponent
@@ -30,6 +22,10 @@ import {
   StacheResourcesModule
 } from '../shared/stache-resources.module';
 
+import {
+  StacheWindowRef
+} from '../shared/window-ref';
+
 @NgModule({
   declarations: [
     StacheSidebarComponent,
@@ -37,14 +33,15 @@ import {
   ],
   imports: [
     CommonModule,
-    StacheSharedModule,
     StacheNavModule,
-    SkyI18nModule,
     StacheResourcesModule
   ],
   exports: [
     StacheSidebarComponent,
     StacheSidebarWrapperComponent
+  ],
+  providers: [
+    StacheWindowRef
   ]
 })
 export class StacheSidebarModule { }

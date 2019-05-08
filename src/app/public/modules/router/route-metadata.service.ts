@@ -1,23 +1,15 @@
 import {
   Inject,
-  Injectable,
-  InjectionToken
+  Injectable
 } from '@angular/core';
 
 import {
   numberConverter
-} from './input-converter';
+} from '../shared/input-converter';
 
-export interface StacheRouteMetadataConfig {
-  path: string;
-  name: string;
-  order?: number;
-}
-
-export const STACHE_ROUTE_METADATA_SERVICE_CONFIG
-  = new InjectionToken<StacheRouteMetadataConfig[]>(
-    'Injection token for StacheRouteMetadataService config.'
-  );
+import {
+  STACHE_ROUTE_METADATA_SERVICE_CONFIG
+} from './route-metadata-service-config-token';
 
 @Injectable()
 export class StacheRouteMetadataService {
@@ -37,8 +29,3 @@ export class StacheRouteMetadataService {
     }
   }
 }
-
-export let STACHE_ROUTE_METADATA_PROVIDERS: any[] = [
-  { provide: STACHE_ROUTE_METADATA_SERVICE_CONFIG, useValue: [] },
-  { provide: StacheRouteMetadataService, useClass: StacheRouteMetadataService }
-];

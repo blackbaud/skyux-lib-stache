@@ -29,7 +29,7 @@ import {
 
 import {
   StacheRouteService
-} from '../shared/route.service';
+} from '../router/route.service';
 
 describe('StacheEditButtonComponent', () => {
   let component: StacheEditButtonComponent;

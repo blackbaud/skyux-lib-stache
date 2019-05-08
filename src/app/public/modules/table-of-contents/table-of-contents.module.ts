@@ -7,10 +7,6 @@ import {
 } from '@angular/common';
 
 import {
-  SkyI18nModule
-} from '@skyux/i18n';
-
-import {
   StacheAffixModule
 } from '../affix/affix.module';
 
@@ -30,6 +26,10 @@ import {
   StacheResourcesModule
 } from '../shared/stache-resources.module';
 
+import {
+  StacheWindowRef
+} from '../shared/window-ref';
+
 @NgModule({
   declarations: [
     StacheTableOfContentsWrapperComponent,
@@ -39,12 +39,14 @@ import {
     CommonModule,
     StacheNavModule,
     StacheAffixModule,
-    SkyI18nModule,
     StacheResourcesModule
   ],
   exports: [
     StacheTableOfContentsWrapperComponent,
     StacheTableOfContentsComponent
+  ],
+  providers: [
+    StacheWindowRef
   ]
 })
 export class StacheTableOfContentsModule { }

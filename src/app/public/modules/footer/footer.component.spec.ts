@@ -1,7 +1,8 @@
 import {
   ComponentFixture,
   TestBed,
-  async } from '@angular/core/testing';
+  async
+} from '@angular/core/testing';
 
 import {
   RouterTestingModule
@@ -24,12 +25,8 @@ import {
 } from './footer.module';
 
 import {
-  StacheWindowRef
-} from '../shared/window-ref';
-
-import {
   StacheRouteService
-} from '../shared/route.service';
+} from '../router/route.service';
 
 import {
   SkyMediaQueryModule
@@ -83,7 +80,6 @@ describe('StacheFooterComponent', () => {
         StacheFooterModule
       ],
       providers: [
-        StacheWindowRef,
         { provide: StacheRouteService, useValue: mockRouterService },
         { provide: SkyAppConfig, useValue: mockConfigService }
       ]

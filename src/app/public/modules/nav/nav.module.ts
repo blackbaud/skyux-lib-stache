@@ -19,16 +19,20 @@ import {
 } from './nav.component';
 
 import {
+  StacheRouterModule
+} from '../router/router.module';
+
+import {
   StacheResourcesModule
 } from '../shared/stache-resources.module';
 
 import {
-  StacheNavService
- } from './nav.service';
+  StacheWindowRef
+} from '../shared/window-ref';
 
 import {
-  StacheSharedModule
-} from '../shared/shared.module';
+  StacheNavService
+ } from './nav.service';
 
 @NgModule({
   declarations: [
@@ -38,15 +42,16 @@ import {
   imports: [
     CommonModule,
     RouterModule,
-    StacheSharedModule,
-    StacheResourcesModule
+    StacheResourcesModule,
+    StacheRouterModule
   ],
   exports: [
     StacheNavComponent,
     StacheRouterLinkDirective
   ],
   providers: [
-    StacheNavService
+    StacheNavService,
+    StacheWindowRef
   ]
 })
 export class StacheNavModule { }

@@ -1,11 +1,11 @@
 import {
   Inject,
-  Injectable,
-  InjectionToken
+  Injectable
 } from '@angular/core';
 
-export const STACHE_JSON_DATA_SERVICE_CONFIG
-  = new InjectionToken<any>('Injection token for StacheJsonDataService config.');
+import {
+  STACHE_JSON_DATA_SERVICE_CONFIG
+} from './json-data-service-config-token';
 
 @Injectable()
 export class StacheJsonDataService {
@@ -48,8 +48,3 @@ export class StacheJsonDataService {
     return baseData;
   }
 }
-
-export let STACHE_JSON_DATA_PROVIDERS: any[] = [
-  { provide: STACHE_JSON_DATA_SERVICE_CONFIG, useValue: { } },
-  { provide: StacheJsonDataService, useClass: StacheJsonDataService }
-];

@@ -16,10 +16,6 @@ import {
 } from '@skyux-sdk/testing';
 
 import {
-  SkyAppConfig
-} from '@skyux/config';
-
-import {
   StacheBreadcrumbsComponent
 } from './breadcrumbs.component';
 
@@ -29,15 +25,11 @@ import {
 
 import {
   StacheRouteService
-} from '../shared/route.service';
-
-import {
-  StacheWindowRef
-} from '../shared/window-ref';
+} from '../router/route.service';
 
 import {
   StacheRouteMetadataService
-} from '../shared/route-metadata.service';
+} from '../router/route-metadata.service';
 
 describe('StacheBreadcrumbsComponent', () => {
   let component: StacheBreadcrumbsComponent;
@@ -75,12 +67,6 @@ describe('StacheBreadcrumbsComponent', () => {
     }
   }
 
-  class MockSkyAppConfig {
-    public runtime: any = {
-      routes: mockRoutes
-    };
-  }
-
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -90,9 +76,7 @@ describe('StacheBreadcrumbsComponent', () => {
         StacheBreadcrumbsModule
       ],
       providers: [
-        StacheWindowRef,
         { provide: StacheRouteService, useClass: MockRouteService },
-        { provide: SkyAppConfig, useClass: MockSkyAppConfig },
         { provide: StacheRouteMetadataService, useValue: { routes: [] } }
       ]
     })

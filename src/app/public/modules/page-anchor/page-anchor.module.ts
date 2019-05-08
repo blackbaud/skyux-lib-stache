@@ -11,6 +11,10 @@ import {
 } from '@angular/router';
 
 import {
+  StacheWindowRef
+} from '../shared/window-ref';
+
+import {
   StachePageAnchorComponent
 } from './page-anchor.component';
 
@@ -18,21 +22,17 @@ import {
   StachePageAnchorService
 } from './page-anchor.service';
 
-import {
-  StacheSharedModule
-} from '../shared/shared.module';
-
 @NgModule({
   declarations: [
     StachePageAnchorComponent
   ],
   imports: [
-    StacheSharedModule,
     CommonModule,
     RouterModule
   ],
   providers: [
-    StachePageAnchorService
+    StachePageAnchorService,
+    StacheWindowRef
   ],
   exports: [
     StachePageAnchorComponent

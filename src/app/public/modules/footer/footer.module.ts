@@ -7,10 +7,6 @@ import {
 } from '@angular/common';
 
 import {
-  SkyI18nModule
-} from '@skyux/i18n';
-
-import {
   SkyAppConfig
 } from '@skyux/config';
 
@@ -26,17 +22,11 @@ import {
   StacheResourcesModule
 } from '../shared/stache-resources.module';
 
-import {
-  StacheSharedModule
-} from '../shared/shared.module';
-
 @NgModule({
   imports: [
     CommonModule,
-    StacheSharedModule,
     StacheResourcesModule,
-    StacheNavModule,
-    SkyI18nModule
+    StacheNavModule
   ],
   providers: [
     SkyAppConfig

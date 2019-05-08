@@ -3,6 +3,10 @@ import {
 } from '@angular/core';
 
 import {
+  StacheTutorialStepModule
+} from '../tutorial-step/tutorial-step.module';
+
+import {
   StacheTutorialHeadingComponent
 } from './tutorial-heading.component';
 
@@ -23,7 +27,8 @@ import {
   exports: [
     StacheTutorialComponent,
     StacheTutorialHeadingComponent,
-    StacheTutorialSummaryComponent
+    StacheTutorialSummaryComponent,
+    StacheTutorialStepModule
   ]
 })
 export class StacheTutorialModule { }

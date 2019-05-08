@@ -13,10 +13,6 @@ import {
 } from '@skyux-sdk/testing';
 
 import {
-  SkyI18nModule
-} from '@skyux/i18n';
-
-import {
   RouterTestingModule
 } from '@angular/router/testing';
 
@@ -42,7 +38,7 @@ import {
 
 import {
   StacheRouteService
-} from '../shared/route.service';
+} from '../router/route.service';
 
 import {
   StacheWindowRef
@@ -102,7 +98,6 @@ describe('Table of Contents Wrapper Component', () => {
     TestBed.configureTestingModule({
       imports: [
         StacheNavModule,
-        SkyI18nModule,
         StacheTableOfContentsModule,
         RouterTestingModule
       ],

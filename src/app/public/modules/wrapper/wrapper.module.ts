@@ -35,8 +35,16 @@ import {
 } from '../footer/footer.module';
 
 import {
-  StacheSharedModule
-} from '../shared/shared.module';
+  StacheJsonDataModule
+} from '../json-data/json-data.module';
+
+import {
+  StacheOmnibarAdapterService
+} from '../shared/omnibar-adapter.service';
+
+import {
+  StacheWindowRef
+} from '../shared/window-ref';
 
 import {
   StacheWrapperComponent
@@ -46,8 +54,8 @@ import {
   imports: [
     CommonModule,
     RouterModule,
-    StacheSharedModule,
     StacheAnalyticsModule,
+    StacheJsonDataModule,
     StachePageAnchorModule,
     StacheLayoutModule,
     StacheFooterModule
@@ -59,7 +67,9 @@ import {
     StacheWrapperComponent
   ],
   providers: [
+    StacheOmnibarAdapterService,
     StacheTitleService,
+    StacheWindowRef,
     SkyAppConfig
   ]
 })

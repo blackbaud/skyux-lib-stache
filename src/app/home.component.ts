@@ -4,7 +4,7 @@ import {
 
 import {
   StacheNavLink
-} from './public/modules/nav/nav-link';
+} from './public';
 
 @Component({
   selector: 'app-home',
@@ -45,6 +45,7 @@ export class HomeComponent {
       summary: 'Short summary here.'
     }
   ];
+
   public sidebarRoutes = [
     {
       name: 'Welcome Sidebar',
