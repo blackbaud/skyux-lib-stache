@@ -1,8 +1,6 @@
 {
   "extends": "@skyux-sdk/builder/tslint",
   "rules": {
-    "no-console": [
-      false
-    ]
+    "no-console": [false]
   }
 }

@@ -3,35 +3,39 @@ import {
 } from '@angular/core';
 
 import {
+  SkyFluidGridModule
+} from '@skyux/layout';
+
+import {
+  SkyNavbarModule
+} from '@skyux/navbar';
+
+import {
   StacheActionButtonsModule,
   StacheBlockquoteModule,
   StacheCodeModule,
-  StacheGridModule,
-  StacheHeroModule,
   StacheIncludeModule,
   StacheMarkdownModule,
   StachePageAnchorModule,
   StachePageSummaryModule,
   StacheSidebarModule,
   StacheTutorialModule,
-  StacheVideoModule,
   StacheWrapperModule
 } from './public';
 
 @NgModule({
   exports: [
+    SkyFluidGridModule,
+    SkyNavbarModule,
     StacheActionButtonsModule,
     StacheBlockquoteModule,
     StacheCodeModule,
-    StacheGridModule,
-    StacheHeroModule,
     StacheIncludeModule,
     StacheMarkdownModule,
     StachePageAnchorModule,
     StachePageSummaryModule,
     StacheSidebarModule,
     StacheTutorialModule,
-    StacheVideoModule,
     StacheWrapperModule
   ]
 })

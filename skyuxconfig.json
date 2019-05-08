@@ -6,7 +6,6 @@
   "auth": false,
   "plugins": [
     "@blackbaud/skyux-builder-plugin-stache",
-    "@blackbaud/skyux-builder-plugin-code-block",
     "@skyux-sdk/builder-plugin-skyux"
   ],
   "app": {
