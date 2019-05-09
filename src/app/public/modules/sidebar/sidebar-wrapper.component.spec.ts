@@ -47,7 +47,7 @@ describe('StacheSidebarWrapperComponent', () => {
   });
 
   it('should open and close the sidebar', () => {
-    const sidebar = component.sidebarComponent;
+    const sidebar = component.sidebarWrapperComponent;
 
     sidebar.sidebarOpen = false;
     fixture.detectChanges();
@@ -78,7 +78,7 @@ describe('StacheSidebarWrapperComponent', () => {
   it(`should remove the class ${ CONTAINER_SIDEBAR_CLASSNAME } from the body on destroy`, () => {
     fixture.detectChanges();
     expect(document.body.className).toContain(CONTAINER_SIDEBAR_CLASSNAME);
-    component.sidebarComponent.ngOnDestroy();
+    component.sidebarWrapperComponent.ngOnDestroy();
     expect(document.body.className).not.toContain(CONTAINER_SIDEBAR_CLASSNAME);
   });
 });

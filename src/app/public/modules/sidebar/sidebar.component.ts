@@ -15,6 +15,8 @@ import {
   StacheRouteService
 } from '../router/route.service';
 
+let uniqueId = 0;
+
 @Component({
   selector: 'stache-sidebar',
   templateUrl: './sidebar.component.html',
@@ -26,6 +28,8 @@ export class StacheSidebarComponent implements StacheNav {
     this._routes = value ? value : this.routeService.getActiveRoutes();
     this.childRoutes = this.filterRoutes(this._routes);
   }
+
+  public sidebarHeadingElementId = `stache-sidebar-heading-${uniqueId++}`;
 
   public get routes(): StacheNavLink[] {
     return this._routes;

@@ -131,7 +131,7 @@ describe('SidebarTestComponent', () => {
   it('should use generated routes if no custom routes are provided', () => {
     const tmpFixture = TestBed.createComponent(SidebarTestComponent);
     tmpFixture.detectChanges();
-    const heading: HTMLAnchorElement = tmpFixture.nativeElement.querySelector('#stache-sidebar-heading');
+    const heading: any = tmpFixture.nativeElement.querySelector('.stach-sidebar-heading-link');
     expect(heading.innerHTML.trim()).toEqual('Home');
   });
 
@@ -149,9 +149,7 @@ describe('SidebarTestComponent', () => {
 
     tmpFixture.detectChanges();
 
-    const el = tmpFixture.nativeElement as HTMLElement;
-
-    const sidebarHeading = el.querySelector('#stache-sidebar-heading').innerHTML;
+    const sidebarHeading = tmpFixture.nativeElement.querySelector('.stach-sidebar-heading-link').innerHTML;
 
     expect(sidebarHeading.trim()).toEqual('Foo');
   });

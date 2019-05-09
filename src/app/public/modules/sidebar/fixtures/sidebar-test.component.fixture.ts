@@ -42,5 +42,5 @@ export class SidebarTestComponent {
   ];
 
   @ViewChild(StacheSidebarWrapperComponent)
-  public sidebarComponent: StacheSidebarWrapperComponent;
+  public sidebarWrapperComponent: StacheSidebarWrapperComponent;
 }
