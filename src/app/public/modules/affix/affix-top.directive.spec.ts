@@ -44,14 +44,8 @@ import {
 
 describe('AffixTopTestDirective', () => {
   const className: string = StacheAffixTopDirective.AFFIX_CLASS_NAME;
-  let testOmnibarHeight: number = 0;
-  class MockOmnibarService {
-    public getHeight(): number {
-      return testOmnibarHeight;
-    }
-  }
 
-  const mockOmnibarService = new MockOmnibarService();
+  let omnibarAdapterService: StacheOmnibarAdapterService;
   let fixture: ComponentFixture<AffixTopTestComponent>;
   let directiveElements: any[];
   let windowRef: any;
@@ -64,24 +58,23 @@ describe('AffixTopTestDirective', () => {
       ],
       declarations: [
         AffixTopTestComponent
-      ],
-      providers: [
-        StacheWindowRef,
-        {
-          provide: StacheOmnibarAdapterService,
-          useValue: mockOmnibarService
-        }
       ]
-    })
-    .compileComponents();
+    });
 
     fixture = TestBed.createComponent(AffixTopTestComponent);
     directiveElements = fixture.debugElement.queryAll(By.directive(StacheAffixTopDirective));
   });
 
-  beforeEach(inject([StacheWindowRef], (service: any) => {
-    windowRef = service.nativeWindow;
-  }));
+  beforeEach(inject(
+    [StacheWindowRef, StacheOmnibarAdapterService],
+    (
+      _service: StacheWindowRef,
+      _omnibarAdapterService: StacheOmnibarAdapterService
+    ) => {
+      windowRef = _service.nativeWindow;
+      omnibarAdapterService = _omnibarAdapterService;
+    })
+  );
 
   it('should exist on the component', () => {
     expect(directiveElements[0]).not.toBeNull();
@@ -130,11 +123,9 @@ describe('AffixTopTestDirective', () => {
       SkyAppTestUtility.fireDomEvent(windowRef, 'scroll');
       expect(element).not.toHaveCssClass(className);
 
-      testOmnibarHeight = 50;
+      spyOn(omnibarAdapterService, 'getHeight').and.returnValue(50);
       SkyAppTestUtility.fireDomEvent(windowRef, 'scroll');
       expect(element).toHaveCssClass(className);
-
-      testOmnibarHeight = 0;
     })
   );
 
@@ -189,9 +180,10 @@ describe('AffixTopTestDirective', () => {
 
       windowRef.resizeTo(1200, 800);
       windowRef.scrollBy(0, 350);
-      testOmnibarHeight = 50;
 
+      spyOn(omnibarAdapterService, 'getHeight').and.returnValue(50);
       SkyAppTestUtility.fireDomEvent(windowRef, 'scroll');
+
       expect(element.style.height).toEqual('50px');
     })
   );
