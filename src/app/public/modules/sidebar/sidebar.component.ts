@@ -23,24 +23,32 @@ let uniqueId = 0;
   styleUrls: ['./sidebar.component.scss']
 })
 export class StacheSidebarComponent implements StacheNav {
+
   @Input()
   public set routes(value: StacheNavLink[]) {
-    this._routes = value ? value : this.routeService.getActiveRoutes();
+    if (
+      !value ||
+      !value.length ||
+      !Array.isArray(value)
+    ) {
+      this._routes = this.routeService.getActiveRoutes();
+    } else {
+      this._routes = value;
+    }
+
     this.childRoutes = this.filterRoutes(this._routes);
   }
 
-  public sidebarHeadingElementId = `stache-sidebar-heading-${uniqueId++}`;
-
-  public get routes(): StacheNavLink[] {
-    return this._routes;
-  }
-
-  private _routes: StacheNavLink[];
+  public childRoutes: StacheNavLink[];
   public heading: string;
   public headingRoute: string | string[];
-  public childRoutes: StacheNavLink[];
+  public sidebarHeadingElementId = `stache-sidebar-heading-${uniqueId++}`;
 
-  public constructor(private routeService: StacheRouteService) { }
+  private _routes: StacheNavLink[];
+
+  public constructor(
+    private routeService: StacheRouteService
+  ) { }
 
   public isHeadingActive(): boolean {
     const url = this.routeService.getActiveUrl();
@@ -49,10 +57,11 @@ export class StacheSidebarComponent implements StacheNav {
 
   private filterRoutes(routes: StacheNavLink[]): StacheNavLink[] {
     const root = routes[0];
+
     let headingPath = Array.isArray(root.path) ? root.path.join('/') : root.path;
     headingPath = headingPath.replace(/^\//, '');
-    this.heading = root.name;
 
+    this.heading = root.name;
     this.headingRoute = `/${headingPath}`;
 
     return root.children;

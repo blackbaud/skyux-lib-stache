@@ -1,68 +1,117 @@
 import {
   ComponentFixture,
-  TestBed
+  TestBed,
+  async,
+  tick,
+  fakeAsync
 } from '@angular/core/testing';
-
-import {
-  By
-} from '@angular/platform-browser';
-
-import {
-  RouterTestingModule
-} from '@angular/router/testing';
 
 import {
   expect
 } from '@skyux-sdk/testing';
 
 import {
-  StacheRouteMetadataService
-} from '../router/route-metadata.service';
+  SkyAppConfig
+} from '@skyux/config';
 
 import {
-  RouterLinkStubDirective
-} from './fixtures/router-link-stub.directive.fixture';
+  BehaviorSubject,
+  Subscription
+} from 'rxjs';
 
 import {
-  StacheSidebarModule
-} from './sidebar.module';
+  SidebarFixtureComponent
+} from './fixtures/sidebar.component.fixture';
 
 import {
-  StacheSidebarComponent
-} from './sidebar.component';
+  SidebarFixtureModule
+} from './fixtures/sidebar.module.fixture';
 
 import {
-  SidebarTestComponent
-} from './fixtures/sidebar-test.component.fixture';
+  SkyMediaBreakpoints,
+  SkyMediaQueryService
+} from '@skyux/core';
 
-describe('SidebarTestComponent', () => {
-  let component: StacheSidebarComponent;
-  let fixture: ComponentFixture<StacheSidebarComponent>;
+describe('Sidebar', () => {
+  let component: SidebarFixtureComponent;
+  let fixture: ComponentFixture<SidebarFixtureComponent>;
+  let mediaQueryService: any;
+
+  const mockConfig: any = {
+    runtime: {
+      routes: [
+        {
+          routePath: '/home'
+        }
+      ]
+    },
+    skyux: {}
+  };
+
+  class MockMediaQueryService {
+    public current = SkyMediaBreakpoints.md;
+    private currentSubject = new BehaviorSubject<SkyMediaBreakpoints>(this.current);
+
+    public subscribe(listener: any): Subscription {
+      return this.currentSubject.subscribe((value) => {
+        listener(value);
+      });
+    }
+  }
+
+  function detectChanges(): void {
+    fixture.detectChanges();
+    tick();
+  }
+
+  function getToggleButton(): any {
+    return fixture.nativeElement.querySelector('.stache-sidebar-button');
+  }
+
+  function getHeadingElement(): any {
+    return fixture.nativeElement.querySelector('.stache-sidebar-heading');
+  }
+
+  function verifyOpened(): void {
+    expect(fixture.nativeElement.querySelector('.stache-sidebar-open')).toBeTruthy();
+    expect(fixture.componentInstance.sidebarWrapperComponent.sidebarOpen).toEqual(true);
+  }
+
+  function verifyClosed(): void {
+    expect(fixture.nativeElement.querySelector('.stache-sidebar-closed')).toBeTruthy();
+    expect(fixture.componentInstance.sidebarWrapperComponent.sidebarOpen).toEqual(false);
+  }
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        SidebarTestComponent,
-        RouterLinkStubDirective
-      ],
       imports: [
-        RouterTestingModule,
-        StacheSidebarModule
+        SidebarFixtureModule
       ],
       providers: [
-        { provide: StacheRouteMetadataService, useValue: { routes: [] } }
+        {
+          provide: SkyAppConfig,
+          useValue: mockConfig
+        }
       ]
     });
 
-    fixture = TestBed.createComponent(StacheSidebarComponent);
+    fixture = TestBed.createComponent(SidebarFixtureComponent);
     component = fixture.componentInstance;
+    mediaQueryService = TestBed.get(SkyMediaQueryService);
   });
 
-  it('should render the component', () => {
-    expect(fixture).toExist();
-  });
+  it('should set defaults', fakeAsync(() => {
+    detectChanges();
 
-  it('should display navigation links', () => {
+    const sidebar = component.sidebarWrapperComponent;
+
+    expect(sidebar.elementId).toBeDefined();
+    expect(sidebar.sidebarLabel).toEqual('Click to open sidebar');
+    expect(sidebar.sidebarOpen).toEqual(true);
+    expect(sidebar.sidebarRoutes).toBeUndefined();
+  }));
+
+  it('should display navigation links', fakeAsync(() => {
     component.routes = [
       {
         name: 'Header',
@@ -74,22 +123,30 @@ describe('SidebarTestComponent', () => {
       }
     ];
 
-    fixture.detectChanges();
-    const links = fixture.debugElement.queryAll(By.css('.stache-nav-anchor'));
+    detectChanges();
+
+    const links = fixture.nativeElement.querySelectorAll('.stache-nav-anchor');
 
     expect(links.length).toBe(2);
-  });
+  }));
 
-  it('should automatically generate routes from config', () => {
-    const tmpFixture = TestBed.createComponent(SidebarTestComponent);
-    tmpFixture.detectChanges();
+  it('should support array route paths', fakeAsync(() => {
+    component.routes = [
+      {
+        name: 'Header',
+        path: ['foo', 'bar', 'baz']
+      }
+    ];
 
-    const links = tmpFixture.debugElement.queryAll(By.css('.stache-nav-anchor'));
+    detectChanges();
 
-    expect(links.length).toBe(3);
-  });
+    const heading = getHeadingElement();
+    const anchor = heading.querySelector('a');
 
-  it('should add a \/ to a heading route when one is not present', () => {
+    expect(anchor.getAttribute('href')).toEqual('/foo/bar/baz');
+  }));
+
+  it('should add a \/ to a heading route when one is not present', fakeAsync(() => {
     component.routes = [
       {
         name: 'Header',
@@ -97,75 +154,79 @@ describe('SidebarTestComponent', () => {
         children: []
       }
     ];
+
+    detectChanges();
+
+    const heading = getHeadingElement();
+    const anchor = heading.querySelector('a');
+
+    expect(heading.textContent.trim()).toEqual('Header');
+    expect(anchor.getAttribute('href')).toEqual('/');
+  }));
+
+  it('should not add a \/ to a heading route when one is present', fakeAsync(() => {
+    component.routes = [
+      {
+        name: 'Header',
+        path: '/',
+        children: []
+      }
+    ];
+
+    detectChanges();
+
+    const heading = getHeadingElement();
+    const anchor = heading.querySelector('a');
+
+    expect(heading.textContent.trim()).toEqual('Header');
+    expect(anchor.getAttribute('href')).toEqual('/');
+  }));
+
+  it('should open and close the sidebar', fakeAsync(() => {
+    detectChanges();
+
+    verifyOpened();
+
+    const button = getToggleButton();
+    button.click();
+    detectChanges();
+
+    verifyClosed();
+  }));
+
+  it('should add a CSS class to the body', fakeAsync(() => {
+    detectChanges();
+
+    expect(document.body.className.indexOf('stache-sidebar-enabled') > -1).toEqual(true);
+  }));
+
+  it('should remove the CSS class from the body on destroy', fakeAsync(() => {
+    detectChanges();
+
+    expect(document.body.className.indexOf('stache-sidebar-enabled') > -1).toEqual(true);
+
+    fixture.destroy();
+
+    expect(document.body.className.indexOf('stache-sidebar-enabled') > -1).toEqual(false);
+  }));
+
+  it('should be accessible', async(() => {
     fixture.detectChanges();
-    expect(component.heading).toEqual('Header');
-    expect(component.headingRoute).toEqual('/');
-  });
+    expect(fixture.debugElement.nativeElement).toBeAccessible();
+  }));
 
-  it('should not add a \/ to a heading route when one is present', () => {
-    component.routes = [
-      {
-        name: 'Header',
-        path: '/',
-        children: []
-      }
-    ];
+  it('should collapse the sidebar on small screens', fakeAsync(() => {
+    TestBed.overrideProvider(SkyMediaQueryService, {
+      useValue: MockMediaQueryService
+    });
 
-    expect(component.heading).toEqual('Header');
-    expect(component.headingRoute).toEqual('/');
-  });
+    detectChanges();
 
-  it('should handle header paths if the path is an array', () => {
-    component.routes = [
-      {
-        name: 'Foo',
-        path: ['home', 'foo'],
-        children: []
-      }
-    ];
+    verifyOpened();
 
-    expect(component.heading).toEqual('Foo');
-    expect(component.headingRoute).toEqual('/home/foo');
-  });
+    mediaQueryService.currentSubject.next(SkyMediaBreakpoints.xs);
+    detectChanges();
 
-  it('should use generated routes if no custom routes are provided', () => {
-    const tmpFixture = TestBed.createComponent(SidebarTestComponent);
-    tmpFixture.detectChanges();
-    const heading: any = tmpFixture.nativeElement.querySelector('.stach-sidebar-heading-link');
-    expect(heading.innerHTML.trim()).toEqual('Home');
-  });
-
-  it('should not use generated routes if custom routes are provided', () => {
-    const tmpFixture = TestBed.createComponent(SidebarTestComponent);
-    const cmp = tmpFixture.componentInstance as SidebarTestComponent;
-
-    cmp.routes = [
-      {
-        name: 'Foo',
-        path: ['home', 'foo'],
-        children: []
-      }
-    ];
-
-    tmpFixture.detectChanges();
-
-    const sidebarHeading = tmpFixture.nativeElement.querySelector('.stach-sidebar-heading-link').innerHTML;
-
-    expect(sidebarHeading.trim()).toEqual('Foo');
-  });
-
-  it('should get sidebar routes', () => {
-    component.routes = [
-      {
-        name: 'Header',
-        path: '/',
-        children: [
-          { name: 'Test 1', path: [] },
-          { name: 'Test 2', path: [] }
-        ]
-      }
-    ];
-
-    expect(component.routes.length).toBe(1);
-  });
+    verifyClosed();
+  }));
 });

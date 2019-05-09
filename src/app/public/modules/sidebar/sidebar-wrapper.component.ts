@@ -35,11 +35,11 @@ export class StacheSidebarWrapperComponent implements  OnDestroy, AfterViewInit 
   @Input()
   public sidebarRoutes: StacheNavLink[];
 
-  public sidebarOpen: boolean = false;
+  public sidebarOpen = false;
 
-  public sidebarLabel: string = 'Click to open sidebar';
+  public sidebarLabel = 'Click to open sidebar';
 
-  public elementId = `stache-sidebar-content-panel-${(nextUniqueId++)}`;
+  public elementId = `stache-sidebar-content-panel-${nextUniqueId++}`;
 
   private mediaQuerySubscription: Subscription;
 
@@ -50,23 +50,23 @@ export class StacheSidebarWrapperComponent implements  OnDestroy, AfterViewInit 
   ) {
 
     this.mediaQuerySubscription = this.mediaQueryService
-     .subscribe((args: SkyMediaBreakpoints) => {
-       this.sidebarOpen = (args <= SkyMediaBreakpoints.sm);
-       this.toggleSidebar();
-     });
+      .subscribe((args: SkyMediaBreakpoints) => {
+        this.sidebarOpen = (args <= SkyMediaBreakpoints.sm);
+        this.toggleSidebar();
+      });
   }
 
   public ngAfterViewInit(): void {
     this.addClassToBody();
   }
 
-  public toggleSidebar(): void {
-    this.sidebarOpen = !this.sidebarOpen;
-  }
-
   public ngOnDestroy(): void {
     this.removeClassFromBody();
     this.mediaQuerySubscription.unsubscribe();
+  }
+
+  public toggleSidebar(): void {
+    this.sidebarOpen = !this.sidebarOpen;
   }
 
   private addClassToBody(): void {
