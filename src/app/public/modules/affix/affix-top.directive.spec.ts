@@ -35,10 +35,6 @@ import {
 } from './affix.module';
 
 import {
-  StacheWindowRef
-} from '../shared/window-ref';
-
-import {
   StacheOmnibarAdapterService
 } from '../shared/omnibar-adapter.service';
 
@@ -48,7 +44,6 @@ describe('AffixTopTestDirective', () => {
   let omnibarAdapterService: StacheOmnibarAdapterService;
   let fixture: ComponentFixture<AffixTopTestComponent>;
   let directiveElements: any[];
-  let windowRef: any;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -66,12 +61,12 @@ describe('AffixTopTestDirective', () => {
   });
 
   beforeEach(inject(
-    [StacheWindowRef, StacheOmnibarAdapterService],
+    [
+      StacheOmnibarAdapterService
+    ],
     (
-      _service: StacheWindowRef,
       _omnibarAdapterService: StacheOmnibarAdapterService
     ) => {
-      windowRef = _service.nativeWindow;
       omnibarAdapterService = _omnibarAdapterService;
     })
   );
@@ -87,44 +82,42 @@ describe('AffixTopTestDirective', () => {
       tick();
 
       spyOn(directiveInstance, 'onWindowScroll').and.callThrough();
-      SkyAppTestUtility.fireDomEvent(windowRef, 'scroll');
+      SkyAppTestUtility.fireDomEvent(window, 'scroll');
 
       expect(directiveInstance.onWindowScroll).toHaveBeenCalled();
     })
   );
 
-  it('should add or remove stache-affix-top class based on offset to window ratio',
-    fakeAsync(() => {
-      const element = directiveElements[0].nativeElement;
-      element.style.marginTop = '50px';
+  it('should add or remove stache-affix-top class based on offset to window ratio', fakeAsync(() => {
+    const element = directiveElements[0].nativeElement;
+    element.style.marginTop = '50px';
 
-      windowRef.scrollTo(0, 500);
-      fixture.detectChanges();
-      tick();
+    window.scrollTo(0, 500);
+    fixture.detectChanges();
+    tick();
 
-      SkyAppTestUtility.fireDomEvent(windowRef, 'scroll');
-      expect(element).toHaveCssClass(className);
+    SkyAppTestUtility.fireDomEvent(window, 'scroll');
+    expect(element).toHaveCssClass(className);
 
-      windowRef.scrollTo(0, 0);
-      SkyAppTestUtility.fireDomEvent(windowRef, 'scroll');
-      expect(element).not.toHaveCssClass(className);
-    })
-  );
+    window.scrollTo(0, 0);
+    SkyAppTestUtility.fireDomEvent(window, 'scroll');
+    expect(element).not.toHaveCssClass(className);
+  }));
 
   it('should take the omnibar height into consideration in the offset to window ratio',
     fakeAsync(() => {
       const element = directiveElements[0].nativeElement;
       element.style.marginTop = '50px';
 
-      windowRef.scrollTo(0, 25);
+      window.scrollTo(0, 25);
       fixture.detectChanges();
       tick();
 
-      SkyAppTestUtility.fireDomEvent(windowRef, 'scroll');
+      SkyAppTestUtility.fireDomEvent(window, 'scroll');
       expect(element).not.toHaveCssClass(className);
 
       spyOn(omnibarAdapterService, 'getHeight').and.returnValue(50);
-      SkyAppTestUtility.fireDomEvent(windowRef, 'scroll');
+      SkyAppTestUtility.fireDomEvent(window, 'scroll');
       expect(element).toHaveCssClass(className);
     })
   );
@@ -133,15 +126,15 @@ describe('AffixTopTestDirective', () => {
     fakeAsync(() => {
       const element = directiveElements[1].nativeElement.children[0];
 
-      windowRef.scrollTo(0, 500);
+      window.scrollTo(0, 500);
       fixture.detectChanges();
       tick();
 
-      SkyAppTestUtility.fireDomEvent(windowRef, 'scroll');
+      SkyAppTestUtility.fireDomEvent(window, 'scroll');
       expect(element).toHaveCssClass(className);
 
-      windowRef.scrollTo(0, 0);
-      SkyAppTestUtility.fireDomEvent(windowRef, 'scroll');
+      window.scrollTo(0, 0);
+      SkyAppTestUtility.fireDomEvent(window, 'scroll');
       expect(element).not.toHaveCssClass(className);
     })
   );
@@ -150,14 +143,14 @@ describe('AffixTopTestDirective', () => {
     fakeAsync(() => {
       const element = directiveElements[0].nativeElement;
       element.style.marginTop = '500px';
-      windowRef.scrollTo(0, 0);
+      window.scrollTo(0, 0);
       fixture.detectChanges();
       tick();
 
-      SkyAppTestUtility.fireDomEvent(windowRef, 'scroll');
+      SkyAppTestUtility.fireDomEvent(window, 'scroll');
       expect(element).not.toHaveCssClass(className);
 
-      SkyAppTestUtility.fireDomEvent(windowRef, 'scroll');
+      SkyAppTestUtility.fireDomEvent(window, 'scroll');
       expect(element).not.toHaveCssClass(className);
     })
   );
@@ -178,11 +171,11 @@ describe('AffixTopTestDirective', () => {
         }
       } as HTMLElement;
 
-      windowRef.resizeTo(1200, 800);
-      windowRef.scrollBy(0, 350);
+      window.resizeTo(1200, 800);
+      window.scrollBy(0, 350);
 
       spyOn(omnibarAdapterService, 'getHeight').and.returnValue(50);
-      SkyAppTestUtility.fireDomEvent(windowRef, 'scroll');
+      SkyAppTestUtility.fireDomEvent(window, 'scroll');
 
       expect(element.style.height).toEqual('50px');
     })

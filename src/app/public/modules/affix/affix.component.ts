@@ -61,6 +61,7 @@ export class StacheAffixComponent implements AfterViewInit, OnDestroy {
   }
 
   private setElementRefDimensions(): void {
+    /* istanbul ignore else */
     if (this.wrapper) {
       this.minHeightFormatted = `${this.wrapper.nativeElement.offsetHeight}px`;
       this.maxWidthFormatted = `${this.wrapper.nativeElement.offsetWidth}px`;

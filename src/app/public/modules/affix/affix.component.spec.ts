@@ -1,6 +1,8 @@
 import {
   ComponentFixture,
-  TestBed
+  TestBed,
+  fakeAsync,
+  tick
 } from '@angular/core/testing';
 
 import {
@@ -8,12 +10,9 @@ import {
 } from '@angular/platform-browser';
 
 import {
-  expect
+  expect,
+  SkyAppTestUtility
 } from '@skyux-sdk/testing';
-
-import {
-  Subject
-} from 'rxjs';
 
 import {
   StacheAffixComponent
@@ -31,54 +30,19 @@ import {
   StacheAffixModule
 } from './affix.module';
 
-import {
-  StacheOmnibarAdapterService
-} from '../shared/omnibar-adapter.service';
-
-import {
-  StacheWindowRef
-} from '../shared/window-ref';
-
-class MockOmnibarService {
-  public getHeight(): number {
-    return 0;
-  }
-}
-
-class MockWindowRef {
-  public onResizeStream = new Subject();
-  public nativeWindow = {
-    document: {
-      body: document.createElement('div'),
-      querySelector(selector: string) {
-        if (selector === '.stache-footer-wrapper') {
-          return document.createElement('div');
-        }
-      }
-    }
-  };
-}
-
 describe('StacheAffixComponent', () => {
-  let mockWindowRef: any;
   let component: StacheAffixComponent;
   let fixture: ComponentFixture<StacheAffixComponent>;
 
   beforeEach(() => {
-    mockWindowRef = new MockWindowRef();
     TestBed.configureTestingModule({
       imports: [
         StacheAffixModule
       ],
       declarations: [
         StacheAffixTestComponent
-      ],
-      providers: [
-        { provide: StacheWindowRef, useValue: mockWindowRef },
-        { provide: StacheOmnibarAdapterService, useClass: MockOmnibarService }
       ]
-    })
-    .compileComponents();
+    });
 
     fixture = TestBed.createComponent(StacheAffixComponent);
     component = fixture.componentInstance;
@@ -138,22 +102,21 @@ describe('StacheAffixComponent', () => {
     expect(affixElement.children[0].getAttribute('stacheaffixtop')).toBeDefined();
   });
 
-  it('should set the minHeight and maxWidth on window resize', () => {
-    component.wrapper = {
-      nativeElement: {
-        offsetHeight: 10,
-        offsetWidth: 20
-      }
-    };
-    mockWindowRef.onResizeStream.next();
+  it('should set the minHeight and maxWidth on window resize', fakeAsync(() => {
+    fixture.detectChanges();
+    tick();
+
+    expect(component.minHeightFormatted).toEqual('0px');
+    expect(component.maxWidthFormatted).toEqual(`${window.innerWidth}px`);
+
+    spyOnProperty(component.wrapper.nativeElement, 'offsetHeight', 'get').and.returnValue(10);
+    spyOnProperty(component.wrapper.nativeElement, 'offsetWidth', 'get').and.returnValue(20);
+
+    SkyAppTestUtility.fireDomEvent(window, 'resize');
+    fixture.detectChanges();
+    tick();
+
     expect(component.minHeightFormatted).toEqual('10px');
     expect(component.maxWidthFormatted).toEqual('20px');
-  });
-
-  it('should not update the minHeight and maxWidth if no wrapper exists', () => {
-    component.wrapper = undefined;
-    mockWindowRef.onResizeStream.next();
-    expect(component.minHeightFormatted).toEqual(undefined);
-    expect(component.maxWidthFormatted).toEqual(undefined);
-  });
+  }));
 });
