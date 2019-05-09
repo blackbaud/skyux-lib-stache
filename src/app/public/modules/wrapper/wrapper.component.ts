@@ -21,6 +21,10 @@ import {
 } from 'rxjs';
 
 import {
+  takeUntil
+} from 'rxjs/operators';
+
+import {
   StacheTitleService
 } from './title.service';
 
@@ -119,9 +123,10 @@ export class StacheWrapperComponent implements OnInit, AfterViewInit, OnDestroy 
     this.omnibarService.checkForOmnibar();
     this.jsonData = this.dataService.getAll();
     if (!this.inPageRoutes) {
-      this.pageAnchorService
-        .pageAnchorsStream
-        .takeUntil(this.ngUnsubscribe)
+      this.pageAnchorService.pageAnchorsStream
+        .pipe(
+          takeUntil(this.ngUnsubscribe)
+        )
         .subscribe((anchors: StacheNavLink[]) => {
           this.inPageRoutes = anchors;
           this.changeDetectorRef.detectChanges();

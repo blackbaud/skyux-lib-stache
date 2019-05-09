@@ -16,6 +16,10 @@ import {
  } from 'rxjs';
 
 import {
+  takeUntil
+} from 'rxjs/operators';
+
+import {
   StacheWindowRef
 } from '../shared/window-ref';
 
@@ -73,10 +77,12 @@ export class StachePageAnchorComponent implements
 
   public ngOnInit() {
     this.anchorService.refreshRequestedStream
-    .takeUntil(this.ngUnsubscribe)
-    .subscribe(() => {
-      this.updatePageAnchor();
-    });
+      .pipe(
+        takeUntil(this.ngUnsubscribe)
+      )
+      .subscribe(() => {
+        this.updatePageAnchor();
+      });
   }
 
   public ngAfterViewInit(): void {

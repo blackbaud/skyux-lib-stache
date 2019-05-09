@@ -16,7 +16,7 @@ import {
 } from '@skyux-sdk/testing';
 
 import {
-  Observable
+  of as observableOf
 } from 'rxjs';
 
 import {
@@ -74,7 +74,7 @@ class MockWindowService {
     scroll: jasmine.createSpy('scroll')
   };
 
-  public scrollEventStream = Observable.of(true);
+  public scrollEventStream = observableOf(true);
 }
 
 class MockOmnibarService {
@@ -190,7 +190,7 @@ describe('StacheTableOfContentsComponent', () => {
         },
         scroll: jasmine.createSpy('scroll')
       },
-      scrollEventStream: Observable.of(true)
+      scrollEventStream: observableOf(true)
     };
 
     component = new StacheTableOfContentsComponent(mockWindowRef as any, mockOmnibarService as any);
@@ -249,7 +249,7 @@ describe('StacheTableOfContentsComponent', () => {
         },
         scroll: jasmine.createSpy('scroll')
       },
-      scrollEventStream: Observable.of(true)
+      scrollEventStream: observableOf(true)
     };
 
     component = new StacheTableOfContentsComponent(mockWindowRef as any, mockOmnibarService as any);

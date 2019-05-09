@@ -17,7 +17,7 @@ import {
 } from '@angular/router/testing';
 
 import {
-  Observable
+  of as observableOf
 } from 'rxjs';
 
 import {
@@ -57,7 +57,7 @@ class MockWindowService {
     },
     innerWidth: 100
   };
-  public scrollEventStream = Observable.of(true);
+  public scrollEventStream = observableOf(true);
 }
 
 class MockStacheRouteService {

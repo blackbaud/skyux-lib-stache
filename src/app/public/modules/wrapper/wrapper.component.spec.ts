@@ -25,8 +25,8 @@ import {
 } from '@skyux/core';
 
 import {
-  of as observableOf,
   Observable,
+  of as observableOf,
   Subject
 } from 'rxjs';
 
@@ -242,7 +242,7 @@ describe('StacheWrapperComponent', () => {
       }
     };
 
-    public scrollEventStream = Observable.of(true);
+    public scrollEventStream = observableOf(true);
 
     get onResize() {
       return observableOf({});

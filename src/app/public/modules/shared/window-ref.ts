@@ -3,16 +3,10 @@ import {
 } from '@angular/core';
 
 import {
-  Observable
-} from 'rxjs/Observable';
-
-import {
+  fromEvent,
+  Observable,
   ReplaySubject
-} from 'rxjs/ReplaySubject';
-
-import {
-  fromEvent
-} from 'rxjs/observable/fromEvent';
+} from 'rxjs';
 
 function getWindow(): any {
   return window;

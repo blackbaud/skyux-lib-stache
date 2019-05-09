@@ -32,20 +32,24 @@ export class StachePageAnchorService implements OnDestroy {
   constructor(
     private windowRef: StacheWindowRef
   ) {
-    this.windowRef.scrollEventStream.pipe(
-      takeUntil(this.ngUnsubscribe),
-      map(e => this.windowRef.nativeWindow.document.body.scrollHeight),
-      pairwise()
-    ).subscribe(height => {
-      if (height[0] !== height[1]) {
-        this.refreshAnchors();
-      }
-    });
+    this.windowRef.scrollEventStream
+      .pipe(
+        takeUntil(this.ngUnsubscribe),
+        map(e => this.windowRef.nativeWindow.document.body.scrollHeight),
+        pairwise()
+      )
+      .subscribe(height => {
+        if (height[0] !== height[1]) {
+          this.refreshAnchors();
+        }
+      });
   }
 
   public addAnchor(anchorStream: BehaviorSubject<StacheNavLink>) {
     anchorStream
-      .takeUntil(this.ngUnsubscribe)
+      .pipe(
+        takeUntil(this.ngUnsubscribe)
+      )
       .subscribe({
         next: () => {
           this.updateAnchorStream();
@@ -76,13 +80,15 @@ export class StachePageAnchorService implements OnDestroy {
 
   private updateAnchorStream() {
     this.pageAnchors.sort(this.sortPageAnchors);
-    this.pageAnchorsStream
-      .next(this.pageAnchors.map(anchor => anchor.getValue()));
+    this.pageAnchorsStream.next(
+      this.pageAnchors.map(anchor => anchor.getValue())
+    );
   }
 
   private sortPageAnchors(
     anchorA: BehaviorSubject<StacheNavLink>,
-    anchorB: BehaviorSubject<StacheNavLink>) {
-      return anchorA.getValue().offsetTop - anchorB.getValue().offsetTop;
+    anchorB: BehaviorSubject<StacheNavLink>
+  ) {
+    return anchorA.getValue().offsetTop - anchorB.getValue().offsetTop;
   }
 }
