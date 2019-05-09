@@ -13,154 +13,56 @@ import {
 } from '@skyux-sdk/testing';
 
 import {
-  SkyMediaQueryModule
-} from '@skyux/core';
-
-import {
-  Subject
-} from 'rxjs';
-
-import {
-  StacheSidebarWrapperComponent
-} from './sidebar-wrapper.component';
-
-import {
   StacheSidebarModule
 } from './sidebar.module';
 
 import {
-  StacheNavModule
-} from '../nav/nav.module';
-
-import {
-  StacheNavService
-} from '../nav/nav.service';
-
-import {
-  StacheWindowRef
-} from '../shared/window-ref';
-
-import {
-  StacheRouteMetadataService
-} from '../router/route-metadata.service';
-
-import {
-  StacheRouteService
-} from '../router/route.service';
-
-import {
-  StacheOmnibarAdapterService
-} from '../shared/omnibar-adapter.service';
-
-import {
-  RouterLinkStubDirective
-} from './fixtures/router-link-stub.directive.fixture';
+  SidebarTestComponent
+} from './fixtures/sidebar-test.component.fixture';
 
 describe('StacheSidebarWrapperComponent', () => {
   const CONTAINER_SIDEBAR_CLASSNAME = 'stache-sidebar-enabled';
-  let component: StacheSidebarWrapperComponent;
-  let fixture: ComponentFixture<StacheSidebarWrapperComponent>;
-  let mockElement: HTMLElement = document.createElement('div');
-  let mockRouteService: any;
-  let mockOmnibarService: any;
-  let mockWindowRef: any;
 
-  let activeUrl: string = '/';
-  let windowWidth = 1000;
-  let omnibarHeight = 50;
-
-  class MockRouteService {
-    public getActiveUrl() {
-      return activeUrl;
-    }
-
-    public getActiveRoutes() {
-      return [
-        {
-          name: 'Home',
-          path: '',
-          children: [
-            {
-              name: 'Test',
-              path: '/test',
-              children: [
-                {
-                  name: 'Test Child',
-                  path: '/test/child'
-                }
-              ]
-            }
-          ]
-        }
-      ];
-    }
-  }
-
-  class MockWindowRef {
-    public nativeWindow = {
-     innerWidth: windowWidth,
-     document: {
-       body: mockElement
-      }
-    };
-
-    public onResizeStream = new Subject();
-}
-
-  class MockOmnibarService {
-    public getHeight() {
-      return omnibarHeight;
-    }
-  }
+  let component: SidebarTestComponent;
+  let fixture: ComponentFixture<SidebarTestComponent>;
 
   beforeEach(() => {
-    mockRouteService = new MockRouteService();
-    mockOmnibarService = new MockOmnibarService();
-    mockWindowRef = new MockWindowRef();
-
     TestBed.configureTestingModule({
       declarations: [
-        RouterLinkStubDirective
+        SidebarTestComponent
       ],
       imports: [
         RouterTestingModule,
-        StacheNavModule,
-        StacheSidebarModule,
-        SkyMediaQueryModule
-      ],
-      providers: [
-        StacheNavService,
-        { provide: StacheWindowRef, useValue: mockWindowRef },
-        { provide: StacheOmnibarAdapterService, useValue: mockOmnibarService },
-        { provide: StacheRouteService, useValue: mockRouteService },
-        { provide: StacheRouteMetadataService, useValue: { routes: [] } }
+        StacheSidebarModule
       ]
-    })
-    .compileComponents();
+    });
 
-    fixture = TestBed.createComponent(StacheSidebarWrapperComponent);
+    fixture = TestBed.createComponent(SidebarTestComponent);
     component = fixture.componentInstance;
-    component.sidebarRoutes = mockRouteService.getActiveRoutes();
   });
 
   it('should render the component', () => {
+    fixture.detectChanges();
     expect(fixture).toExist();
   });
 
   it('should open and close the sidebar', () => {
-    component.sidebarOpen = false;
-    component.toggleSidebar();
-    expect(component.sidebarOpen).toEqual(true);
-    component.toggleSidebar();
-    expect(component.sidebarOpen).toEqual(false);
-  });
+    const sidebar = component.sidebarComponent;
 
-  it('should call the check the window width on window resize', () => {
-    component.sidebarOpen = false;
-    mockWindowRef.nativeWindow.innerWidth = 10;
-    mockWindowRef.onResizeStream.next();
+    sidebar.sidebarOpen = false;
     fixture.detectChanges();
-    expect(component.sidebarOpen).toBe(false);
+
+    expect(sidebar.sidebarOpen).toEqual(false);
+
+    sidebar.toggleSidebar();
+    fixture.detectChanges();
+
+    expect(sidebar.sidebarOpen).toEqual(true);
+
+    sidebar.toggleSidebar();
+    fixture.detectChanges();
+
+    expect(sidebar.sidebarOpen).toEqual(false);
   });
 
   it('should be accessible', async(() => {
@@ -168,15 +70,15 @@ describe('StacheSidebarWrapperComponent', () => {
     expect(fixture.debugElement.nativeElement).toBeAccessible();
   }));
 
-  it(`should add the class ${ CONTAINER_SIDEBAR_CLASSNAME } to the body if one exists`, () => {
-    component.ngAfterViewInit();
-    expect(mockElement.className).toContain(CONTAINER_SIDEBAR_CLASSNAME);
-  });
+  it(`should add the class ${ CONTAINER_SIDEBAR_CLASSNAME } to the body if one exists`, async(() => {
+    fixture.detectChanges();
+    expect(document.body.className).toContain(CONTAINER_SIDEBAR_CLASSNAME);
+  }));
 
   it(`should remove the class ${ CONTAINER_SIDEBAR_CLASSNAME } from the body on destroy`, () => {
-    component.ngAfterViewInit();
-    expect(mockElement.className).toContain(CONTAINER_SIDEBAR_CLASSNAME);
-    component.ngOnDestroy();
-    expect(mockElement.className).not.toContain(CONTAINER_SIDEBAR_CLASSNAME);
+    fixture.detectChanges();
+    expect(document.body.className).toContain(CONTAINER_SIDEBAR_CLASSNAME);
+    component.sidebarComponent.ngOnDestroy();
+    expect(document.body.className).not.toContain(CONTAINER_SIDEBAR_CLASSNAME);
   });
 });

@@ -16,24 +16,8 @@ import {
 } from '@skyux-sdk/testing';
 
 import {
-  SkyMediaQueryService
-} from '@skyux/core';
-
-import {
-   StacheNavService
-  } from '../nav/nav.service';
-
-import {
-  StacheWindowRef
-} from '../shared/window-ref';
-
-import {
   StacheRouteMetadataService
 } from '../router/route-metadata.service';
-
-import {
-  StacheRouteService
-} from '../router/route.service';
 
 import {
   RouterLinkStubDirective
@@ -51,48 +35,11 @@ import {
   SidebarTestComponent
 } from './fixtures/sidebar-test.component.fixture';
 
-const routes = [
-  {
-    name: 'Home',
-    path: '/home',
-    children: [
-      {
-        name: 'Test',
-        path: '/test',
-        children: [
-          {
-            name: 'Test Child',
-            path: '/test/child'
-          },
-          {
-            name: 'Test Child2',
-            path: '/test/child'
-          }
-        ]
-      }
-    ]
-  }
-];
-
 describe('SidebarTestComponent', () => {
   let component: StacheSidebarComponent;
   let fixture: ComponentFixture<StacheSidebarComponent>;
-  let mockRouteService: any;
-  let activeUrl: string = '/';
-
-  class MockRouteService {
-    public getActiveUrl() {
-      return activeUrl;
-    }
-
-    public getActiveRoutes() {
-      return routes;
-    }
-  }
 
   beforeEach(() => {
-    mockRouteService = new MockRouteService();
-
     TestBed.configureTestingModule({
       declarations: [
         SidebarTestComponent,
@@ -103,14 +50,9 @@ describe('SidebarTestComponent', () => {
         StacheSidebarModule
       ],
       providers: [
-        StacheWindowRef,
-        StacheNavService,
-        SkyMediaQueryService,
-        { provide: StacheRouteService, useValue: mockRouteService },
         { provide: StacheRouteMetadataService, useValue: { routes: [] } }
       ]
-    })
-    .compileComponents();
+    });
 
     fixture = TestBed.createComponent(StacheSidebarComponent);
     component = fixture.componentInstance;

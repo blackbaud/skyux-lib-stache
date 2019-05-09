@@ -7,6 +7,10 @@ import {
 } from '@angular/common';
 
 import {
+  SkyMediaQueryModule
+} from '@skyux/core';
+
+import {
   StacheNavModule
 } from '../nav/nav.module';
 
@@ -33,6 +37,7 @@ import {
   ],
   imports: [
     CommonModule,
+    SkyMediaQueryModule,
     StacheNavModule,
     StacheResourcesModule
   ],

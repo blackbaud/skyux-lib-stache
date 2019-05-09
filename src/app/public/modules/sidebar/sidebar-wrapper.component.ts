@@ -23,7 +23,7 @@ import {
   StacheWindowRef
 } from '../shared/window-ref';
 
-const HAS_SIDEBAR_CLASS_NAME: string  = 'stache-sidebar-enabled';
+const SIDEBAR_CSS_CLASS_NAME = 'stache-sidebar-enabled';
 let nextUniqueId = 0;
 
 @Component({
@@ -72,14 +72,14 @@ export class StacheSidebarWrapperComponent implements  OnDestroy, AfterViewInit 
   private addClassToBody(): void {
     this.renderer.addClass(
       this.windowRef.nativeWindow.document.body,
-      HAS_SIDEBAR_CLASS_NAME
+      SIDEBAR_CSS_CLASS_NAME
     );
   }
 
   private removeClassFromBody(): void {
     this.renderer.removeClass(
       this.windowRef.nativeWindow.document.body,
-      HAS_SIDEBAR_CLASS_NAME
+      SIDEBAR_CSS_CLASS_NAME
     );
   }
 }
