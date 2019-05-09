@@ -6,4 +6,4 @@ import {
   selector: 'affix-top-test-component',
   templateUrl: './affix-top.component.fixture.html'
 })
-export class AffixTopTestComponent { }
+export class AffixTopFixtureComponent { }

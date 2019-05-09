@@ -16,47 +16,44 @@ import {
 
 import {
   SkyAppTestUtility
-} from '@skyux-sdk/testing/test-utility/test-utility';
-
-import {
-  StacheAffixTopDirective
-} from './affix-top.directive';
-
-import {
-  AffixTopTestComponent
-} from './fixtures/affix-top.component.fixture';
-
-import {
-  StacheCodeModule
-} from '../code/code.module';
-
-import {
-  StacheAffixModule
-} from './affix.module';
+} from '@skyux-sdk/testing';
 
 import {
   StacheOmnibarAdapterService
 } from '../shared/omnibar-adapter.service';
 
-describe('AffixTopTestDirective', () => {
+import {
+  AffixTopFixtureComponent
+} from './fixtures/affix-top.component.fixture';
+
+import {
+  AffixFixtureModule
+} from './fixtures/affix.module.fixture';
+
+import {
+  StacheAffixTopDirective
+} from './affix-top.directive';
+
+describe('StacheAffixTopDirective', () => {
   const className: string = StacheAffixTopDirective.AFFIX_CLASS_NAME;
 
   let omnibarAdapterService: StacheOmnibarAdapterService;
-  let fixture: ComponentFixture<AffixTopTestComponent>;
+  let fixture: ComponentFixture<AffixTopFixtureComponent>;
   let directiveElements: any[];
+
+  function detectChanges(): void {
+    fixture.detectChanges();
+    tick();
+  }
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        StacheCodeModule,
-        StacheAffixModule
-      ],
-      declarations: [
-        AffixTopTestComponent
+        AffixFixtureModule
       ]
     });
 
-    fixture = TestBed.createComponent(AffixTopTestComponent);
+    fixture = TestBed.createComponent(AffixTopFixtureComponent);
     directiveElements = fixture.debugElement.queryAll(By.directive(StacheAffixTopDirective));
   });
 
@@ -71,15 +68,17 @@ describe('AffixTopTestDirective', () => {
     })
   );
 
-  it('should exist on the component', () => {
-    expect(directiveElements[0]).not.toBeNull();
-  });
+  it('should exist on the component', fakeAsync(() => {
+    detectChanges();
 
-  it('should call the on window scroll method when the window scrolls', fakeAsync(() => {
+    expect(directiveElements[0]).not.toBeNull();
+  }));
+
+  it('should call the on window scroll method when the window scrolls',
+    fakeAsync(() => {
       const directiveInstance = directiveElements[0].injector.get(StacheAffixTopDirective);
 
-      fixture.detectChanges();
-      tick();
+      detectChanges();
 
       spyOn(directiveInstance, 'onWindowScroll').and.callThrough();
       SkyAppTestUtility.fireDomEvent(window, 'scroll');
@@ -88,79 +87,104 @@ describe('AffixTopTestDirective', () => {
     })
   );
 
-  it('should add or remove stache-affix-top class based on offset to window ratio', fakeAsync(() => {
-    const element = directiveElements[0].nativeElement;
-    element.style.marginTop = '50px';
+  it('should add or remove stache-affix-top class based on offset to window ratio',
+    fakeAsync(() => {
+      detectChanges();
 
-    window.scrollTo(0, 500);
-    fixture.detectChanges();
-    tick();
+      const element = directiveElements[0].nativeElement;
+      element.style.marginTop = '50px';
 
-    SkyAppTestUtility.fireDomEvent(window, 'scroll');
-    expect(element).toHaveCssClass(className);
+      window.scrollTo(0, 500);
+      SkyAppTestUtility.fireDomEvent(window, 'scroll');
 
-    window.scrollTo(0, 0);
-    SkyAppTestUtility.fireDomEvent(window, 'scroll');
-    expect(element).not.toHaveCssClass(className);
-  }));
+      detectChanges();
+
+      expect(element).toHaveCssClass(className);
+
+      window.scrollTo(0, 0);
+      SkyAppTestUtility.fireDomEvent(window, 'scroll');
+
+      detectChanges();
+
+      expect(element).not.toHaveCssClass(className);
+    })
+  );
 
   it('should take the omnibar height into consideration in the offset to window ratio',
     fakeAsync(() => {
+      detectChanges();
+
       const element = directiveElements[0].nativeElement;
       element.style.marginTop = '50px';
 
       window.scrollTo(0, 25);
-      fixture.detectChanges();
-      tick();
-
       SkyAppTestUtility.fireDomEvent(window, 'scroll');
+
+      detectChanges();
+
       expect(element).not.toHaveCssClass(className);
 
       spyOn(omnibarAdapterService, 'getHeight').and.returnValue(50);
+
       SkyAppTestUtility.fireDomEvent(window, 'scroll');
+
+      detectChanges();
+
       expect(element).toHaveCssClass(className);
     })
   );
 
   it('should add or remove stache-affix-top class to a component\'s first child',
     fakeAsync(() => {
-      const element = directiveElements[1].nativeElement.children[0];
+      detectChanges();
 
       window.scrollTo(0, 500);
-      fixture.detectChanges();
-      tick();
-
       SkyAppTestUtility.fireDomEvent(window, 'scroll');
+
+      detectChanges();
+
+      const element = directiveElements[1].nativeElement.children[0];
+
       expect(element).toHaveCssClass(className);
 
       window.scrollTo(0, 0);
       SkyAppTestUtility.fireDomEvent(window, 'scroll');
+
+      detectChanges();
+
       expect(element).not.toHaveCssClass(className);
     })
   );
 
   it('should not attempt to reset the element if it already has',
     fakeAsync(() => {
+      detectChanges();
+
       const element = directiveElements[0].nativeElement;
       element.style.marginTop = '500px';
-      window.scrollTo(0, 0);
-      fixture.detectChanges();
-      tick();
 
+      window.scrollTo(0, 0);
       SkyAppTestUtility.fireDomEvent(window, 'scroll');
+
+      detectChanges();
+
       expect(element).not.toHaveCssClass(className);
 
       SkyAppTestUtility.fireDomEvent(window, 'scroll');
+
+      detectChanges();
+
       expect(element).not.toHaveCssClass(className);
     })
   );
 
   it('should set the maxHeight of the element based on footer offset - window pageYOffset - omnibar height',
     fakeAsync(() => {
+      detectChanges();
+
       const element = directiveElements[0].nativeElement;
       const directiveInstance = directiveElements[0].injector.get(StacheAffixTopDirective);
-      fixture.detectChanges();
-      tick();
+
       directiveInstance.footerWrapper = {
         offsetParent: undefined,
         offsetTop: 450,
@@ -175,7 +199,10 @@ describe('AffixTopTestDirective', () => {
       window.scrollBy(0, 350);
 
       spyOn(omnibarAdapterService, 'getHeight').and.returnValue(50);
+
       SkyAppTestUtility.fireDomEvent(window, 'scroll');
+
+      detectChanges();
 
       expect(element.style.height).toEqual('50px');
     })

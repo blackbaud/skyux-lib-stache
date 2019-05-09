@@ -6,117 +6,98 @@ import {
 } from '@angular/core/testing';
 
 import {
-  By
-} from '@angular/platform-browser';
-
-import {
   expect,
   SkyAppTestUtility
 } from '@skyux-sdk/testing';
 
 import {
-  StacheAffixComponent
-} from './affix.component';
-
-import {
-  StacheAffixTestComponent
+  AffixFixtureComponent
 } from './fixtures/affix.component.fixture';
 
 import {
-  StacheAffixTopDirective
-} from './affix-top.directive';
-
-import {
-  StacheAffixModule
-} from './affix.module';
+  AffixFixtureModule
+} from './fixtures/affix.module.fixture';
 
 describe('StacheAffixComponent', () => {
-  let component: StacheAffixComponent;
-  let fixture: ComponentFixture<StacheAffixComponent>;
+  let component: AffixFixtureComponent;
+  let fixture: ComponentFixture<AffixFixtureComponent>;
+
+  function detectChanges(): void {
+    fixture.detectChanges();
+    tick();
+  }
+
+  function getAffixElement(): any {
+    return fixture.nativeElement.querySelector('.stache-affix');
+  }
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        StacheAffixModule
-      ],
-      declarations: [
-        StacheAffixTestComponent
+        AffixFixtureModule
       ]
     });
 
-    fixture = TestBed.createComponent(StacheAffixComponent);
+    fixture = TestBed.createComponent(AffixFixtureComponent);
     component = fixture.componentInstance;
   });
 
-  it('should render the component', () => {
-    expect(fixture).toExist();
-  });
+  it('should set defaults', fakeAsync(() => {
+    detectChanges();
+    expect(component.affixComponent.maxWidthFormatted).toEqual(`${window.innerWidth}px`);
+    expect(component.affixComponent.minHeightFormatted).toEqual('19px');
+  }));
 
-  it('should format the wrapping DIVs minHeight', () => {
-    fixture.detectChanges();
-    expect(component.minHeightFormatted).toBeDefined();
-  });
+  it('should set style properties on wrapping DIV', fakeAsync(() => {
+    detectChanges();
 
-  it('should format the wrapping DIVs maxWidth', () => {
-    fixture.detectChanges();
-    expect(component.maxWidthFormatted).toBeDefined();
-  });
+    const affixElement = getAffixElement();
 
-  it('should add a min-height property to the wrapping DIV', () => {
-    fixture.detectChanges();
-    let affixElement = fixture.debugElement.query(By.css('.stache-affix')).nativeElement;
     expect(affixElement.style.minHeight).toBeDefined();
-  });
-
-  it('should add a max-width property to the wrapping DIV', () => {
-    fixture.detectChanges();
-    let affixElement = fixture.debugElement.query(By.css('.stache-affix')).nativeElement;
     expect(affixElement.style.maxWidth).toBeDefined();
-  });
-
-  it('should add a position property to the wrapping DIV', () => {
-    fixture.detectChanges();
-    let affixElement = fixture.debugElement.query(By.css('.stache-affix')).nativeElement;
     expect(affixElement.style.position).toBeDefined();
-  });
+  }));
 
-  it('should determine the position property from the directive status', () => {
-    fixture.componentInstance.ngAfterViewInit();
-    fixture.componentInstance.affixTopDirective = {
-      isAffixed: true
-    } as StacheAffixTopDirective;
+  it('should determine the position property from directive status', fakeAsync(() => {
+    detectChanges();
 
-    fixture.detectChanges();
-    let result = fixture.componentInstance.getStyles();
-    expect(result.position).toEqual('relative');
+    const affixComponent = fixture.componentInstance.affixComponent;
 
-    fixture.detectChanges();
-    fixture.componentInstance.affixTopDirective.isAffixed = false;
-    result = fixture.componentInstance.getStyles();
-    expect(result.position).toEqual('static');
-  });
+    let styles = affixComponent.getStyles();
 
-  it('should wrap transcluded content with the stacheAffixTop directive', () => {
-    fixture.detectChanges();
-    let affixElement = fixture.debugElement.query(By.css('.stache-affix')).nativeElement;
+    expect(styles.position).toEqual('static');
+
+    affixComponent.affixTopDirective.isAffixed = true;
+    detectChanges();
+
+    styles = affixComponent.getStyles();
+
+    expect(styles.position).toEqual('relative');
+  }));
+
+  it('should wrap transcluded content with the stacheAffixTop directive', fakeAsync(() => {
+    detectChanges();
+
+    const affixElement = getAffixElement();
+
     expect(affixElement.children[0].getAttribute('stacheaffixtop')).toBeDefined();
-  });
+  }));
 
   it('should set the minHeight and maxWidth on window resize', fakeAsync(() => {
-    fixture.detectChanges();
-    tick();
+    detectChanges();
 
-    expect(component.minHeightFormatted).toEqual('0px');
-    expect(component.maxWidthFormatted).toEqual(`${window.innerWidth}px`);
+    const affixComponent = fixture.componentInstance.affixComponent;
 
-    spyOnProperty(component.wrapper.nativeElement, 'offsetHeight', 'get').and.returnValue(10);
-    spyOnProperty(component.wrapper.nativeElement, 'offsetWidth', 'get').and.returnValue(20);
+    expect(affixComponent.minHeightFormatted).toEqual(`${fixture.nativeElement.offsetHeight}px`);
+    expect(affixComponent.maxWidthFormatted).toEqual(`${window.innerWidth}px`);
+
+    spyOnProperty(affixComponent.wrapper.nativeElement, 'offsetHeight', 'get').and.returnValue(10);
+    spyOnProperty(affixComponent.wrapper.nativeElement, 'offsetWidth', 'get').and.returnValue(20);
 
     SkyAppTestUtility.fireDomEvent(window, 'resize');
-    fixture.detectChanges();
-    tick();
+    detectChanges();
 
-    expect(component.minHeightFormatted).toEqual('10px');
-    expect(component.maxWidthFormatted).toEqual('20px');
+    expect(affixComponent.minHeightFormatted).toEqual('10px');
+    expect(affixComponent.maxWidthFormatted).toEqual('20px');
   }));
 });
