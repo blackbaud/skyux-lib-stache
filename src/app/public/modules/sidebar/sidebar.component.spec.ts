@@ -91,6 +91,10 @@ describe('Sidebar', () => {
         {
           provide: SkyAppConfig,
           useValue: mockConfig
+        },
+        {
+          provide: SkyMediaQueryService,
+          useClass: MockMediaQueryService
         }
       ]
     });
@@ -216,15 +220,12 @@ describe('Sidebar', () => {
   }));
 
   it('should collapse the sidebar on small screens', fakeAsync(() => {
-    TestBed.overrideProvider(SkyMediaQueryService, {
-      useValue: MockMediaQueryService
-    });
-
     detectChanges();
 
     verifyOpened();
 
     mediaQueryService.currentSubject.next(SkyMediaBreakpoints.xs);
+
     detectChanges();
 
     verifyClosed();

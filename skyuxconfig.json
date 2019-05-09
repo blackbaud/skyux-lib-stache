@@ -3,7 +3,6 @@
   "name": "stache2",
   "mode": "easy",
   "compileMode": "aot",
-  "auth": false,
   "plugins": [
     "@blackbaud/skyux-builder-plugin-stache",
     "@blackbaud/skyux-builder-plugin-code-block",

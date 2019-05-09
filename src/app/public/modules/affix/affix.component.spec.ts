@@ -44,8 +44,9 @@ describe('StacheAffixComponent', () => {
 
   it('should set defaults', fakeAsync(() => {
     detectChanges();
-    expect(component.affixComponent.maxWidthFormatted).toEqual(`${window.innerWidth}px`);
-    expect(component.affixComponent.minHeightFormatted).toEqual('19px');
+    const affixComponent = component.affixComponent;
+    expect(affixComponent.minHeightFormatted).toEqual(`${fixture.nativeElement.offsetHeight}px`);
+    expect(affixComponent.maxWidthFormatted).toEqual(`${window.innerWidth}px`);
   }));
 
   it('should set style properties on wrapping DIV', fakeAsync(() => {
@@ -61,7 +62,7 @@ describe('StacheAffixComponent', () => {
   it('should determine the position property from directive status', fakeAsync(() => {
     detectChanges();
 
-    const affixComponent = fixture.componentInstance.affixComponent;
+    const affixComponent = component.affixComponent;
 
     let styles = affixComponent.getStyles();
 
@@ -86,7 +87,7 @@ describe('StacheAffixComponent', () => {
   it('should set the minHeight and maxWidth on window resize', fakeAsync(() => {
     detectChanges();
 
-    const affixComponent = fixture.componentInstance.affixComponent;
+    const affixComponent = component.affixComponent;
 
     expect(affixComponent.minHeightFormatted).toEqual(`${fixture.nativeElement.offsetHeight}px`);
     expect(affixComponent.maxWidthFormatted).toEqual(`${window.innerWidth}px`);
