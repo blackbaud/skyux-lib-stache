@@ -42,7 +42,7 @@ describe('StacheEditButtonComponent', () => {
       appSettings: {
         stache: {
           editButton: {
-            url: 'https://github.com/blackbaud/stache2'
+            url: 'https://github.com/blackbaud/skyux-lib-stache'
           }
         }
       }
@@ -95,7 +95,7 @@ describe('StacheEditButtonComponent', () => {
 
   it('should set the url for a gitHub repo', () => {
     fixture.detectChanges();
-    expect(component['url']).toBe('https://github.com/blackbaud/stache2/tree/master/src/app%2Ftest%2Froute%2Findex.html');
+    expect(component['url']).toBe('https://github.com/blackbaud/skyux-lib-stache/tree/master/src/app%2Ftest%2Froute%2Findex.html');
   });
 
   it('should set the url for a VSTS repo', () => {
@@ -117,7 +117,7 @@ describe('StacheEditButtonComponent', () => {
     fixture = TestBed.createComponent(StacheEditButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    expect(component.url).toEqual('https://github.com/blackbaud/stache2/tree/master/src/app%2Findex.html');
+    expect(component.url).toEqual('https://github.com/blackbaud/skyux-lib-stache/tree/master/src/app%2Findex.html');
   });
 
   it('should not display if no url is set', () => {

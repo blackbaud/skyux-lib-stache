@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@skyux/config/skyuxconfig-schema.json",
-  "name": "stache2",
+  "name": "skyux-lib-stache",
   "mode": "easy",
   "compileMode": "aot",
   "plugins": [
@@ -34,7 +34,7 @@
   "appSettings": {
     "stache": {
       "editButton": {
-        "url": "https://github.com/blackbaud/stache2",
+        "url": "https://github.com/blackbaud/skyux-lib-stache",
         "text": "Suggest Edits"
       },
       "searchConfig": {},

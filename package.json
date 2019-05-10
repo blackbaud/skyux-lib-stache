@@ -4,13 +4,13 @@
   "description": "Angular 2 components for SKY UX Builder SPAs",
   "author": "Blackbaud, Inc.",
   "keywords": [],
-  "homepage": "https://github.com/blackbaud/stache2",
+  "homepage": "https://github.com/blackbaud/skyux-lib-stache",
   "repository": {
     "type": "git",
-    "url": "https://github.com/blackbaud/stache2.git"
+    "url": "https://github.com/blackbaud/skyux-lib-stache.git"
   },
   "bugs": {
-    "url": "https://github.com/blackbaud/stache2/issues"
+    "url": "https://github.com/blackbaud/skyux-lib-stache/issues"
   },
   "license": "MIT",
   "main": "bundles/bundle.umd.js",
@@ -24,27 +24,29 @@
   "peerDependencies": {
     "@angular/common": ">=4.3.6",
     "@angular/core": ">=4.3.6",
-    "@skyux/core": "^3.0.0",
+    "@angular/platform-browser": ">=4.3.6",
+    "@angular/router": ">=4.3.6",
     "@skyux/config": "^3.0.0",
+    "@skyux/core": "^3.0.0",
     "@skyux/i18n": "^3.0.0",
-    "@skyux/theme": "^3.0.0",
     "@skyux/layout": "^3.0.0",
-    "@skyux/lookup": "^3.0.0"
+    "@skyux/lookup": "^3.0.0",
+    "@skyux/theme": "^3.0.0"
   },
   "dependencies": {
     "lodash.get": "4.4.2"
   },
   "devDependencies": {
-    "@angular/animations": "7.2.14",
-    "@angular/common": "7.2.14",
-    "@angular/compiler": "7.2.14",
-    "@angular/compiler-cli": "7.2.14",
-    "@angular/core": "7.2.14",
-    "@angular/forms": "7.2.14",
-    "@angular/http": "7.2.14",
-    "@angular/platform-browser": "7.2.14",
-    "@angular/platform-browser-dynamic": "7.2.14",
-    "@angular/router": "7.2.14",
+    "@angular/animations": "7.2.15",
+    "@angular/common": "7.2.15",
+    "@angular/compiler": "7.2.15",
+    "@angular/compiler-cli": "7.2.15",
+    "@angular/core": "7.2.15",
+    "@angular/forms": "7.2.15",
+    "@angular/http": "7.2.15",
+    "@angular/platform-browser": "7.2.15",
+    "@angular/platform-browser-dynamic": "7.2.15",
+    "@angular/router": "7.2.15",
     "@blackbaud/auth-client": "2.14.0",
     "@blackbaud/skyux-builder-plugin-code-block": "1.0.1",
     "@blackbaud/skyux-builder-plugin-stache": "2.0.0-rc.0",
@@ -60,7 +62,7 @@
     "@skyux/config": "3.5.0",
     "@skyux/core": "3.5.3",
     "@skyux/forms": "3.1.2",
-    "@skyux/http": "3.2.0",
+    "@skyux/http": "3.3.0",
     "@skyux/i18n": "3.6.1",
     "@skyux/indicators": "3.0.3",
     "@skyux/layout": "3.1.1",
@@ -73,8 +75,8 @@
     "@skyux/theme": "3.6.0",
     "@types/core-js": "2.5.0",
     "codelyzer": "4.5.0",
-    "rxjs": "6.5.1",
-    "rxjs-compat": "6.5.1",
+    "rxjs": "6.5.2",
+    "rxjs-compat": "6.5.2",
     "ts-node": "8.1.0",
     "tslint": "5.16.0",
     "typescript": "3.2.4",
