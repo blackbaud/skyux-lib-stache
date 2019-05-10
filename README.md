@@ -1,9 +1,9 @@
-# Stache 2
+# @blackbaud/skyux-lib-stache
 
-[![npm](https://img.shields.io/npm/v/@blackbaud/stache.svg)](https://www.npmjs.com/package/@blackbaud/stache)
-[![status](https://travis-ci.org/blackbaud/stache2.svg?branch=master)](https://travis-ci.org/blackbaud/stache2)
+[![npm](https://img.shields.io/npm/v/@blackbaud/skyux-lib-stache.svg)](https://www.npmjs.com/package/@blackbaud/skyux-lib-stache)
+[![status](https://travis-ci.org/blackbaud/skyux-lib-stache.svg?branch=master)](https://travis-ci.org/blackbaud/skyux-lib-stache)
 
-This collection of Angular 2 components serves to augment [SKY UX 2](https://developer.blackbaud.com/skyux2/) with features geared toward documentation. Read the [official documentation](https://developer.blackbaud.com/stache/) for more info.
+This collection of Angular components serves to augment [SKY UX](https://developer.blackbaud.com/skyux/) with features geared toward documentation. Read the [official documentation](https://developer.blackbaud.com/stache/) for more info.
 
 ## Local Development Setup
 
@@ -33,4 +33,4 @@ skyux build-public-library
 
 ## Contributing
 
-Read our [contribution guidelines](https://github.com/blackbaud/stache2/blob/master/CONTRIBUTING.md).
+Read our [contribution guidelines](https://github.com/blackbaud/skyux-lib-stache/blob/master/CONTRIBUTING.md).

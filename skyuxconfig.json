@@ -1,11 +1,12 @@
 {
   "$schema": "./node_modules/@skyux/config/skyuxconfig-schema.json",
-  "name": "stache2",
+  "name": "skyux-lib-stache",
   "mode": "easy",
   "compileMode": "aot",
-  "auth": false,
   "plugins": [
-    "@blackbaud/skyux-builder-plugin-stache"
+    "@blackbaud/skyux-builder-plugin-stache",
+    "@blackbaud/skyux-builder-plugin-code-block",
+    "@skyux-sdk/builder-plugin-skyux"
   ],
   "app": {
     "title": "Stache 2"
@@ -33,11 +34,10 @@
   "appSettings": {
     "stache": {
       "editButton": {
-        "url": "https://github.com/blackbaud/stache2",
+        "url": "https://github.com/blackbaud/skyux-lib-stache",
         "text": "Suggest Edits"
       },
-      "searchConfig": {
-      },
+      "searchConfig": {},
       "footer": {
         "nav": {
           "items": [
@@ -65,7 +65,7 @@
   },
   "testSettings": {
     "unit": {
-      "browserSet": "speedy"
+      "browserSet": "paranoid"
     }
   }
 }
