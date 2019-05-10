@@ -16,10 +16,9 @@
   "main": "bundles/bundle.umd.js",
   "module": "index.ts",
   "scripts": {
-    "skyux": "skyux",
     "test": "skyux test --coverage library",
     "build": "skyux build-public-library",
-    "start": "skyux serve"
+    "start": "skyux serve --hmr"
   },
   "peerDependencies": {
     "@angular/common": ">=4.3.6",
@@ -50,8 +49,8 @@
     "@blackbaud/auth-client": "2.14.0",
     "@blackbaud/skyux-builder-plugin-code-block": "1.0.1",
     "@blackbaud/skyux-builder-plugin-stache": "2.0.0-rc.0",
-    "@blackbaud/skyux-lib-clipboard": "1.0.0",
-    "@blackbaud/skyux-lib-code-block": "1.0.0",
+    "@blackbaud/skyux-lib-clipboard": "1.1.0",
+    "@blackbaud/skyux-lib-code-block": "1.1.0",
     "@blackbaud/skyux-lib-media": "1.0.0-beta.1",
     "@pact-foundation/pact-web": "7.2.0",
     "@skyux-sdk/builder": "3.6.5",
