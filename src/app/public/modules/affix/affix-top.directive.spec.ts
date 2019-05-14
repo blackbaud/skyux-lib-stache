@@ -145,6 +145,7 @@ describe('StacheAffixTopDirective', () => {
 
       const element = directiveElements[1].nativeElement.children[0];
 
+      console.log(element, 'element');
       expect(element).toHaveCssClass(className);
 
       window.scrollTo(0, 0);

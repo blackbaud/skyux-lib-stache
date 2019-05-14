@@ -3,10 +3,6 @@ import {
 } from '@angular/core';
 
 import {
-  StacheCodeModule
-} from '../../code/code.module';
-
-import {
   StacheAffixModule
 } from '../affix.module';
 
@@ -18,16 +14,21 @@ import {
   AffixFixtureComponent
 } from './affix.component.fixture';
 
+import {
+  AffixedTestFixtureComponent
+} from './affix-test.component.fixture';
+
 @NgModule({
   declarations: [
+    AffixedTestFixtureComponent,
     AffixFixtureComponent,
     AffixTopFixtureComponent
   ],
   imports: [
-    StacheCodeModule,
     StacheAffixModule
   ],
   exports: [
+    AffixedTestFixtureComponent,
     AffixFixtureComponent,
     AffixTopFixtureComponent
   ]
