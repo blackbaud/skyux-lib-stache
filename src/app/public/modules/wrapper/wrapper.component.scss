@@ -52,7 +52,15 @@
   h6:not([class]) {
     font-family: $sky-font-family;
     color: $sky-text-color-default;
-    // margin: ($stache-margin * 2) 0;
+    margin: ($stache-margin * 2) 0;
+  }
+
+  p {
+    font-family: $sky-font-family;
+    color: $sky-text-color-default;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.5;
   }
 
   p,
