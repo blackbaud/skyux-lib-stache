@@ -1,4 +1,4 @@
-# 3.0.1 (2019-05-23)
+# 3.1.0 (2019-05-23)
 
 - Exported the `StacheFooterModule` from `@blackbaud/skyux-lib-stache`. [#10](https://github.com/blackbaud/skyux-lib-stache/pull/10)
 
