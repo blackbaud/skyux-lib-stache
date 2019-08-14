@@ -14,6 +14,10 @@ import {
 } from '@angular/common';
 
 import {
+  NavigationExtras
+} from '@angular/router';
+
+import {
   StacheNavService
 } from '../nav/nav.service';
 
@@ -27,7 +31,7 @@ import {
 export class StacheRouterLinkDirective implements OnChanges, AfterViewInit {
 
   private _stacheRouterLink: string = '';
-
+  private _extras: string;
   @Input('stacheRouterLink')
   set stacheRouterLink(routerLink: string) {
     if (routerLink === '.') {
@@ -43,6 +47,9 @@ export class StacheRouterLinkDirective implements OnChanges, AfterViewInit {
 
   @Input()
   public fragment: string;
+
+  @Input()
+  public extras: NavigationExtras;
 
   // the url displayed on the anchor element.
   @HostBinding()
@@ -63,18 +70,21 @@ export class StacheRouterLinkDirective implements OnChanges, AfterViewInit {
   }
 
   public ngAfterViewInit() {
+    console.log(this.extras);
     this.updateTargetUrlAndHref();
   }
 
   @HostListener('click', ['$event'])
   public navigate(event: MouseEvent): boolean {
+    console.log(this.extras, 'clicked');
     if (event.ctrlKey || event.metaKey || event.shiftKey) {
       return true;
     } else {
       event.preventDefault();
       this.navService.navigate({
         path: this.stacheRouterLink,
-        fragment: this.fragment
+        fragment: this.fragment,
+        extras: this.extras
       });
       return true;
     }

@@ -3,7 +3,8 @@ import {
 } from '@angular/core';
 
 import {
-  Router
+  Router,
+  NavigationExtras
 } from '@angular/router';
 
 import {
@@ -17,7 +18,8 @@ export class StacheNavService {
     private windowRef: StacheWindowRef) {}
 
   public navigate(route: any): void {
-    let extras: any = { queryParamsHandling: 'merge' };
+    let extras: NavigationExtras = route.extras || { queryParamsHandling: 'merge' };
+
     const currentPath = this.router.url.split('?')[0].split('#')[0];
 
     if (this.isExternal(route)) {

@@ -7,6 +7,7 @@
       <a class="stache-nav-anchor"
         stacheRouterLink="{{route.path}}"
         fragment="{{route.fragment}}"
+        [extras]="route.extras"
         queryParamsHandling="merge">{{route.name}}</a>
       <stache-nav
         navType="sidebar stache-nav-sub"

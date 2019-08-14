@@ -46,7 +46,7 @@ export class HomeComponent {
     }
   ];
 
-  public sidebarRoutes = [
+  public sidebarRoutes: StacheNavLink[] = [
     {
       name: 'Welcome Sidebar',
       path: '/',
@@ -57,19 +57,39 @@ export class HomeComponent {
         },
         {
           name: 'Sidebar Link',
-          path: '/1'
+          path: './',
+          extras: {
+            queryParams: {
+              foo: 'foo'
+            }
+          }
         },
         {
           name: 'Sidebar Link',
-          path: '/2'
+          path: '.',
+          extras: {
+            queryParams: {
+              foo: 'foo'
+            }
+          }
         },
         {
           name: 'Sidebar Link',
-          path: '/3'
+          path: '/3',
+          extras: {
+            queryParams: {
+              bar: 'bar'
+            }
+          }
         },
         {
           name: 'Sidebar Link',
-          path: '/4'
+          path: '.',
+          extras: {
+            queryParams: {
+              baz: 'baz'
+            }
+          }
         },
         {
           name: 'Sidebar Link',

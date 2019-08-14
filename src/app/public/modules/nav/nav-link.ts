@@ -1,3 +1,7 @@
+import {
+  NavigationExtras
+} from '@angular/router';
+
 export interface StacheNavLink {
   name: string;
   path: string[] | string;
@@ -5,6 +9,7 @@ export interface StacheNavLink {
   offsetTop?: number;
   children?: StacheNavLink[];
   fragment?: string;
+  extras?: NavigationExtras;
   icon?: string;
   summary?: string;
   isActive?: boolean;
