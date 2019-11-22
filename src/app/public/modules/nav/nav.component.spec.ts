@@ -83,7 +83,8 @@ describe('StacheNavComponent', () => {
         { provide: StacheRouteService, useValue: mockRouteService },
         { provide: StacheWindowRef, useValue: mockWindowService }
       ]
-    });
+    })
+    .compileComponents();
 
     fixture = TestBed.createComponent(StacheNavComponent);
     component = fixture.componentInstance;
