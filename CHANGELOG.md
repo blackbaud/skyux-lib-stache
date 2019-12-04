@@ -1,3 +1,7 @@
+# 3.2.2 (2019-12-04)
+
+- Fixed the action buttons component to support asynchronous route assignments. [#62](https://github.com/blackbaud/skyux-lib-stache/pull/62)
+
 # 3.2.1 (2019-11-25)
 
 - Reverted font changes. [#60](https://github.com/blackbaud/skyux-lib-stache/pull/60)
