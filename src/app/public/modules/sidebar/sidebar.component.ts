@@ -14,7 +14,10 @@ import {
 import {
   StacheRouteService
 } from '../router/route.service';
-import { StacheNavService } from '../nav/nav.service';
+
+import {
+  StacheNavService
+} from '../nav/nav.service';
 
 let uniqueId = 0;
 
