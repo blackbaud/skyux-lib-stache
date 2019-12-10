@@ -49,7 +49,7 @@ export class HomeComponent {
   public sidebarRoutes = [
     {
       name: 'Welcome Sidebar',
-      path: 'https://example.com',
+      path: '/',
       children: [
         {
           name: 'Sidebar Link is super long and even longer foo bar baz',
