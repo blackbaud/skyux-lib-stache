@@ -4,3 +4,9 @@
   margin-bottom: $stache-margin;
   margin-top: $stache-margin * 2;
 }
+
+@media (max-width: $stache-help-widget-breakpoint) {
+  .stache-page-header {
+    margin-top: 0;
+  }
+}
