@@ -63,6 +63,11 @@
       }
     }
   },
+  "librarySettings": {
+    "whitelistedNonPeerDependencies": [
+      "lodash.get"
+    ]
+  },
   "testSettings": {
     "unit": {
       "browserSet": "paranoid"
