@@ -1,3 +1,10 @@
+# 4.0.0-rc.0 (2020-02-21)
+
+### New features
+
+- Added support for `@angular/core@^9`. [#68](https://github.com/blackbaud/skyux-lib-stache/pull/68)
+- Updated the pipeline to transpile to the [Angular Package Format](https://docs.google.com/document/d/1CZC2rcpxffTDfRDs6p1cfbmKNLA6x5O-NtkJglDaBVs/preview). [#68](https://github.com/blackbaud/skyux-lib-stache/pull/68)
+
 # 3.2.3 (2019-12-10)
 
 - Fixed the sidebar to allow headers to link to external URLs. [#64](https://github.com/blackbaud/skyux-lib-stache/pull/64)
