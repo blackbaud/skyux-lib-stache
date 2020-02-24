@@ -1,3 +1,9 @@
+# 4.0.0-rc.1 (2020-02-24)
+
+### Bug fixes
+
+- Fixed the `InputConverter` to work when used with the Angular Ivy Compiler. [#70](https://github.com/blackbaud/skyux-lib-stache/pull/70)
+
 # 4.0.0-rc.0 (2020-02-21)
 
 ### New features
