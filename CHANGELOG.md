@@ -1,3 +1,7 @@
+# 3.3.0 (2020-03-13)
+
+- Decreased the margin used in the tutorial component. [#71](https://github.com/blackbaud/skyux-lib-stache/pull/71)
+
 # 4.0.0-rc.1 (2020-02-24)
 
 ### Bug fixes
