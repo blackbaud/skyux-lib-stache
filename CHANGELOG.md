@@ -1,3 +1,7 @@
+# 4.0.0-rc.02 (2020-04-18)
+
+- Added bug fixes and features from the `master` branch. [#75](https://github.com/blackbaud/skyux-lib-stache/pull/75)
+
 # 3.3.0 (2020-03-13)
 
 - Decreased the margin used in the tutorial component. [#71](https://github.com/blackbaud/skyux-lib-stache/pull/71)
