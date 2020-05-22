@@ -12,7 +12,6 @@
     "title": "Stache 2"
   },
   "omnibar": {
-    "experimental": true,
     "nav": {
       "services": [
         {
@@ -63,9 +62,19 @@
       }
     }
   },
+  "librarySettings": {
+    "whitelistedNonPeerDependencies": [
+      "lodash.get"
+    ]
+  },
   "testSettings": {
     "unit": {
       "browserSet": "paranoid"
+    }
+  },
+  "host": {
+    "frameOptions": {
+      "none": true
     }
   }
 }
