@@ -2,6 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {
+  SkyRestrictedViewModule
+} from '@blackbaud/skyux-lib-restricted-view';
+
+import {
   SkyActionButtonModule, SkyFluidGridModule
 } from '@skyux/layout';
 
@@ -25,6 +29,7 @@ import {
     CommonModule,
     SkyActionButtonModule,
     SkyFluidGridModule,
+    SkyRestrictedViewModule,
     SkySearchModule,
     StacheNavModule
   ],

@@ -17,6 +17,10 @@ import {
 } from '@skyux-sdk/testing';
 
 import {
+  SkyAuthTokenProvider
+} from '@skyux/http';
+
+import {
   StacheRouteService
 } from '../router/route.service';
 
@@ -71,6 +75,7 @@ describe('StacheActionButtonsComponent', () => {
         RouterTestingModule
       ],
       providers: [
+        SkyAuthTokenProvider,
         { provide: StacheRouteService, useValue: mockRouteService }
       ]
     })
@@ -209,5 +214,39 @@ describe('StacheActionButtonsComponent', () => {
     fixture.detectChanges();
     expect(component.showSearch).toEqual(false);
     expect(fixture.nativeElement.querySelector('sky-search')).toBeNull();
+  });
+
+  it('should use the restricted view component when the restricted property is true', () => {
+    component.routes = [
+      {
+        name: 'Test',
+        path: '/',
+        restricted: true
+      }
+    ];
+    fixture.detectChanges();
+
+    const restrictedView = fixture.nativeElement.querySelector('sky-restricted-view');
+
+    expect(restrictedView).not.toBeNull();
+  });
+
+  it('should not use the restricted view component when the restricted property is false or undefined', () => {
+    component.routes = [
+      {
+        name: 'Test 1',
+        path: '/one',
+        restricted: false
+      },
+      {
+        name: 'Test 2',
+        path: '/two'
+      }
+    ];
+    fixture.detectChanges();
+
+    const restrictedView = fixture.nativeElement.querySelector('sky-restricted-view');
+
+    expect(restrictedView).toBeNull();
   });
 });

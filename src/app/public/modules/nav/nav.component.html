@@ -1,18 +1,36 @@
 <nav class="stache-nav" [ngClass]="classname" *ngIf="hasRoutes()">
   <ol class="stache-nav-list">
-    <li class="stache-nav-list-item"
-      *ngFor="let route of routes"
-      [attr.aria-current]="route.isCurrent ? 'page' : false"
-      [ngClass]="{'active': route.isActive, 'current': route.isCurrent}">
-      <a class="stache-nav-anchor"
-        stacheRouterLink="{{route.path}}"
-        fragment="{{route.fragment}}"
-        queryParamsHandling="merge">{{route.name}}</a>
-      <stache-nav
-        navType="sidebar stache-nav-sub"
-        [routes]="route.children"
-        *ngIf="hasChildRoutes(route)">
-      </stache-nav>
-    </li>
+    <ng-container *ngFor="let route of routes">
+
+      <sky-restricted-view *ngIf="route.restricted else nonRestricted">
+        <ng-container *ngTemplateOutlet="navListItem"></ng-container>
+      </sky-restricted-view>
+
+      <ng-template #nonRestricted>
+        <ng-container *ngTemplateOutlet="navListItem"></ng-container>
+      </ng-template>
+
+      <ng-template #navListItem>
+        <li
+          class="stache-nav-list-item"
+          [attr.aria-current]="route.isCurrent ? 'page' : false"
+          [ngClass]="{'active': route.isActive, 'current': route.isCurrent}"
+        >
+          <a
+            class="stache-nav-anchor"
+            fragment="{{route.fragment}}"
+            queryParamsHandling="merge"
+            stacheRouterLink="{{route.path}}"
+          >
+            {{route.name}}
+          </a>
+          <stache-nav *ngIf="hasChildRoutes(route)"
+            navType="sidebar stache-nav-sub"
+            [routes]="route.children"
+          >
+          </stache-nav>
+        </li>
+      </ng-template>
+    </ng-container>
   </ol>
 </nav>

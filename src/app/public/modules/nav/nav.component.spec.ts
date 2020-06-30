@@ -12,6 +12,10 @@ import {
 } from '@skyux-sdk/testing';
 
 import {
+  SkyAuthTokenProvider
+} from '@skyux/http';
+
+import {
   StacheNavComponent
 } from './nav.component';
 
@@ -80,6 +84,7 @@ describe('StacheNavComponent', () => {
         StacheNavModule
       ],
       providers: [
+        SkyAuthTokenProvider,
         { provide: StacheRouteService, useValue: mockRouteService },
         { provide: StacheWindowRef, useValue: mockWindowService }
       ]
@@ -185,5 +190,39 @@ describe('StacheNavComponent', () => {
     fixture.detectChanges();
 
     expect(component.classname).toBe('stache-nav-sidebar');
+  });
+
+  it('should use the restricted view component when the restricted property is true', () => {
+    component.routes = [
+      {
+        name: 'Test',
+        path: '/',
+        restricted: true
+      }
+    ];
+    fixture.detectChanges();
+
+    const restrictedView = fixture.nativeElement.querySelector('sky-restricted-view');
+
+    expect(restrictedView).not.toBeNull();
+  });
+
+  it('should not use the restricted view component when the restricted property is false or undefined', () => {
+    component.routes = [
+      {
+        name: 'Test 1',
+        path: '/one',
+        restricted: false
+      },
+      {
+        name: 'Test 2',
+        path: '/two'
+      }
+    ];
+    fixture.detectChanges();
+
+    const restrictedView = fixture.nativeElement.querySelector('sky-restricted-view');
+
+    expect(restrictedView).toBeNull();
   });
 });
