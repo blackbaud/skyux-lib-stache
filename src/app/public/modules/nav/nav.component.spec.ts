@@ -192,7 +192,7 @@ describe('StacheNavComponent', () => {
     expect(component.classname).toBe('stache-nav-sidebar');
   });
 
-  it('should use the restricted view component when the restricted property is true', () => {
+  it('should use the restricted view directive when the restricted property is true', () => {
     component.routes = [
       {
         name: 'Test',
@@ -202,12 +202,12 @@ describe('StacheNavComponent', () => {
     ];
     fixture.detectChanges();
 
-    const restrictedView = fixture.nativeElement.querySelector('sky-restricted-view');
+    const listItems = fixture.nativeElement.querySelectorAll('.stache-nav-list-item');
 
-    expect(restrictedView).not.toBeNull();
+    expect(listItems.length).toEqual(0);
   });
 
-  it('should not use the restricted view component when the restricted property is false or undefined', () => {
+  it('should not use the restricted view directive when the restricted property is false or undefined', () => {
     component.routes = [
       {
         name: 'Test 1',
@@ -221,8 +221,8 @@ describe('StacheNavComponent', () => {
     ];
     fixture.detectChanges();
 
-    const restrictedView = fixture.nativeElement.querySelector('sky-restricted-view');
+    const listItems = fixture.nativeElement.querySelectorAll('.stache-nav-list-item');
 
-    expect(restrictedView).toBeNull();
+    expect(listItems.length).toEqual(2);
   });
 });

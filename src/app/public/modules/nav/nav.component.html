@@ -2,9 +2,11 @@
   <ol class="stache-nav-list">
     <ng-container *ngFor="let route of routes">
 
-      <sky-restricted-view *ngIf="route.restricted else nonRestricted">
-        <ng-container *ngTemplateOutlet="navListItem"></ng-container>
-      </sky-restricted-view>
+      <ng-container *ngIf="route.restricted else nonRestricted">
+        <ng-container *skyRestrictedView>
+          <ng-container *ngTemplateOutlet="navListItem"></ng-container>
+        </ng-container>
+      </ng-container>
 
       <ng-template #nonRestricted>
         <ng-container *ngTemplateOutlet="navListItem"></ng-container>
@@ -12,7 +14,6 @@
 
       <ng-template #navListItem>
         <li class="stache-nav-list-item"
-          *ngFor="let route of routes"
           [attr.aria-current]="route.isCurrent ? 'page' : false"
           [ngClass]="{'active': route.isActive, 'current': route.isCurrent}">
           <a class="stache-nav-anchor"

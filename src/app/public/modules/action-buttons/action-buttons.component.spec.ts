@@ -216,22 +216,22 @@ describe('StacheActionButtonsComponent', () => {
     expect(fixture.nativeElement.querySelector('sky-search')).toBeNull();
   });
 
-  it('should use the restricted view component when the restricted property is true', () => {
+  it('should use the restricted view directive when the restricted property is true', () => {
     component.routes = [
       {
-        name: 'Test',
+        name: 'Test 1',
         path: '/',
         restricted: true
       }
     ];
     fixture.detectChanges();
 
-    const restrictedView = fixture.nativeElement.querySelector('sky-restricted-view');
+    const actionButtons = fixture.nativeElement.querySelectorAll('.sky-action-button');
 
-    expect(restrictedView).not.toBeNull();
+    expect(actionButtons.length).toEqual(0);
   });
 
-  it('should not use the restricted view component when the restricted property is false or undefined', () => {
+  it('should not use the restricted view directive when the restricted property is false or undefined', () => {
     component.routes = [
       {
         name: 'Test 1',
@@ -245,8 +245,8 @@ describe('StacheActionButtonsComponent', () => {
     ];
     fixture.detectChanges();
 
-    const restrictedView = fixture.nativeElement.querySelector('sky-restricted-view');
+    const actionButtons = fixture.nativeElement.querySelectorAll('.sky-action-button');
 
-    expect(restrictedView).toBeNull();
+    expect(actionButtons.length).toEqual(2);
   });
 });
