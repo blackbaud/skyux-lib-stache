@@ -11,23 +11,18 @@
       </ng-template>
 
       <ng-template #navListItem>
-        <li
-          class="stache-nav-list-item"
+        <li class="stache-nav-list-item"
+          *ngFor="let route of routes"
           [attr.aria-current]="route.isCurrent ? 'page' : false"
-          [ngClass]="{'active': route.isActive, 'current': route.isCurrent}"
-        >
-          <a
-            class="stache-nav-anchor"
-            fragment="{{route.fragment}}"
-            queryParamsHandling="merge"
+          [ngClass]="{'active': route.isActive, 'current': route.isCurrent}">
+          <a class="stache-nav-anchor"
             stacheRouterLink="{{route.path}}"
-          >
-            {{route.name}}
-          </a>
-          <stache-nav *ngIf="hasChildRoutes(route)"
+            fragment="{{route.fragment}}"
+            queryParamsHandling="merge">{{route.name}}</a>
+          <stache-nav
             navType="sidebar stache-nav-sub"
             [routes]="route.children"
-          >
+            *ngIf="hasChildRoutes(route)">
           </stache-nav>
         </li>
       </ng-template>
