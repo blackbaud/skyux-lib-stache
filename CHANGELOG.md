@@ -1,3 +1,7 @@
+# 3.4.0 (2020-07-07)
+
+- Added support for hiding restricted routes from the action buttons component and nav component. [#81](https://github.com/blackbaud/skyux-lib-stache/pull/81)
+
 # 3.3.0 (2019-12-10)
 
 - Decreased the margin used in the tutorial component. [#71](https://github.com/blackbaud/skyux-lib-stache/pull/71)
