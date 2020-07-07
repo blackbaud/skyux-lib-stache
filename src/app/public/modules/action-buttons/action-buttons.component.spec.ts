@@ -13,8 +13,16 @@ import {
 } from '@angular/router/testing';
 
 import {
+  SkyRestrictedViewAuthService
+} from '@blackbaud/skyux-lib-restricted-view';
+
+import {
   expect
 } from '@skyux-sdk/testing';
+
+import {
+  BehaviorSubject
+} from 'rxjs';
 
 import {
   StacheRouteService
@@ -60,18 +68,26 @@ describe('StacheActionButtonsComponent', () => {
     }
   }
 
+  class MockRestricedViewAuthService {
+    public isAuthenticated = new BehaviorSubject<boolean>(false);
+  }
+
   let component: StacheActionButtonsComponent;
   let fixture: ComponentFixture<StacheActionButtonsComponent>;
   let mockRouteService: MockRouteService;
+  let mockRestricedViewAuthService: MockRestricedViewAuthService;
 
   beforeEach(() => {
+    mockRestricedViewAuthService = new MockRestricedViewAuthService();
+
     TestBed.configureTestingModule({
       imports: [
         StacheActionButtonsModule,
         RouterTestingModule
       ],
       providers: [
-        { provide: StacheRouteService, useValue: mockRouteService }
+        { provide: StacheRouteService, useValue: mockRouteService },
+        { provide: SkyRestrictedViewAuthService, useValue: mockRestricedViewAuthService }
       ]
     })
     .compileComponents();
@@ -124,6 +140,31 @@ describe('StacheActionButtonsComponent', () => {
       {
         name: 'Different',
         path: '/'
+      },
+      {
+        name: 'Still good',
+        path: '/',
+        summary: 'Test'
+      }
+    ];
+    fixture.detectChanges();
+    component.searchApplied('Test');
+    fixture.detectChanges();
+
+    expect(component.filteredRoutes.length).toBe(2);
+  });
+
+  it('should return proper search results but also remove restricted routes if not a BB user', () => {
+    component.routes = [
+      {
+        name: 'Test',
+        path: '/'
+      },
+      {
+        name: 'Restricted route',
+        path: '/',
+        summary: 'Test',
+        restricted: true
       },
       {
         name: 'Still good',
@@ -211,7 +252,7 @@ describe('StacheActionButtonsComponent', () => {
     expect(fixture.nativeElement.querySelector('sky-search')).toBeNull();
   });
 
-  it('should use the restricted view directive when the restricted property is true', () => {
+  it('should filter out restricted routes if the user is not an authenticated BB user', () => {
     component.routes = [
       {
         name: 'Test 1',
@@ -226,7 +267,7 @@ describe('StacheActionButtonsComponent', () => {
     expect(actionButtons.length).toEqual(0);
   });
 
-  it('should not use the restricted view directive when the restricted property is false or undefined', () => {
+  it('should not filter out routes when the restricted property is false or undefined', () => {
     component.routes = [
       {
         name: 'Test 1',
@@ -236,6 +277,27 @@ describe('StacheActionButtonsComponent', () => {
       {
         name: 'Test 2',
         path: '/two'
+      }
+    ];
+    fixture.detectChanges();
+
+    const actionButtons = fixture.nativeElement.querySelectorAll('.sky-action-button');
+
+    expect(actionButtons.length).toEqual(2);
+  });
+
+  it('should show restricted routes when user is an authenticated BB user', () => {
+    mockRestricedViewAuthService.isAuthenticated = new BehaviorSubject<boolean>(true);
+
+    component.routes = [
+      {
+        name: 'Test 1',
+        path: '/one'
+      },
+      {
+        name: 'Restricted route',
+        path: '/two',
+        restricted: true
       }
     ];
     fixture.detectChanges();

@@ -114,12 +114,12 @@ export class StacheActionButtonsComponent implements OnDestroy, OnInit {
   }
 
   private filterRestrictedRoutes(routes: StacheNavLink[], isAuthenticated: boolean): StacheNavLink[] {
-    if (isAuthenticated) {
+    if (!routes || routes.length === 0 || isAuthenticated) {
       return routes;
-    } else {
-      return routes.filter(route => {
-        return !route.restricted;
-      });
     }
+
+    return routes.filter(route => {
+      return !route.restricted;
+    });
   }
 }

@@ -8,12 +8,20 @@ import {
 } from '@angular/router/testing';
 
 import {
+  SkyRestrictedViewAuthService
+} from '@blackbaud/skyux-lib-restricted-view';
+
+import {
   expect
 } from '@skyux-sdk/testing';
 
 import {
   SkyAuthTokenProvider
 } from '@skyux/http';
+
+import {
+  BehaviorSubject
+} from 'rxjs';
 
 import {
   StacheNavComponent
@@ -41,6 +49,7 @@ describe('StacheNavComponent', () => {
   let mockWindowService: any;
   let mockRouteService: any;
   let activeUrl: string;
+  let mockRestricedViewAuthService: MockRestricedViewAuthService;
 
   class MockWindowService {
     public nativeWindow = {
@@ -70,10 +79,15 @@ describe('StacheNavComponent', () => {
      }
   }
 
+  class MockRestricedViewAuthService {
+    public isAuthenticated = new BehaviorSubject<boolean>(false);
+  }
+
   beforeEach(() => {
     activeUrl = '/test';
     mockWindowService = new MockWindowService();
     mockRouteService = new MockRouteService();
+    mockRestricedViewAuthService = new MockRestricedViewAuthService();
 
     TestBed.configureTestingModule({
       declarations: [
@@ -86,7 +100,8 @@ describe('StacheNavComponent', () => {
       providers: [
         SkyAuthTokenProvider,
         { provide: StacheRouteService, useValue: mockRouteService },
-        { provide: StacheWindowRef, useValue: mockWindowService }
+        { provide: StacheWindowRef, useValue: mockWindowService },
+        { provide: SkyRestrictedViewAuthService, useValue: mockRestricedViewAuthService }
       ]
     })
     .compileComponents();
@@ -192,7 +207,7 @@ describe('StacheNavComponent', () => {
     expect(component.classname).toBe('stache-nav-sidebar');
   });
 
-  it('should use the restricted view directive when the restricted property is true', () => {
+  it('should filter out restricted routes when the restricted property is true', () => {
     component.routes = [
       {
         name: 'Test',
@@ -207,7 +222,7 @@ describe('StacheNavComponent', () => {
     expect(listItems.length).toEqual(0);
   });
 
-  it('should not use the restricted view directive when the restricted property is false or undefined', () => {
+  it('should not filter out routes when the restricted property is false or undefined', () => {
     component.routes = [
       {
         name: 'Test 1',
@@ -224,5 +239,30 @@ describe('StacheNavComponent', () => {
     const listItems = fixture.nativeElement.querySelectorAll('.stache-nav-list-item');
 
     expect(listItems.length).toEqual(2);
+  });
+
+  it('should show restricted routes when user is an authenticated BB user', () => {
+    mockRestricedViewAuthService.isAuthenticated = new BehaviorSubject<boolean>(true);
+
+    component.routes = [
+      {
+        name: 'Test 1',
+        path: '/foo'
+      },
+      {
+        name: 'Restricted route',
+        path: '/bar',
+        restricted: true
+      },
+      {
+        name: 'Test 2',
+        path: '/baz'
+      }
+    ];
+    fixture.detectChanges();
+
+    const listItems = fixture.nativeElement.querySelectorAll('.stache-nav-list-item');
+
+    expect(listItems.length).toEqual(3);
   });
 });
