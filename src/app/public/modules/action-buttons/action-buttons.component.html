@@ -6,38 +6,38 @@
       (keyup)="onKeyUp($event)">
     </sky-search>
   </div>
-  <sky-row>
-    <nav class="stache-action-buttons-nav-container">
-      <ng-container *ngFor="let route of filteredRoutes">
 
-        <ng-container *ngIf="route.restricted else nonRestricted">
-          <ng-container *skyRestrictedView>
-            <ng-container *ngTemplateOutlet="actionButton"></ng-container>
-          </ng-container>
-        </ng-container>
-
-        <ng-template #nonRestricted>
-          <ng-container *ngTemplateOutlet="actionButton"></ng-container>
-        </ng-template>
-
-        <ng-template #actionButton>
-          <sky-column screenSmall="6" screenMedium="4" screenLarge="3">
-            <a stacheRouterLink="{{route.path}}" fragment="{{route.fragment}}" class="stache-action-button-override sky-action-button sky-btn-default sky-rounded-corners">
-              <div>
-                <sky-action-button-icon *ngIf="route.icon" iconType="{{route.icon}}">
-                </sky-action-button-icon>
-                <sky-action-button-header>
-                  {{route.name}}
-                </sky-action-button-header>
-              </div>
+  <nav>
+    <sky-fluid-grid
+      [disableMargin]="true"
+    >
+      <sky-row>
+        <sky-column *ngFor="let route of filteredRoutes"
+          screenLarge="3"
+          screenMedium="4"
+          screenSmall="6"
+        >
+          <a
+            class="stache-action-button-override"
+            fragment="{{route.fragment}}"
+            stacheRouterLink="{{route.path}}"
+          >
+            <sky-action-button>
+              <sky-action-button-icon *ngIf="route.icon"
+                iconType="{{route.icon}}"
+              >
+              </sky-action-button-icon>
+              <sky-action-button-header>
+                {{route.name}}
+              </sky-action-button-header>
               <sky-action-button-details>
                 {{route.summary}}
               </sky-action-button-details>
-            </a>
-          </sky-column>
-        </ng-template>
+            </sky-action-button>
+          </a>
+        </sky-column>
+      </sky-row>
+    </sky-fluid-grid>
+  </nav>
 
-      </ng-container>
-    </nav>
-  </sky-row>
 </div>

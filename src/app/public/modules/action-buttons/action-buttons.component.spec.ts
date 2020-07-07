@@ -17,10 +17,6 @@ import {
 } from '@skyux-sdk/testing';
 
 import {
-  SkyAuthTokenProvider
-} from '@skyux/http';
-
-import {
   StacheRouteService
 } from '../router/route.service';
 
@@ -75,7 +71,6 @@ describe('StacheActionButtonsComponent', () => {
         RouterTestingModule
       ],
       providers: [
-        SkyAuthTokenProvider,
         { provide: StacheRouteService, useValue: mockRouteService }
       ]
     })

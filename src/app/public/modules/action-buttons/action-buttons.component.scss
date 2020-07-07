@@ -5,23 +5,17 @@
 }
 
 .stache-action-button-override {
-  display: flex;
-  flex-direction: column;
-  padding: 30px 20px;
-  text-align: center;
-  border: 1px solid $stache-border-color-neutral-medium;
-  margin: 15px 0px;
+  display: inline-block;
   width: 100%;
+  margin: 15px 0;
 
-  ::ng-deep
-  .sky-action-button-header {
-    display: block;
-    margin-bottom: 20px;
+  ::ng-deep .sky-action-button {
+    max-width: initial !important;
   }
-}
 
-.stache-action-button-override:hover {
-  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .stache-action-buttons-search-container {
@@ -29,12 +23,6 @@
   display: flex;
   min-height: 49px;
   margin-bottom: $stache-margin;
-}
-
-.stache-action-buttons-nav-container {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
 }
 
 /deep/

@@ -2,10 +2,6 @@ import {
   Component
 } from '@angular/core';
 
-import {
-  StacheNavLink
-} from './public';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html'
@@ -43,6 +39,13 @@ export class HomeComponent {
       fragment: 'does-not-exist',
       icon: 'certificate',
       summary: 'Short summary here.'
+    },
+    {
+      name: 'Restricted Action Button 6',
+      path: '/demos',
+      icon: 'book',
+      summary: 'This should only show if user is a authenticated BB user.',
+      restricted: true
     }
   ];
 
@@ -58,6 +61,11 @@ export class HomeComponent {
         {
           name: 'Sidebar Link',
           path: '/1'
+        },
+        {
+          name: 'Restricted Sidebar Link',
+          path: '/1',
+          restricted: true
         },
         {
           name: 'Sidebar Link',
@@ -200,19 +208,6 @@ export class HomeComponent {
           path: '/9'
         }
       ]
-    }
-  ];
-
-  public inPageRoutes: StacheNavLink[] = [
-    {
-      name: 'test',
-      path: '/',
-      offsetTop: 200
-    },
-    {
-      name: 'test2',
-      path: '/',
-      offsetTop: 500
     }
   ];
 }
