@@ -89,28 +89,28 @@ export class StacheActionButtonsComponent implements OnDestroy, OnInit {
     this.searchApplied(searchText);
   }
 
-  public searchApplied(searchText: string) {
+  public searchApplied(searchText: string): void {
     this.searchText = searchText;
     const query = searchText.toLowerCase();
 
     // If search text is empty, reset array while honoring restricted routes.
-    if (!searchText) {
+    if (!query) {
       this.filteredRoutes = this.filterRestrictedRoutes(this.routes, this.isAuthenticated);
       return;
     }
-    this.filteredRoutes = this.routes.filter((route: any) => {
 
-      // Remove restricted routes from results if user is not a authenticated BB user.
-      if (route.restricted && !this.isAuthenticated) {
-        return false;
-      }
+    // Filter out restricted routes, then apply search.
+    this.filteredRoutes =
+      this.filterRestrictedRoutes(this.routes, this.isAuthenticated)
+        .filter(route => this.isSearchTextInRoute(route, query));
+  }
 
-      const matchingFields = this.searchKeys.filter(key => {
-        const isMatch = (route[key] && route[key].toLowerCase().includes(query));
-        return isMatch;
-      });
-      return (matchingFields.length > 0);
+  private isSearchTextInRoute(route: StacheNavLink, query: string): boolean {
+    const matchingFields = this.searchKeys.filter(key => {
+      const isMatch = ((route as any)[key] && (route as any)[key].toLowerCase().includes(query));
+      return isMatch;
     });
+    return (matchingFields.length > 0);
   }
 
   private filterRestrictedRoutes(routes: StacheNavLink[], isAuthenticated: boolean): StacheNavLink[] {
