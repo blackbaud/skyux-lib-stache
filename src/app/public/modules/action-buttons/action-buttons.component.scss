@@ -3,6 +3,12 @@
 .stache-action-buttons {
   margin: $stache-margin 0;
 
+  ::ng-deep .sky-search-dismiss-absolute {
+    padding: 5px 0 !important;
+  }
+
+  // These overrides ensure action buttons will stretch
+  // to fill the entire vertical space of the row.
   ::ng-deep sky-column {
     display: flex;
   }
@@ -19,10 +25,6 @@
     width: 100%;
     margin: 0 !important;
     max-width: initial !important;
-  }
-
-  ::ng-deep .sky-search-dismiss-absolute {
-    padding: 5px 0 !important;
   }
 }
 
