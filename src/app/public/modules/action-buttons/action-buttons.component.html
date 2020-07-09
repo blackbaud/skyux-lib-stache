@@ -17,24 +17,20 @@
           screenMedium="4"
           screenSmall="6"
         >
-          <a
-            class="stache-action-button-override"
-            fragment="{{route.fragment}}"
-            stacheRouterLink="{{route.path}}"
+          <sky-action-button
+            [permalink]="getPermalink(route)"
           >
-            <sky-action-button>
-              <sky-action-button-icon *ngIf="route.icon"
-                iconType="{{route.icon}}"
-              >
-              </sky-action-button-icon>
-              <sky-action-button-header>
-                {{route.name}}
-              </sky-action-button-header>
-              <sky-action-button-details>
-                {{route.summary}}
-              </sky-action-button-details>
-            </sky-action-button>
-          </a>
+            <sky-action-button-icon *ngIf="route.icon"
+              iconType="{{route.icon}}"
+            >
+            </sky-action-button-icon>
+            <sky-action-button-header>
+              {{route.name}}
+            </sky-action-button-header>
+            <sky-action-button-details>
+              {{route.summary}}
+            </sky-action-button-details>
+          </sky-action-button>
         </sky-column>
       </sky-row>
     </sky-fluid-grid>

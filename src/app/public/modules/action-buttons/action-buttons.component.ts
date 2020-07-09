@@ -20,6 +20,7 @@ import {
 import {
   InputConverter
 } from '../shared/input-converter';
+import { SkyActionButtonPermalink } from '@skyux/layout';
 
 @Component({
   selector: 'stache-action-buttons',
@@ -103,6 +104,18 @@ export class StacheActionButtonsComponent implements OnDestroy, OnInit {
     this.filteredRoutes =
       this.filterRestrictedRoutes(this.routes, this.isAuthenticated)
         .filter(route => this.isSearchTextInRoute(route, query));
+  }
+
+  public getPermalink(route: StacheNavLink): SkyActionButtonPermalink {
+    const link: SkyActionButtonPermalink = {
+      route: {
+        commands: (route.path as any),
+        extras: {
+          fragment: route.fragment
+        }
+      }
+    };
+    return link;
   }
 
   private isSearchTextInRoute(route: StacheNavLink, query: string): boolean {

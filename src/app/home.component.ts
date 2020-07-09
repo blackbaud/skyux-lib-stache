@@ -18,7 +18,7 @@ export class HomeComponent {
       name: 'Action Button 2',
       path: 'mailto:brandon.hare@blackbaud.com',
       icon: 'bookmark',
-      summary: 'Short summary here.'
+      summary: 'A long summary here about lots of interesting things. How does this impact the layout?'
     },
     {
       name: 'Action Button 3',
