@@ -18,8 +18,9 @@
           screenSmall="6"
         >
         <a
-          stacheRouterLink="{{route.path}}"
+          class="stache-action-button-override"
           fragment="{{route.fragment}}"
+          stacheRouterLink="{{route.path}}"
         >
           <sky-action-button>
             <sky-action-button-icon *ngIf="route.icon"

@@ -7,13 +7,13 @@
     padding: 5px 0 !important;
   }
 
-  // These overrides ensure action buttons will stretch
-  // to fill the entire vertical and horizontal space of the row.
+  // These overrides ensure action buttons will stretch to fill
+  // the entire vertical and horizontal space of the row.
   ::ng-deep sky-column {
     display: flex;
   }
 
-  ::ng-deep a {
+  ::ng-deep .stache-action-button-override {
     display: flex;
     align-items: stretch;
     margin: 15px 0;
