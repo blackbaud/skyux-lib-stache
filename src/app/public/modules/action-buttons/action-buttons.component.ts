@@ -10,6 +10,10 @@ import {
 } from '@blackbaud/skyux-lib-restricted-view';
 
 import {
+  SkyActionButtonPermalink
+} from '@skyux/layout';
+
+import {
   Subject
 } from 'rxjs';
 
@@ -18,9 +22,12 @@ import {
 } from '../nav/nav-link';
 
 import {
+  StacheNavService
+} from '../nav/nav.service';
+
+import {
   InputConverter
 } from '../shared/input-converter';
-import { SkyActionButtonPermalink } from '@skyux/layout';
 
 @Component({
   selector: 'stache-action-buttons',
@@ -67,7 +74,8 @@ export class StacheActionButtonsComponent implements OnDestroy, OnInit {
   private searchKeys: string[] = ['name', 'summary'];
 
   public constructor(
-    private restrictedViewAuthService: SkyRestrictedViewAuthService
+    private restrictedViewAuthService: SkyRestrictedViewAuthService,
+    private navService: StacheNavService
   ) { }
 
   public ngOnInit() {
@@ -107,15 +115,22 @@ export class StacheActionButtonsComponent implements OnDestroy, OnInit {
   }
 
   public getPermalink(route: StacheNavLink): SkyActionButtonPermalink {
-    const link: SkyActionButtonPermalink = {
-      route: {
-        commands: (route.path as any),
-        extras: {
-          fragment: route.fragment
+    const isExternalLink = this.navService.isExternal(route.path);
+
+    if (isExternalLink) {
+      return {
+        url: route.path as string
+      };
+    } else {
+      return {
+        route: {
+          commands: (route.path as any[]),
+          extras: {
+            fragment: route.fragment
+          }
         }
-      }
-    };
-    return link;
+      };
+    }
   }
 
   private isSearchTextInRoute(route: StacheNavLink, query: string): boolean {
