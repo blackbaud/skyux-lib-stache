@@ -17,9 +17,11 @@
           screenMedium="4"
           screenSmall="6"
         >
-          <sky-action-button
-            [permalink]="getPermalink(route)"
-          >
+        <a
+          stacheRouterLink="{{route.path}}"
+          fragment="{{route.fragment}}"
+        >
+          <sky-action-button>
             <sky-action-button-icon *ngIf="route.icon"
               iconType="{{route.icon}}"
             >
@@ -31,6 +33,7 @@
               {{route.summary}}
             </sky-action-button-details>
           </sky-action-button>
+        </a>
         </sky-column>
       </sky-row>
     </sky-fluid-grid>

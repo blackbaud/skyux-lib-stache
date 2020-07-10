@@ -8,21 +8,28 @@
   }
 
   // These overrides ensure action buttons will stretch
-  // to fill the entire vertical space of the row.
+  // to fill the entire vertical and horizontal space of the row.
   ::ng-deep sky-column {
     display: flex;
   }
 
-  ::ng-deep sky-action-button {
+  ::ng-deep a {
     display: flex;
     align-items: stretch;
     margin: 15px 0;
+    width: 100%;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  ::ng-deep sky-action-button {
     width: 100%;
   }
 
   ::ng-deep .sky-action-button {
     height: 100%;
-    width: 100%;
     margin: 0 !important;
     max-width: initial !important;
   }
