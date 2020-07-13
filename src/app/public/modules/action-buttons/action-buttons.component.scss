@@ -2,19 +2,36 @@
 
 .stache-action-buttons {
   margin: $stache-margin 0;
-}
 
-.stache-action-button-override {
-  display: inline-block;
-  width: 100%;
-  margin: 15px 0;
-
-  ::ng-deep .sky-action-button {
-    max-width: initial !important;
+  ::ng-deep .sky-search-dismiss-absolute {
+    padding: 5px 0 !important;
   }
 
-  &:hover {
-    text-decoration: none;
+  // These overrides ensure action buttons will stretch to fill
+  // the entire vertical and horizontal space of the row.
+  ::ng-deep sky-column {
+    display: flex;
+  }
+
+  ::ng-deep .stache-action-button-override {
+    display: flex;
+    align-items: stretch;
+    margin: 15px 0;
+    width: 100%;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  ::ng-deep sky-action-button {
+    width: 100%;
+  }
+
+  ::ng-deep .sky-action-button {
+    height: 100%;
+    margin: 0 !important;
+    max-width: initial !important;
   }
 }
 
@@ -23,14 +40,4 @@
   display: flex;
   min-height: 49px;
   margin-bottom: $stache-margin;
-}
-
-/deep/
-.stache-action-buttons {
-  .sky-column {
-    display: inline-flex;
-  }
-  .sky-search-dismiss-absolute {
-    padding: 5px 0 !important;
-  }
 }

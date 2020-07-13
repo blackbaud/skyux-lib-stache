@@ -1,3 +1,7 @@
+# 3.4.1 (2020-07-13)
+
+- Fixed the action button component to properly fill all available vertical space in rows. [#83](https://github.com/blackbaud/skyux-lib-stache/pull/83)
+
 # 3.4.0 (2020-07-07)
 
 - Added support for hiding restricted routes from the action buttons component and nav component. [#81](https://github.com/blackbaud/skyux-lib-stache/pull/81)
