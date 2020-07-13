@@ -1,6 +1,6 @@
 # 3.4.1 (2020-07-10)
 
-- Fixed the action buttons component to properly fill all available vertical space in row. [#83](https://github.com/blackbaud/skyux-lib-stache/pull/83)
+- Fixed the action button component to properly fill all available vertical space in rows. [#83](https://github.com/blackbaud/skyux-lib-stache/pull/83)
 
 # 3.4.0 (2020-07-07)
 
