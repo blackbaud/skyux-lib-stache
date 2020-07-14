@@ -10,6 +10,10 @@ import {
 } from '@angular/core';
 
 import {
+  By
+} from '@angular/platform-browser';
+
+import {
   expect
 } from '@skyux-sdk/testing';
 
@@ -36,7 +40,6 @@ import {
 import {
   StacheRouteMetadataService
 } from '../router/route-metadata.service';
-import { By } from '@angular/platform-browser';
 
 let mockRoutes = [
   {
