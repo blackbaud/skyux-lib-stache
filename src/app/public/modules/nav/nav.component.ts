@@ -14,6 +14,10 @@ import {
 } from 'rxjs';
 
 import {
+  takeUntil
+} from 'rxjs/operators';
+
+import {
   StacheNavLink
 } from './nav-link';
 
@@ -80,8 +84,8 @@ export class StacheNavComponent implements OnDestroy, OnInit, StacheNav {
     this.assignActiveStates();
 
     this.restrictedViewAuthService.isAuthenticated
-      .takeUntil(this.ngUnsubscribe)
-      .subscribe(isAuthenticated => {
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((isAuthenticated: boolean) => {
         this.isAuthenticated = isAuthenticated;
       });
   }
