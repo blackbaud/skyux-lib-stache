@@ -191,7 +191,8 @@ describe('StacheLayoutComponent', () => {
     fixture.detectChanges();
     tick();
     const wrapper = fixture.debugElement.query(By.css('.stache-layout-wrapper')).nativeElement;
-    expect(spy).toHaveBeenCalledWith(wrapper, 'min-height', '860px');
+    expect(spy.calls.argsFor(0)[0]).toEqual(wrapper);
+    expect(spy.calls.argsFor(0)[1]).toEqual('min-height');
   }));
 
 });
