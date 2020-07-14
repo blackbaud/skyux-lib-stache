@@ -1,6 +1,8 @@
 import {
   ComponentFixture,
-  TestBed
+  fakeAsync,
+  TestBed,
+  tick
 } from '@angular/core/testing';
 
 import {
@@ -34,6 +36,7 @@ import {
 import {
   StacheRouteMetadataService
 } from '../router/route-metadata.service';
+import { By } from '@angular/platform-browser';
 
 let mockRoutes = [
   {
@@ -180,5 +183,15 @@ describe('StacheLayoutComponent', () => {
     let layout = component['sidebarTemplateRef'];
     expect(component.templateRef).toBe(layout);
   });
+
+  it('should set the min-height of the wrapper', fakeAsync(() => {
+    const spy = spyOn(component['renderer'], 'setStyle').and.callThrough();
+    component.layoutType = 'sidebar';
+    component.ngOnChanges();
+    fixture.detectChanges();
+    tick();
+    const wrapper = fixture.debugElement.query(By.css('.stache-layout-wrapper')).nativeElement;
+    expect(spy).toHaveBeenCalledWith(wrapper, 'min-height', '860px');
+  }));
 
 });
