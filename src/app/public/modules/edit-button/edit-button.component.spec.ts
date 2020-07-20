@@ -111,6 +111,20 @@ describe('StacheEditButtonComponent', () => {
         'https://blackbaud.visualstudio.com/Products/_git/skyux-spa-stache-test-pipeline?path=%2Fsrc%2Fapp%2Ftest%2Froute%2Findex.html&version=GBmaster'
       );
   });
+  
+  it('should set the url for an Azure DevOps repo', () => {
+    // tslint:disable-next-line:max-line-length
+    mockConfigService.skyux.appSettings.stache.editButton.url = 'https://dev.azure.com/blackbaud/Products/_git/skyux-spa-stache-test-pipeline';
+
+    fixture = TestBed.createComponent(StacheEditButtonComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    expect(component['url'])
+      .toBe(
+        // tslint:disable-next-line:max-line-length
+        'https://dev.azure.com/blackbaud/Products/_git/skyux-spa-stache-test-pipeline?path=%2Fsrc%2Fapp%2Ftest%2Froute%2Findex.html&version=GBmaster'
+      );
+  });
 
   it('should not append a forward slash for the home route', () => {
     mockRouteService.getActiveUrl.and.callFake(() => '/');
