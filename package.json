@@ -1,6 +1,6 @@
 {
   "name": "@blackbaud/skyux-lib-stache",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "description": "Angular components for SKY UX Builder SPAs",
   "author": "Blackbaud, Inc.",
   "keywords": [],
@@ -23,6 +23,7 @@
     "@angular/core": "^9.1.9",
     "@angular/platform-browser": "^9.1.9",
     "@angular/router": "^9.1.9",
+    "@blackbaud/skyux-lib-restricted-view": "^4.1.0",
     "@skyux/config": "^4.0.0",
     "@skyux/core": "^4.1.0",
     "@skyux/i18n": "^4.0.0",
