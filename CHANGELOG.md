@@ -1,3 +1,11 @@
+# 4.2.1 (2020-07-22)
+
+- Fixed the route service to not include children from similar parents. [#90](https://github.com/blackbaud/skyux-lib-stache/pull/90)
+
+# 4.2.0 (2020-07-21)
+
+- Added `blackbaud/skyux-lib-restricted-view` as a peer dependency [#89](https://github.com/blackbaud/skyux-lib-stache/pull/89)
+
 # 4.1.0 (2020-07-17)
 
 - Added support for hiding restricted routes from the nav component. [#81](https://github.com/blackbaud/skyux-lib-stache/pull/81)
