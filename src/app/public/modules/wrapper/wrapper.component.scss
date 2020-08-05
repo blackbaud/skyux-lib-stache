@@ -1,6 +1,6 @@
 @import '../../styles/_variables';
 
-::ng-deep
+:host-context(body:not(.sky-theme-modern)) ::ng-deep
 .stache-wrapper {
   background-color: #fff;
   line-height: $stache-line-height-base;
