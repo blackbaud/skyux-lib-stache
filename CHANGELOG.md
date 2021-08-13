@@ -1,3 +1,19 @@
+# 4.2.2 (2021-02-03)
+
+- Fixed the edit button module to account for Azure DevOps URLs that contain `dev.azure.com`. [#100](https://github.com/blackbaud/skyux-lib-stache/pull/100)
+
+# 4.2.1 (2020-07-22)
+
+- Fixed the route service to not include children from similar parents. [#90](https://github.com/blackbaud/skyux-lib-stache/pull/90)
+
+# 4.2.0 (2020-07-21)
+
+- Added `blackbaud/skyux-lib-restricted-view` as a peer dependency [#89](https://github.com/blackbaud/skyux-lib-stache/pull/89)
+
+# 4.1.0 (2020-07-17)
+
+- Added support for hiding restricted routes from the nav component. [#81](https://github.com/blackbaud/skyux-lib-stache/pull/81)
+
 # 4.0.1 (2020-07-15)
 
 - Fixed the sidebar layout component to properly set the height of the sidebar when it is longer than the primary content. [#84](https://github.com/blackbaud/skyux-lib-stache/pull/84)
