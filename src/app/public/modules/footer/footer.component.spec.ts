@@ -41,15 +41,16 @@ describe('StacheFooterComponent', () => {
   let footerConfig = {
     nav: {
       items: [
-      {
-        title: 'Privacy Policy',
-        route: '/demos/privacy-policy'
-      },
-      {
-        title: 'Terms of Use',
-        route: '/demos/anchor-link'
-      }
-    ]},
+        {
+          title: 'Privacy Policy',
+          route: '/demos/privacy-policy'
+        },
+        {
+          title: 'Terms of Use',
+          route: '/demos/anchor-link'
+        }
+      ]
+    },
     copyrightLabel: 'test copyright'
   };
 
@@ -123,7 +124,6 @@ describe('StacheFooterComponent', () => {
     component.ngOnInit();
     fixture.detectChanges();
 
-    expect(component.footerLinks).not.toEqual(footerConfig.nav);
     expect(component.footerLinks).toEqual([]);
 
     expect(component.copyrightLabel).not.toEqual(footerConfig.copyrightLabel);
