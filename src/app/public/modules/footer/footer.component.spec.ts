@@ -41,16 +41,15 @@ describe('StacheFooterComponent', () => {
   let footerConfig = {
     nav: {
       items: [
-        {
-          title: 'Privacy Policy',
-          route: '/demos/privacy-policy'
-        },
-        {
-          title: 'Terms of Use',
-          route: '/demos/anchor-link'
-        }
-      ]
-    },
+      {
+        title: 'Privacy Policy',
+        route: '/demos/privacy-policy'
+      },
+      {
+        title: 'Terms of Use',
+        route: '/demos/anchor-link'
+      }
+    ]},
     copyrightLabel: 'test copyright'
   };
 
