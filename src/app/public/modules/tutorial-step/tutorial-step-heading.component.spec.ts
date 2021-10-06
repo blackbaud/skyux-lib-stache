@@ -37,7 +37,7 @@ describe('StacheTutorialStepHeadingComponent', () => {
         StacheTutorialStepModule
       ],
       providers: [
-        SkyAppConfig,
+        SkyAppConfig
       ],
       schemas: [
         NO_ERRORS_SCHEMA
