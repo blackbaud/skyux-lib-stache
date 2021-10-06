@@ -12,6 +12,10 @@ import {
 } from '@angular/core';
 
 import {
+  SkyAppConfig
+} from '@skyux/config';
+
+import {
   expect
 } from '@skyux-sdk/testing';
 
@@ -22,10 +26,6 @@ import {
 import {
   StacheTutorialStepModule
 } from './tutorial-step.module';
-
-import {
-  SkyAppConfig
-} from '@skyux/config';
 
 describe('StacheTutorialStepHeadingComponent', () => {
   let fixture: ComponentFixture<StacheTutorialStepHeadingComponent>;
