@@ -1,6 +1,6 @@
 {
   "name": "@blackbaud/skyux-lib-stache",
-  "version": "4.2.3",
+  "version": "5.0.0-beta.0",
   "description": "Angular components for SKY UX Builder SPAs",
   "author": "Blackbaud, Inc.",
   "keywords": [],
@@ -19,17 +19,17 @@
     "start": "skyux serve --hmr"
   },
   "peerDependencies": {
-    "@angular/common": "^9.1.9",
-    "@angular/core": "^9.1.9",
-    "@angular/platform-browser": "^9.1.9",
-    "@angular/router": "^9.1.9",
+    "@angular/common": "^9.1.9 | ^12.2.0",
+    "@angular/core": "^9.1.9 | ^12.2.0",
+    "@angular/platform-browser": "^9.1.9 | ^12.2.0",
+    "@angular/router": "^9.1.9 | ^12.2.0",
     "@blackbaud/skyux-lib-restricted-view": "^4.1.0",
-    "@skyux/config": "^4.0.0",
-    "@skyux/core": "^4.1.0",
-    "@skyux/i18n": "^4.0.0",
-    "@skyux/layout": "^4.0.0",
-    "@skyux/lookup": "^4.0.0",
-    "@skyux/theme": "^4.0.0"
+    "@skyux/config": "^4.0.0 | ^5.0.0",
+    "@skyux/core": "^4.1.0 | ^5.0.0",
+    "@skyux/i18n": "^4.0.0 | ^5.0.0",
+    "@skyux/layout": "^4.0.0 | ^5.0.0",
+    "@skyux/lookup": "^4.0.0 | ^5.0.0",
+    "@skyux/theme": "^4.0.0 | ^5.0.0"
   },
   "dependencies": {
     "lodash.get": "4.4.2"

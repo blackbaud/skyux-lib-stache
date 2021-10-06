@@ -22,6 +22,7 @@ import {
 import {
   StacheTutorialStepModule
 } from './tutorial-step.module';
+import { SkyAppConfig } from '@skyux/config';
 
 describe('StacheTutorialStepHeadingComponent', () => {
   let fixture: ComponentFixture<StacheTutorialStepHeadingComponent>;
@@ -31,6 +32,9 @@ describe('StacheTutorialStepHeadingComponent', () => {
       imports: [
         RouterTestingModule,
         StacheTutorialStepModule
+      ],
+      providers: [
+        SkyAppConfig,
       ],
       schemas: [
         NO_ERRORS_SCHEMA
