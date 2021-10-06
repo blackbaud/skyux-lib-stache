@@ -22,7 +22,10 @@ import {
 import {
   StacheTutorialStepModule
 } from './tutorial-step.module';
-import { SkyAppConfig } from '@skyux/config';
+
+import {
+  SkyAppConfig
+} from '@skyux/config';
 
 describe('StacheTutorialStepHeadingComponent', () => {
   let fixture: ComponentFixture<StacheTutorialStepHeadingComponent>;
