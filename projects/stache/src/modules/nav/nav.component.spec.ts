@@ -12,10 +12,6 @@ import {
 } from '@skyux-sdk/testing';
 
 import {
-  SkyAuthTokenProvider
-} from '@skyux/http';
-
-import {
   BehaviorSubject
 } from 'rxjs';
 
@@ -98,7 +94,6 @@ describe('StacheNavComponent', () => {
         StacheNavModule
       ],
       providers: [
-        SkyAuthTokenProvider,
         { provide: StacheRouteService, useValue: mockRouteService },
         { provide: StacheWindowRef, useValue: mockWindowService },
         { provide: StacheAuthService, useValue: mockRestricedViewAuthService }
