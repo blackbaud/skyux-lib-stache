@@ -3,14 +3,10 @@ name: SKY UX CI
 on:
   pull_request:
     branches:
-      - master
-      - 3.x.x
-      - 5.0.0-next
+      - 4.x.x
   push:
     branches:
-      - master
-      - 3.x.x
-      - 5.0.0-next
+      - 4.x.x
     tags:
       - '*.*.*'
 
