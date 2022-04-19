@@ -1,3 +1,17 @@
+# 5.0.0-beta.2 (2021-10-11)
+
+- Released new version to work around NPM outage.
+
+# 5.0.0-beta.1 (2021-10-11)
+
+- Added support for Angular 12. [#106](https://github.com/blackbaud/skyux-lib-stache/pull/106)
+- Removed references to `@blackbaud/skyux-lib-restricted-view` and added `StacheAuthService` so consumers can provide their own authentication logic. [#106](https://github.com/blackbaud/skyux-lib-stache/pull/106)
+
+# 5.0.0-beta.0 (2021-10-07)
+
+- Initial 5.0.0 beta release. [#105](https://github.com/blackbaud/skyux-lib-stache/pull/105)
+- Removed `SkyAppConfig` to multiple providers to enable lazy-loading for consuming applications. [#105](https://github.com/blackbaud/skyux-lib-stache/pull/105)
+
 # 4.2.3 (2021-08-13)
 
 - Fixed the route service to work when `SkyAppConfig.runtime` is not defined. [#103](https://github.com/blackbaud/skyux-lib-stache/pull/103)
