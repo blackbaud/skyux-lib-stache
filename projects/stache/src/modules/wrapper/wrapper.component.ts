@@ -169,16 +169,14 @@ export class StacheWrapperComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   private checkRouteHash(): void {
-    if (this.inPageRoutes && this.inPageRoutes.length > 0) {
-      this.route.fragment
-        .subscribe((fragment: string) => {
-          let url = '';
-          this.route.url.subscribe(segments => url = segments.join('/')).unsubscribe();
-          if (fragment) {
-            this.navService.navigate({ path: url, fragment });
-          }
-        })
-        .unsubscribe();
-    }
+    this.route.fragment
+      .subscribe((fragment: string) => {
+        let url = '';
+        this.route.url.subscribe(segments => url = segments.join('/')).unsubscribe();
+        if (fragment) {
+          this.navService.navigate({ path: url, fragment });
+        }
+      })
+      .unsubscribe();
   }
 }
