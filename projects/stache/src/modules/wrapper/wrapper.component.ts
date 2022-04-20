@@ -71,7 +71,7 @@ export class StacheWrapperComponent
   public showInNav: boolean = true;
 
   @Input()
-  public inPageRoutes: StacheNavLink[];
+  public inPageRoutes: StacheNavLink[] | undefined;
 
   public jsonData: any;
   private ngUnsubscribe = new Subject();
@@ -96,6 +96,7 @@ export class StacheWrapperComponent
         .pipe(takeUntil(this.ngUnsubscribe))
         .subscribe((anchors: StacheNavLink[]) => {
           this.inPageRoutes = anchors;
+          this.checkRouteHash();
           this.changeDetectorRef.detectChanges();
         });
     }
@@ -104,7 +105,6 @@ export class StacheWrapperComponent
   public ngAfterViewInit() {
     const preferredDocumentTitle = this.getPreferredDocumentTitle();
     this.titleService.setTitle(preferredDocumentTitle);
-    this.checkRouteHash();
   }
 
   public ngOnDestroy() {
