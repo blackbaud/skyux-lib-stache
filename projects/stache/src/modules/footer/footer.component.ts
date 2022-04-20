@@ -19,7 +19,7 @@ import {
   StacheNavLink
 } from '../nav/nav-link';
 
-const _get = require('lodash.get');
+import lodashGet from 'lodash.get';
 
 @Component({
   selector: 'stache-footer',
@@ -43,7 +43,7 @@ export class StacheFooterComponent implements OnInit {
   }
 
   private setFooterData(): void {
-    const navItems = _get(
+    const navItems = lodashGet(
       this.configService,
       'skyux.appSettings.stache.footer.nav.items',
       []
@@ -61,14 +61,14 @@ export class StacheFooterComponent implements OnInit {
         first()
       )
       .subscribe((value) => {
-        this.copyrightLabel = _get(
+        this.copyrightLabel = lodashGet(
           this.configService,
           'skyux.appSettings.stache.footer.copyrightLabel',
           value
         );
       });
 
-    this.siteName = _get(
+    this.siteName = lodashGet(
       this.configService,
       'skyux.app.title'
     );
