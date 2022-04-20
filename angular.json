@@ -31,9 +31,7 @@
             "tsConfig": "projects/stache/tsconfig.spec.json",
             "karmaConfig": "projects/stache/karma.conf.js",
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ],
+            "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
               "@skyux/theme/css/sky.css",
               "@skyux/theme/css/themes/modern/styles.css"
@@ -167,9 +165,7 @@
               "projects/stache-showcase/src/favicon.ico",
               "projects/stache-showcase/src/assets"
             ],
-            "styles": [
-              "projects/stache-showcase/src/styles.scss"
-            ],
+            "styles": ["projects/stache-showcase/src/styles.scss"],
             "scripts": []
           }
         },
