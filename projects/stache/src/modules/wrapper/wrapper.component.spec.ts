@@ -460,6 +460,16 @@ describe('StacheWrapperComponent', () => {
     expect(navSpy).not.toHaveBeenCalled();
   });
 
+  it('should not navigate to a fragment if inPageRoutes empty', () => {
+    const navSpy = spyOn(mockNavService, 'navigate');
+
+    const testFixture = TestBed.createComponent(StacheWrapperTestComponent);
+    testFixture.componentInstance.inPageRoutes = [];
+    testFixture.detectChanges();
+
+    expect(navSpy).not.toHaveBeenCalled();
+  });
+
   it('should not use in page routes from anchor service if custom routes are passed in', () => {
     const routes = [{ name: 'testRoute' } as StacheNavLink];
     component.inPageRoutes = routes;
