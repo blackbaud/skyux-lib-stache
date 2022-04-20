@@ -13,15 +13,9 @@
     "target": "es2017",
     "module": "es2020",
     "paths": {
-      "stache": [
-        "dist/stache/stache",
-        "dist/stache"
-      ]
+      "stache": ["dist/stache/stache", "dist/stache"]
     },
-    "lib": [
-      "es2018",
-      "dom"
-    ]
+    "lib": ["es2018", "dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false

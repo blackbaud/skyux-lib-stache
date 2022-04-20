@@ -3,32 +3,30 @@ import {
   Input,
   Renderer2,
   OnDestroy,
-  AfterViewInit
+  AfterViewInit,
 } from '@angular/core';
 
-import {
-  StacheNavLink
-} from '../nav/nav-link';
+import { StacheNavLink } from '../nav/nav-link';
 
-import {
-  StacheWindowRef
-} from '../shared/window-ref';
+import { StacheWindowRef } from '../shared/window-ref';
 
 const HAS_TOC_CLASS_NAME = 'stache-table-of-contents-enabled';
 
 @Component({
   selector: 'stache-table-of-contents-wrapper',
   templateUrl: './table-of-contents-wrapper.component.html',
-  styleUrls: ['./table-of-contents-wrapper.component.scss']
+  styleUrls: ['./table-of-contents-wrapper.component.scss'],
 })
-export class StacheTableOfContentsWrapperComponent implements AfterViewInit, OnDestroy {
+export class StacheTableOfContentsWrapperComponent
+  implements AfterViewInit, OnDestroy
+{
   @Input()
   public tocRoutes: StacheNavLink[];
 
   constructor(
     private renderer: Renderer2,
     private windowRef: StacheWindowRef
-  ) { }
+  ) {}
 
   public ngAfterViewInit(): void {
     this.addClassToBody();

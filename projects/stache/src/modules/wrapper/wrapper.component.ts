@@ -5,57 +5,32 @@ import {
   Input,
   AfterViewInit,
   OnDestroy,
-  ChangeDetectorRef
+  ChangeDetectorRef,
 } from '@angular/core';
 
-import {
-  ActivatedRoute
-} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
-import {
-  SkyAppConfig
-} from '@skyux/config';
+import { SkyAppConfig } from '@skyux/config';
 
-import {
-  Subject
-} from 'rxjs';
+import { Subject } from 'rxjs';
 
-import {
-  takeUntil
-} from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 
-import {
-  StacheTitleService
-} from './title.service';
+import { StacheTitleService } from './title.service';
 
-import {
-  StacheJsonDataService
-} from '../json-data/json-data.service';
+import { StacheJsonDataService } from '../json-data/json-data.service';
 
-import {
-  StacheOmnibarAdapterService
-} from '../shared/omnibar-adapter.service';
+import { StacheOmnibarAdapterService } from '../shared/omnibar-adapter.service';
 
-import {
-  StacheWindowRef
-} from '../shared/window-ref';
+import { StacheWindowRef } from '../shared/window-ref';
 
-import {
-  StacheNavLink
-} from '../nav/nav-link';
+import { StacheNavLink } from '../nav/nav-link';
 
-import {
-  StacheNavService
-} from '../nav/nav.service';
+import { StacheNavService } from '../nav/nav.service';
 
-import {
-  StachePageAnchorService
-} from '../page-anchor/page-anchor.service';
+import { StachePageAnchorService } from '../page-anchor/page-anchor.service';
 
-import {
-  booleanConverter,
-  InputConverter
-} from '../shared/input-converter';
+import { booleanConverter, InputConverter } from '../shared/input-converter';
 
 import lodashGet from 'lodash.get';
 
@@ -63,9 +38,11 @@ import lodashGet from 'lodash.get';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'stache',
   templateUrl: './wrapper.component.html',
-  styleUrls: ['./wrapper.component.scss']
+  styleUrls: ['./wrapper.component.scss'],
 })
-export class StacheWrapperComponent implements OnInit, AfterViewInit, OnDestroy {
+export class StacheWrapperComponent
+  implements OnInit, AfterViewInit, OnDestroy
+{
   @Input()
   public pageTitle: string;
 
@@ -119,16 +96,14 @@ export class StacheWrapperComponent implements OnInit, AfterViewInit, OnDestroy 
     private windowRef: StacheWindowRef,
     private changeDetectorRef: ChangeDetectorRef,
     private omnibarService: StacheOmnibarAdapterService
-  ) { }
+  ) {}
 
   public ngOnInit(): void {
     this.omnibarService.checkForOmnibar();
     this.jsonData = this.dataService.getAll();
     if (!this.inPageRoutes) {
       this.pageAnchorService.pageAnchorsStream
-        .pipe(
-          takeUntil(this.ngUnsubscribe)
-        )
+        .pipe(takeUntil(this.ngUnsubscribe))
         .subscribe((anchors: StacheNavLink[]) => {
           this.inPageRoutes = anchors;
           this.changeDetectorRef.detectChanges();
@@ -148,23 +123,37 @@ export class StacheWrapperComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   private getPreferredDocumentTitle(): string {
-    return this.windowTitle || this.pageTitle || this.navTitle || this.getTutorialHeader();
+    return (
+      this.windowTitle ||
+      this.pageTitle ||
+      this.navTitle ||
+      this.getTutorialHeader()
+    );
   }
 
   private getTutorialHeader(): string {
-    const currentTutorialHeader = this.windowRef.nativeWindow.document.querySelector(`.stache-tutorial-heading`);
+    const currentTutorialHeader =
+      this.windowRef.nativeWindow.document.querySelector(
+        `.stache-tutorial-heading`
+      );
     if (currentTutorialHeader && currentTutorialHeader.textContent) {
       return currentTutorialHeader.textContent.trim();
     }
   }
 
   private checkEditButtonUrl(): boolean {
-    const url = lodashGet(this.config, 'skyux.appSettings.stache.editButton.url');
+    const url = lodashGet(
+      this.config,
+      'skyux.appSettings.stache.editButton.url'
+    );
     return url !== undefined;
   }
 
   private checkFooterData(): boolean {
-    const footerData = lodashGet(this.config, 'skyux.appSettings.stache.footer');
+    const footerData = lodashGet(
+      this.config,
+      'skyux.appSettings.stache.footer'
+    );
     return footerData !== undefined;
   }
 
@@ -172,7 +161,9 @@ export class StacheWrapperComponent implements OnInit, AfterViewInit, OnDestroy 
     this.route.fragment
       .subscribe((fragment: string) => {
         let url = '';
-        this.route.url.subscribe(segments => url = segments.join('/')).unsubscribe();
+        this.route.url
+          .subscribe((segments) => (url = segments.join('/')))
+          .unsubscribe();
         if (fragment) {
           this.navService.navigate({ path: url, fragment });
         }

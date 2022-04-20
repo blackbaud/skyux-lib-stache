@@ -1,24 +1,14 @@
-import {
-  Component,
-  Input
-} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-import {
-  StacheLayout
-} from './layout';
+import { StacheLayout } from './layout';
 
-import {
-  booleanConverter,
-  InputConverter
-} from '../shared/input-converter';
+import { booleanConverter, InputConverter } from '../shared/input-converter';
 
-import {
-  StacheNavLink
-} from '../nav/nav-link';
+import { StacheNavLink } from '../nav/nav-link';
 
 @Component({
   selector: 'stache-layout-sidebar',
-  templateUrl: './layout-sidebar.component.html'
+  templateUrl: './layout-sidebar.component.html',
 })
 export class StacheLayoutSidebarComponent implements StacheLayout {
   @Input()

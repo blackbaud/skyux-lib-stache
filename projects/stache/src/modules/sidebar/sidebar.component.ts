@@ -1,40 +1,24 @@
-import {
-  Component,
-  Input
-} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-import {
-  StacheNavLink
-} from '../nav/nav-link';
+import { StacheNavLink } from '../nav/nav-link';
 
-import {
-  StacheNav
-} from '../nav/nav';
+import { StacheNav } from '../nav/nav';
 
-import {
-  StacheRouteService
-} from '../router/route.service';
+import { StacheRouteService } from '../router/route.service';
 
-import {
-  StacheNavService
-} from '../nav/nav.service';
+import { StacheNavService } from '../nav/nav.service';
 
 let uniqueId = 0;
 
 @Component({
   selector: 'stache-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  styleUrls: ['./sidebar.component.scss'],
 })
 export class StacheSidebarComponent implements StacheNav {
-
   @Input()
   public set routes(value: StacheNavLink[]) {
-    if (
-      !value ||
-      !value.length ||
-      !Array.isArray(value)
-    ) {
+    if (!value || !value.length || !Array.isArray(value)) {
       this._routes = this.routeService.getActiveRoutes();
     } else {
       this._routes = value;
@@ -53,17 +37,19 @@ export class StacheSidebarComponent implements StacheNav {
   public constructor(
     private routeService: StacheRouteService,
     private navService: StacheNavService
-  ) { }
+  ) {}
 
   public isHeadingActive(): boolean {
     const url = this.routeService.getActiveUrl();
-    return (url === this.headingRoute);
+    return url === this.headingRoute;
   }
 
   private filterRoutes(routes: StacheNavLink[]): StacheNavLink[] {
     const root = routes[0];
 
-    let headingPath = Array.isArray(root.path) ? root.path.join('/') : root.path;
+    let headingPath = Array.isArray(root.path)
+      ? root.path.join('/')
+      : root.path;
     headingPath = headingPath.replace(/^\//, '');
 
     this.heading = root.name;

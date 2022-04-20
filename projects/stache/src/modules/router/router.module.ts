@@ -1,18 +1,10 @@
-import {
-  NgModule
-} from '@angular/core';
+import { NgModule } from '@angular/core';
 
-import {
-  StacheRouteMetadataService
-} from './route-metadata.service';
+import { StacheRouteMetadataService } from './route-metadata.service';
 
-import {
-  StacheRouteService
-} from './route.service';
+import { StacheRouteService } from './route.service';
 
-import {
-  STACHE_ROUTE_METADATA_SERVICE_CONFIG
-} from './route-metadata-service-config-token';
+import { STACHE_ROUTE_METADATA_SERVICE_CONFIG } from './route-metadata-service-config-token';
 
 @NgModule({
   providers: [
@@ -20,8 +12,8 @@ import {
     StacheRouteMetadataService,
     {
       provide: STACHE_ROUTE_METADATA_SERVICE_CONFIG,
-      useValue: []
-    }
-  ]
+      useValue: [],
+    },
+  ],
 })
-export class StacheRouterModule { }
+export class StacheRouterModule {}

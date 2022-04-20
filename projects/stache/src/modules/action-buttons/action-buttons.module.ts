@@ -1,36 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import {
-  SkyActionButtonModule,
-  SkyFluidGridModule
-} from '@skyux/layout';
+import { SkyActionButtonModule, SkyFluidGridModule } from '@skyux/layout';
 
-import {
-  SkySearchModule
-} from '@skyux/lookup';
+import { SkySearchModule } from '@skyux/lookup';
 
-import {
-  StacheNavModule
-} from '../nav/nav.module';
+import { StacheNavModule } from '../nav/nav.module';
 
-import {
-  StacheActionButtonsComponent
-} from './action-buttons.component';
+import { StacheActionButtonsComponent } from './action-buttons.component';
 
 @NgModule({
-  declarations: [
-    StacheActionButtonsComponent
-  ],
+  declarations: [StacheActionButtonsComponent],
   imports: [
     CommonModule,
     SkyActionButtonModule,
     SkyFluidGridModule,
     SkySearchModule,
-    StacheNavModule
+    StacheNavModule,
   ],
-  exports: [
-    StacheActionButtonsComponent
-  ]
+  exports: [StacheActionButtonsComponent],
 })
-export class StacheActionButtonsModule { }
+export class StacheActionButtonsModule {}

@@ -1,12 +1,6 @@
-import {
-  Injectable
-} from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import {
-  fromEvent,
-  Observable,
-  ReplaySubject
-} from 'rxjs';
+import { fromEvent, Observable, ReplaySubject } from 'rxjs';
 
 function getWindow(): any {
   return window;
@@ -14,7 +8,6 @@ function getWindow(): any {
 
 @Injectable()
 export class StacheWindowRef {
-
   public get nativeWindow(): any {
     return getWindow();
   }

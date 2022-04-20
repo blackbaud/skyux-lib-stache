@@ -2,15 +2,12 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { StacheNavLink } from '../nav/nav-link';
 
-import {
-  booleanConverter,
-  InputConverter
-} from '../shared/input-converter';
+import { booleanConverter, InputConverter } from '../shared/input-converter';
 
 @Component({
   selector: 'stache-action-buttons',
   templateUrl: './action-buttons.component.html',
-  styleUrls: ['./action-buttons.component.scss']
+  styleUrls: ['./action-buttons.component.scss'],
 })
 export class StacheActionButtonsComponent implements OnInit {
   @Input()
@@ -35,7 +32,7 @@ export class StacheActionButtonsComponent implements OnInit {
 
   private searchKeys: string[] = ['name', 'summary'];
 
-  public constructor() { }
+  public constructor() {}
 
   public ngOnInit() {
     this.filteredRoutes = this.routes;
@@ -55,11 +52,11 @@ export class StacheActionButtonsComponent implements OnInit {
       return;
     }
     this.filteredRoutes = this.routes.filter((route: any) => {
-      const matchingFields = this.searchKeys.filter(key => {
-        const isMatch = (route[key] && route[key].toLowerCase().includes(query));
+      const matchingFields = this.searchKeys.filter((key) => {
+        const isMatch = route[key] && route[key].toLowerCase().includes(query);
         return isMatch;
       });
-      return (matchingFields.length > 0);
+      return matchingFields.length > 0;
     });
   }
 }

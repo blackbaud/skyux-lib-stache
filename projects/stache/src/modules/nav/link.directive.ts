@@ -6,26 +6,19 @@ import {
   Input,
   Renderer2,
   OnChanges,
-  AfterViewInit
+  AfterViewInit,
 } from '@angular/core';
 
-import {
-  LocationStrategy
-} from '@angular/common';
+import { LocationStrategy } from '@angular/common';
 
-import {
-  StacheNavService
-} from '../nav/nav.service';
+import { StacheNavService } from '../nav/nav.service';
 
-import {
-  StacheRouteService
-} from '../router/route.service';
+import { StacheRouteService } from '../router/route.service';
 
 @Directive({
-  selector: '[stacheRouterLink]'
+  selector: '[stacheRouterLink]',
 })
 export class StacheRouterLinkDirective implements OnChanges, AfterViewInit {
-
   private _stacheRouterLink: string = '';
 
   @Input('stacheRouterLink')
@@ -74,7 +67,7 @@ export class StacheRouterLinkDirective implements OnChanges, AfterViewInit {
       event.preventDefault();
       this.navService.navigate({
         path: this.stacheRouterLink,
-        fragment: this.fragment
+        fragment: this.fragment,
       });
       return true;
     }
