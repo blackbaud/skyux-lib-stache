@@ -1,7 +1,6 @@
-# Ignore artifacts:
-__skyux
-coverage
-dist
+/.angular
+/coverage
+/dist
 node_modules
 package-lock.json
 
