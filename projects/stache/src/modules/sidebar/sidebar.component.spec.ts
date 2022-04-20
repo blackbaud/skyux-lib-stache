@@ -3,34 +3,20 @@ import {
   TestBed,
   async,
   tick,
-  fakeAsync
+  fakeAsync,
 } from '@angular/core/testing';
 
-import {
-  expect
-} from '@skyux-sdk/testing';
+import { expect } from '@skyux-sdk/testing';
 
-import {
-  SkyAppConfig
-} from '@skyux/config';
+import { SkyAppConfig } from '@skyux/config';
 
-import {
-  BehaviorSubject,
-  Subscription
-} from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 
-import {
-  SidebarFixtureComponent
-} from './fixtures/sidebar.component.fixture';
+import { SidebarFixtureComponent } from './fixtures/sidebar.component.fixture';
 
-import {
-  SidebarFixtureModule
-} from './fixtures/sidebar.module.fixture';
+import { SidebarFixtureModule } from './fixtures/sidebar.module.fixture';
 
-import {
-  SkyMediaBreakpoints,
-  SkyMediaQueryService
-} from '@skyux/core';
+import { SkyMediaBreakpoints, SkyMediaQueryService } from '@skyux/core';
 
 describe('Sidebar', () => {
   let component: SidebarFixtureComponent;
@@ -41,16 +27,18 @@ describe('Sidebar', () => {
     runtime: {
       routes: [
         {
-          routePath: '/home'
-        }
-      ]
+          routePath: '/home',
+        },
+      ],
     },
-    skyux: {}
+    skyux: {},
   };
 
   class MockMediaQueryService {
     public current = SkyMediaBreakpoints.md;
-    private currentSubject = new BehaviorSubject<SkyMediaBreakpoints>(this.current);
+    private currentSubject = new BehaviorSubject<SkyMediaBreakpoints>(
+      this.current
+    );
 
     public subscribe(listener: any): Subscription {
       return this.currentSubject.subscribe((value) => {
@@ -73,30 +61,36 @@ describe('Sidebar', () => {
   }
 
   function verifyOpened(): void {
-    expect(fixture.nativeElement.querySelector('.stache-sidebar-open')).toBeTruthy();
-    expect(fixture.componentInstance.sidebarWrapperComponent.sidebarOpen).toEqual(true);
+    expect(
+      fixture.nativeElement.querySelector('.stache-sidebar-open')
+    ).toBeTruthy();
+    expect(
+      fixture.componentInstance.sidebarWrapperComponent.sidebarOpen
+    ).toEqual(true);
   }
 
   function verifyClosed(): void {
-    expect(fixture.nativeElement.querySelector('.stache-sidebar-closed')).toBeTruthy();
-    expect(fixture.componentInstance.sidebarWrapperComponent.sidebarOpen).toEqual(false);
+    expect(
+      fixture.nativeElement.querySelector('.stache-sidebar-closed')
+    ).toBeTruthy();
+    expect(
+      fixture.componentInstance.sidebarWrapperComponent.sidebarOpen
+    ).toEqual(false);
   }
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SidebarFixtureModule
-      ],
+      imports: [SidebarFixtureModule],
       providers: [
         {
           provide: SkyAppConfig,
-          useValue: mockConfig
+          useValue: mockConfig,
         },
         {
           provide: SkyMediaQueryService,
-          useClass: MockMediaQueryService
-        }
-      ]
+          useClass: MockMediaQueryService,
+        },
+      ],
     });
 
     fixture = TestBed.createComponent(SidebarFixtureComponent);
@@ -122,9 +116,9 @@ describe('Sidebar', () => {
         path: '/',
         children: [
           { name: 'Test 1', path: [] },
-          { name: 'Test 2', path: [] }
-        ]
-      }
+          { name: 'Test 2', path: [] },
+        ],
+      },
     ];
 
     detectChanges();
@@ -138,8 +132,8 @@ describe('Sidebar', () => {
     component.routes = [
       {
         name: 'Header',
-        path: ['foo', 'bar', 'baz']
-      }
+        path: ['foo', 'bar', 'baz'],
+      },
     ];
 
     detectChanges();
@@ -150,13 +144,13 @@ describe('Sidebar', () => {
     expect(anchor.getAttribute('href')).toEqual('/foo/bar/baz');
   }));
 
-  it('should add a \/ to a heading route when one is not present', fakeAsync(() => {
+  it('should add a / to a heading route when one is not present', fakeAsync(() => {
     component.routes = [
       {
         name: 'Header',
         path: '',
-        children: []
-      }
+        children: [],
+      },
     ];
 
     detectChanges();
@@ -168,13 +162,13 @@ describe('Sidebar', () => {
     expect(anchor.getAttribute('href')).toEqual('/');
   }));
 
-  it('should not add a \/ to a heading route when one is present', fakeAsync(() => {
+  it('should not add a / to a heading route when one is present', fakeAsync(() => {
     component.routes = [
       {
         name: 'Header',
         path: '/',
-        children: []
-      }
+        children: [],
+      },
     ];
 
     detectChanges();
@@ -191,8 +185,8 @@ describe('Sidebar', () => {
       {
         name: 'Header',
         path: 'https://example.org',
-        children: []
-      }
+        children: [],
+      },
     ];
 
     detectChanges();
@@ -219,17 +213,23 @@ describe('Sidebar', () => {
   it('should add a CSS class to the body', fakeAsync(() => {
     detectChanges();
 
-    expect(document.body.className.indexOf('stache-sidebar-enabled') > -1).toEqual(true);
+    expect(
+      document.body.className.indexOf('stache-sidebar-enabled') > -1
+    ).toEqual(true);
   }));
 
   it('should remove the CSS class from the body on destroy', fakeAsync(() => {
     detectChanges();
 
-    expect(document.body.className.indexOf('stache-sidebar-enabled') > -1).toEqual(true);
+    expect(
+      document.body.className.indexOf('stache-sidebar-enabled') > -1
+    ).toEqual(true);
 
     fixture.destroy();
 
-    expect(document.body.className.indexOf('stache-sidebar-enabled') > -1).toEqual(false);
+    expect(
+      document.body.className.indexOf('stache-sidebar-enabled') > -1
+    ).toEqual(false);
   }));
 
   it('should be accessible', async(() => {

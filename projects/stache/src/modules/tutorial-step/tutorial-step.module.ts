@@ -1,46 +1,28 @@
-import {
-  NgModule
-} from '@angular/core';
+import { NgModule } from '@angular/core';
 
-import {
-  CommonModule
-} from '@angular/common';
+import { CommonModule } from '@angular/common';
 
-import {
-  StachePageAnchorModule
-} from '../page-anchor/page-anchor.module';
+import { StachePageAnchorModule } from '../page-anchor/page-anchor.module';
 
-import {
-  StacheRouterModule
-} from '../router/router.module';
+import { StacheRouterModule } from '../router/router.module';
 
-import {
-  StacheTutorialStepComponent
-} from './tutorial-step.component';
+import { StacheTutorialStepComponent } from './tutorial-step.component';
 
-import {
-  StacheTutorialStepBodyComponent
-} from './tutorial-step-body.component';
+import { StacheTutorialStepBodyComponent } from './tutorial-step-body.component';
 
-import {
-  StacheTutorialStepHeadingComponent
-} from './tutorial-step-heading.component';
+import { StacheTutorialStepHeadingComponent } from './tutorial-step-heading.component';
 
 @NgModule({
   declarations: [
     StacheTutorialStepComponent,
     StacheTutorialStepBodyComponent,
-    StacheTutorialStepHeadingComponent
+    StacheTutorialStepHeadingComponent,
   ],
-  imports: [
-    CommonModule,
-    StachePageAnchorModule,
-    StacheRouterModule
-  ],
+  imports: [CommonModule, StachePageAnchorModule, StacheRouterModule],
   exports: [
     StacheTutorialStepComponent,
     StacheTutorialStepBodyComponent,
-    StacheTutorialStepHeadingComponent
-  ]
+    StacheTutorialStepHeadingComponent,
+  ],
 })
-export class StacheTutorialStepModule { }
+export class StacheTutorialStepModule {}

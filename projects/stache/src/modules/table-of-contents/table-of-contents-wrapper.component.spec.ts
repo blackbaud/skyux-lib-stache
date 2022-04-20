@@ -1,48 +1,24 @@
-import {
-  ComponentFixture,
-  TestBed,
-  async
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 
-import {
-  Renderer2
-} from '@angular/core';
+import { Renderer2 } from '@angular/core';
 
-import {
-  expect
-} from '@skyux-sdk/testing';
+import { expect } from '@skyux-sdk/testing';
 
-import {
-  RouterTestingModule
-} from '@angular/router/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
-import {
-  of as observableOf
-} from 'rxjs';
+import { of as observableOf } from 'rxjs';
 
-import {
-  StacheTableOfContentsModule
-} from './table-of-contents.module';
+import { StacheTableOfContentsModule } from './table-of-contents.module';
 
-import {
-  StacheTableOfContentsWrapperComponent
-} from './table-of-contents-wrapper.component';
+import { StacheTableOfContentsWrapperComponent } from './table-of-contents-wrapper.component';
 
-import {
-  StacheNavModule
-} from '../nav/nav.module';
+import { StacheNavModule } from '../nav/nav.module';
 
-import {
-  StacheOmnibarAdapterService
-} from '../shared/omnibar-adapter.service';
+import { StacheOmnibarAdapterService } from '../shared/omnibar-adapter.service';
 
-import {
-  StacheRouteService
-} from '../router/route.service';
+import { StacheRouteService } from '../router/route.service';
 
-import {
-  StacheWindowRef
-} from '../shared/window-ref';
+import { StacheWindowRef } from '../shared/window-ref';
 
 class MockWindowService {
   public nativeWindow = {
@@ -51,11 +27,11 @@ class MockWindowService {
       body: {
         classList: {
           add: () => {},
-          remove: () => {}
-        }
-      }
+          remove: () => {},
+        },
+      },
     },
-    innerWidth: 100
+    innerWidth: 100,
   };
   public scrollEventStream = observableOf(true);
 }
@@ -74,7 +50,7 @@ const route = {
   name: 'string',
   path: '/string',
   offsetTop: 123,
-  isCurrent: false
+  isCurrent: false,
 };
 
 class MockOmnibarService {
@@ -99,14 +75,17 @@ describe('Table of Contents Wrapper Component', () => {
       imports: [
         StacheNavModule,
         StacheTableOfContentsModule,
-        RouterTestingModule
+        RouterTestingModule,
       ],
       providers: [
         { provide: StacheRouteService, useValue: mockStacheRouteService },
         { provide: StacheWindowRef, useValue: mockWindowService },
         { provide: Renderer2, useValue: mockRenderer },
-        { provide: StacheOmnibarAdapterService, useValue: mockOmnibarAdapterService }
-      ]
+        {
+          provide: StacheOmnibarAdapterService,
+          useValue: mockOmnibarAdapterService,
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(StacheTableOfContentsWrapperComponent);

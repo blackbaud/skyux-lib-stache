@@ -4,32 +4,20 @@ import {
   fakeAsync,
   inject,
   tick,
-  TestBed
+  TestBed,
 } from '@angular/core/testing';
 
-import {
-  DebugElement
-} from '@angular/core';
+import { DebugElement } from '@angular/core';
 
-import {
-  expect
-} from '@skyux-sdk/testing';
+import { expect } from '@skyux-sdk/testing';
 
-import {
-  SkyAppTestUtility
-} from '@skyux-sdk/testing';
+import { SkyAppTestUtility } from '@skyux-sdk/testing';
 
-import {
-  StacheWindowRef
-} from '../shared/window-ref';
+import { StacheWindowRef } from '../shared/window-ref';
 
-import {
-  StacheBackToTopComponent
-} from './back-to-top.component';
+import { StacheBackToTopComponent } from './back-to-top.component';
 
-import {
-  StacheBackToTopModule
-} from './back-to-top.module';
+import { StacheBackToTopModule } from './back-to-top.module';
 
 describe('StacheBackToTopComponent', () => {
   let component: StacheBackToTopComponent;
@@ -39,11 +27,8 @@ describe('StacheBackToTopComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        StacheBackToTopModule
-      ]
-    })
-    .compileComponents();
+      imports: [StacheBackToTopModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(StacheBackToTopComponent);
     component = fixture.componentInstance;
@@ -88,22 +73,24 @@ describe('StacheBackToTopComponent', () => {
 
   it('should trigger a click event on button click', async(() => {
     spyOn(component, 'scrollToTop');
-    let button = debugElement.nativeElement.querySelector('.stache-back-to-top');
+    let button = debugElement.nativeElement.querySelector(
+      '.stache-back-to-top'
+    );
     button.click();
-    fixture.whenStable()
-      .then(() => {
-        expect(component.scrollToTop).toHaveBeenCalled();
-      });
+    fixture.whenStable().then(() => {
+      expect(component.scrollToTop).toHaveBeenCalled();
+    });
   }));
 
   it('should call the scroll method on the window when clicked', async(() => {
     spyOn(windowRef, 'scroll');
-    let button = debugElement.nativeElement.querySelector('.stache-back-to-top');
+    let button = debugElement.nativeElement.querySelector(
+      '.stache-back-to-top'
+    );
     button.click();
-    fixture.whenStable()
-      .then(() => {
-        expect(windowRef.scroll).toHaveBeenCalled();
-      });
+    fixture.whenStable().then(() => {
+      expect(windowRef.scroll).toHaveBeenCalled();
+    });
   }));
 
   it('should be accessible', async(() => {

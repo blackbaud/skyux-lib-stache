@@ -1,45 +1,30 @@
-import {
-  Component,
-  Input,
-  OnDestroy,
-  OnInit
-} from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 
-import {
-  Subject
-} from 'rxjs';
+import { Subject } from 'rxjs';
 
-import {
-  takeUntil
-} from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 
-import {
-  StacheNavLink
-} from './nav-link';
+import { StacheNavLink } from './nav-link';
 
-import {
-  StacheNav
-} from './nav';
+import { StacheNav } from './nav';
 
-import {
-  StacheRouteService
-} from '../router/route.service';
+import { StacheRouteService } from '../router/route.service';
 
-import {
-  StacheAuthService
-} from '../auth/auth.service';
+import { StacheAuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'stache-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.scss']
+  styleUrls: ['./nav.component.scss'],
 })
 export class StacheNavComponent implements OnDestroy, OnInit, StacheNav {
-
   @Input()
   public set routes(value: StacheNavLink[]) {
     this._routes = value;
-    this.filteredRoutes = this.filterRestrictedRoutes(this.routes, this.isAuthenticated);
+    this.filteredRoutes = this.filterRestrictedRoutes(
+      this.routes,
+      this.isAuthenticated
+    );
     this.assignActiveStates();
   }
 
@@ -74,7 +59,7 @@ export class StacheNavComponent implements OnDestroy, OnInit, StacheNav {
   public constructor(
     private routeService: StacheRouteService,
     private authService: StacheAuthService
-  ) { }
+  ) {}
 
   public ngOnInit(): void {
     if (this.navType) {
@@ -96,7 +81,7 @@ export class StacheNavComponent implements OnDestroy, OnInit, StacheNav {
   }
 
   public hasRoutes(): boolean {
-    return (Array.isArray(this.filteredRoutes) && this.filteredRoutes.length > 0);
+    return Array.isArray(this.filteredRoutes) && this.filteredRoutes.length > 0;
   }
 
   public hasChildRoutes(route: StacheNavLink): boolean {
@@ -128,9 +113,10 @@ export class StacheNavComponent implements OnDestroy, OnInit, StacheNav {
       path = `/${path}`;
     }
 
-    const isActiveParent = (navDepth > 1 && `${activeUrl}/`.indexOf(`${path}/`) === 0);
+    const isActiveParent =
+      navDepth > 1 && `${activeUrl}/`.indexOf(`${path}/`) === 0;
 
-    return (isActiveParent || activeUrl === path);
+    return isActiveParent || activeUrl === path;
   }
 
   private isCurrent(activeUrl: string, route: any): boolean {
@@ -140,15 +126,18 @@ export class StacheNavComponent implements OnDestroy, OnInit, StacheNav {
       path = path.join('/');
     }
 
-    return (activeUrl === `/${path}`);
+    return activeUrl === `/${path}`;
   }
 
-  private filterRestrictedRoutes(routes: StacheNavLink[], isAuthenticated: boolean): StacheNavLink[] {
+  private filterRestrictedRoutes(
+    routes: StacheNavLink[],
+    isAuthenticated: boolean
+  ): StacheNavLink[] {
     if (!routes || routes.length === 0 || isAuthenticated) {
       return routes;
     }
 
-    return routes.filter(route => {
+    return routes.filter((route) => {
       return !route.restricted;
     });
   }

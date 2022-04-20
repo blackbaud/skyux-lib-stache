@@ -2,7 +2,7 @@ import {
   InputConverter,
   booleanConverter,
   stringConverter,
-  numberConverter
+  numberConverter,
 } from './input-converter';
 
 class MockComponentExplicit {

@@ -12,11 +12,18 @@ import {
   SkyI18nModule,
   SkyLibResources,
   SkyLibResourcesProvider,
-  SKY_LIB_RESOURCES_PROVIDERS
+  SKY_LIB_RESOURCES_PROVIDERS,
 } from '@skyux/i18n';
 
 const RESOURCES: { [locale: string]: SkyLibResources } = {
-  'EN-US': {"stache_copyright_label":{"message":"Blackbaud, Inc. All rights reserved."},"stache_sidebar_label":{"message":"Sidebar Navigation"},"stache_sidebar_toggle_button":{"message":"Toggle sidebar"},"stache_back_to_top_button":{"message":"Scroll back to the top of the page"}},
+  'EN-US': {
+    stache_copyright_label: { message: 'Blackbaud, Inc. All rights reserved.' },
+    stache_sidebar_label: { message: 'Sidebar Navigation' },
+    stache_sidebar_toggle_button: { message: 'Toggle sidebar' },
+    stache_back_to_top_button: {
+      message: 'Scroll back to the top of the page',
+    },
+  },
 };
 
 export class StacheResourcesProvider implements SkyLibResourcesProvider {
@@ -30,10 +37,12 @@ export class StacheResourcesProvider implements SkyLibResourcesProvider {
  */
 @NgModule({
   exports: [SkyI18nModule],
-  providers: [{
-    provide: SKY_LIB_RESOURCES_PROVIDERS,
-    useClass: StacheResourcesProvider,
-    multi: true
-  }]
+  providers: [
+    {
+      provide: SKY_LIB_RESOURCES_PROVIDERS,
+      useClass: StacheResourcesProvider,
+      multi: true,
+    },
+  ],
 })
-export class StacheResourcesModule { }
+export class StacheResourcesModule {}

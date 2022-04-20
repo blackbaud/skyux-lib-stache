@@ -1,23 +1,12 @@
-import {
-  Injectable
-} from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import {
-  Router,
-  NavigationStart
-} from '@angular/router';
+import { Router, NavigationStart } from '@angular/router';
 
-import {
-  SkyAppConfig
-} from '@skyux/config';
+import { SkyAppConfig } from '@skyux/config';
 
-import {
-  StacheRouteMetadataService
-} from './route-metadata.service';
+import { StacheRouteMetadataService } from './route-metadata.service';
 
-import {
-  StacheNavLink
-} from '../nav/nav-link';
+import { StacheNavLink } from '../nav/nav-link';
 
 @Injectable()
 export class StacheRouteService {
@@ -40,28 +29,28 @@ export class StacheRouteService {
       return this.activeRoutes;
     }
 
-    const rootPath = this.getActiveUrl()
-      .replace(/^\//, '')
-      .split('/')[0];
+    const rootPath = this.getActiveUrl().replace(/^\//, '').split('/')[0];
 
     const appRoutes = this.clone(this.configService.runtime?.routes || []);
 
     let activeChildRoutes = appRoutes
       .filter((route: any) => {
-        return (route.routePath.indexOf(rootPath) === 0);
+        return route.routePath.indexOf(rootPath) === 0;
       })
       .map((route: any) => {
         return {
           segments: route.routePath.split('/'),
-          path: route.routePath
+          path: route.routePath,
         };
       });
 
-    let activeRoutes = [{
-      path: rootPath,
-      segments: [rootPath],
-      children: this.assignChildren(activeChildRoutes, rootPath)
-    }];
+    let activeRoutes = [
+      {
+        path: rootPath,
+        segments: [rootPath],
+        children: this.assignChildren(activeChildRoutes, rootPath),
+      },
+    ];
 
     this.activeRoutes = this.formatRoutes(activeRoutes);
 
@@ -84,12 +73,13 @@ export class StacheRouteService {
     const assignedRoutes: any[] = [];
     const depth = parentPath.split('/').length + 1;
 
-    routes.forEach(route => {
+    routes.forEach((route) => {
       const routeDepth = route.segments.length;
 
       // Adding trailing slash to force end of parent path.  Otherwise:
       // a/child, a1/child, and a2/child would have all three children displayed under a.
-      const isChildRoute = (depth === routeDepth && route.path.indexOf(parentPath + '/') > -1);
+      const isChildRoute =
+        depth === routeDepth && route.path.indexOf(parentPath + '/') > -1;
 
       if (isChildRoute) {
         route.children = this.assignChildren(routes, route.path);
@@ -101,19 +91,25 @@ export class StacheRouteService {
   }
 
   private formatRoutes(routes: any[]): StacheNavLink[] {
-    let formatted = routes.map(route => {
-      let pathMetadata = this.getMetadata(route);
+    let formatted = routes
+      .map((route) => {
+        let pathMetadata = this.getMetadata(route);
 
-      let formattedRoute = Object.assign({},
-        {
-          path: route.path,
-          children: this.formatRoutes(route.children),
-          name: this.getNameFromPath(route.segments[route.segments.length - 1])
-        },
-        pathMetadata);
+        let formattedRoute = Object.assign(
+          {},
+          {
+            path: route.path,
+            children: this.formatRoutes(route.children),
+            name: this.getNameFromPath(
+              route.segments[route.segments.length - 1]
+            ),
+          },
+          pathMetadata
+        );
 
-      return formattedRoute as any;
-    }).filter(route => route.showInNav !== false);
+        return formattedRoute as any;
+      })
+      .filter((route) => route.showInNav !== false);
 
     return this.sortRoutes(formatted) as StacheNavLink[];
   }
@@ -142,22 +138,25 @@ export class StacheRouteService {
   private toTitleCase(phrase: string): string {
     return phrase
       .split(' ')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(' ');
   }
 
   private sortRoutes(routes: StacheNavLink[]): StacheNavLink[] {
-    const sortedRoutes = routes.filter((route: any) => !route.hasOwnProperty('order'))
+    const sortedRoutes = routes
+      .filter((route: any) => !route.hasOwnProperty('order'))
       .sort(this.sortByName);
 
-    const routesWithNavOrder = routes.filter((route: any) => route.hasOwnProperty('order'))
+    const routesWithNavOrder = routes
+      .filter((route: any) => route.hasOwnProperty('order'))
       .sort(this.sortByName)
       .sort(this.sortByOrder);
 
     routesWithNavOrder.forEach((route: any) => {
       let newIdx = route.order - 1;
       const validPosition = (): boolean => newIdx < sortedRoutes.length;
-      const positionPreviouslyAssigned = (): boolean => sortedRoutes[newIdx].order <= route.order;
+      const positionPreviouslyAssigned = (): boolean =>
+        sortedRoutes[newIdx].order <= route.order;
 
       if (validPosition()) {
         while (validPosition() && positionPreviouslyAssigned()) {
