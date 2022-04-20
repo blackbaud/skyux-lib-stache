@@ -11,7 +11,7 @@ import {
   StacheRouteService
 } from '../router/route.service';
 
-const _get = require('lodash.get');
+import lodashGet from 'lodash.get';
 
 @Component({
   selector: 'stache-edit-button',
@@ -33,11 +33,11 @@ export class StacheEditButtonComponent implements OnInit {
 
   public ngOnInit() {
     this.url = this.getUrl();
-    this.editButtonText = _get(this.config, 'skyux.appSettings.stache.editButton.text', 'Edit');
+    this.editButtonText = lodashGet(this.config, 'skyux.appSettings.stache.editButton.text', 'Edit');
   }
 
   private getUrl(): string {
-    const base = _get(this.config, 'skyux.appSettings.stache.editButton.url');
+    const base = lodashGet(this.config, 'skyux.appSettings.stache.editButton.url');
     if (!base) {
       return '';
     }

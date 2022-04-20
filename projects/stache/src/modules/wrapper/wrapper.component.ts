@@ -57,9 +57,10 @@ import {
   InputConverter
 } from '../shared/input-converter';
 
-const _get = require('lodash.get');
+import lodashGet from 'lodash.get';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'stache',
   templateUrl: './wrapper.component.html',
   styleUrls: ['./wrapper.component.scss']
@@ -158,12 +159,12 @@ export class StacheWrapperComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   private checkEditButtonUrl(): boolean {
-    const url = _get(this.config, 'skyux.appSettings.stache.editButton.url');
+    const url = lodashGet(this.config, 'skyux.appSettings.stache.editButton.url');
     return url !== undefined;
   }
 
   private checkFooterData(): boolean {
-    const footerData = _get(this.config, 'skyux.appSettings.stache.footer');
+    const footerData = lodashGet(this.config, 'skyux.appSettings.stache.footer');
     return footerData !== undefined;
   }
 
