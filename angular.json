@@ -35,8 +35,8 @@
               "**/fixtures/**"
             ],
             "styles": [
-              "@skyux/theme/css/sky.css",
-              "@skyux/theme/css/themes/modern/styles.css"
+              "node_modules/@skyux/theme/css/sky.css",
+              "node_modules/@skyux/theme/css/themes/modern/styles.css"
             ]
           }
         },
