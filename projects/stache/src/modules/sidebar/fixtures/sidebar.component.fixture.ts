@@ -5,6 +5,7 @@ import { StacheNavLink } from '../../nav/nav-link';
 import { StacheSidebarWrapperComponent } from '../sidebar-wrapper.component';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'sidebar-test-cmp',
   templateUrl: './sidebar.component.fixture.html',
 })

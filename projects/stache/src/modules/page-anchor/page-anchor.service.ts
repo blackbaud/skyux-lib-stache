@@ -45,7 +45,8 @@ export class StachePageAnchorService implements OnDestroy {
 
   public scrollToAnchor(fragment: string): void {
     this.windowRef.nativeWindow.document
-      .querySelector(`#${fragment}`)?.scrollIntoView();
+      .querySelector(`#${fragment}`)
+      ?.scrollIntoView();
   }
 
   public ngOnDestroy() {

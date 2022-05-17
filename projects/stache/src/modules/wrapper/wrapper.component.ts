@@ -158,12 +158,10 @@ export class StacheWrapperComponent
   }
 
   private checkRouteHash(): void {
-    this.route.fragment
-      .pipe(take(1))
-      .subscribe((fragment) => {
-        if (fragment) {
-          this.pageAnchorService.scrollToAnchor(fragment);
-        }
-      });
+    this.route.fragment.pipe(take(1)).subscribe((fragment) => {
+      if (fragment) {
+        this.pageAnchorService.scrollToAnchor(fragment);
+      }
+    });
   }
 }
