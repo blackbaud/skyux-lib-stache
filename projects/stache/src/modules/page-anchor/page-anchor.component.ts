@@ -49,20 +49,17 @@ export class StachePageAnchorComponent
   public anchorId?: string;
 
   private textContent = '';
-  private ngUnsubscribe: Subject<any> = new Subject();
+  private ngUnsubscribe = new Subject<void>();
 
   public constructor(
     private elementRef: ElementRef,
-    private windowRef: StacheWindowRef,
     private anchorService: StachePageAnchorService,
     private changeDetectorRef: ChangeDetectorRef,
     private routeService: StacheRouteService
   ) {}
 
   public scrollToAnchor(): void {
-    this.windowRef.nativeWindow.document
-      .querySelector(`#${this.fragment}`)
-      .scrollIntoView();
+    this.anchorService.scrollToAnchor(this.fragment);
   }
 
   public ngOnInit() {
