@@ -15,12 +15,14 @@ import { StacheNavService } from '../nav/nav.service';
 
 import { StacheRouteService } from '../router/route.service';
 
+// eslint-disable-next-line @angular-eslint/no-input-rename
 @Directive({
   selector: '[stacheRouterLink]',
 })
 export class StacheRouterLinkDirective implements OnChanges, AfterViewInit {
   private _stacheRouterLink: string = '';
 
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('stacheRouterLink')
   set stacheRouterLink(routerLink: string) {
     if (routerLink === '.') {

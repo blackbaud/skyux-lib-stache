@@ -52,6 +52,16 @@ export class StachePageAnchorService implements OnDestroy {
     this.refreshRequestedStream.next();
   }
 
+  public scrollToAnchor(elementId: string): void {
+    const element = this.windowRef.nativeWindow.document.querySelector(
+      `#${elementId}`
+    );
+    /*istanbul ignore else*/
+    if (element) {
+      element.scrollIntoView();
+    }
+  }
+
   private removeAnchor(removedAnchor: StacheNavLink) {
     this.pageAnchors = this.pageAnchors.filter(
       (anchor: BehaviorSubject<StacheNavLink>) => {

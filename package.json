@@ -9,7 +9,6 @@
     "test": "ng test",
     "skyux:generate-lib-resources-module": "ng generate @skyux/i18n:lib-resources-module",
     "lint": "ng lint",
-    "skyux:generate-documentation": "ng generate @skyux-sdk/documentation-schematics:documentation",
     "skyux:format": "npx prettier --write ."
   },
   "private": true,
@@ -56,7 +55,6 @@
     "@angular-eslint/template-parser": "13.2.1",
     "@angular/cli": "13.3.3",
     "@angular/compiler-cli": "13.3.3",
-    "@skyux-sdk/documentation-schematics": "5.0.0",
     "@skyux-sdk/prettier-schematics": "^6.0.0-beta.6",
     "@skyux-sdk/testing": "6.0.0-beta.5",
     "@types/jasmine": "3.10.6",

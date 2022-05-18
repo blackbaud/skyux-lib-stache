@@ -1,8 +1,11 @@
+import { TestBed } from '@angular/core/testing';
+
 import { BehaviorSubject, Subject } from 'rxjs';
 
 import { StachePageAnchorService } from './page-anchor.service';
 
 import { StacheNavLink } from '../nav/nav-link';
+import { StacheWindowRef } from '../shared/window-ref';
 
 class MockWindowRef {
   private mockPageAnchors: StacheNavLink[] = [
@@ -14,6 +17,13 @@ class MockWindowRef {
 
   public nativeWindow = {
     document: {
+      querySelector: jasmine
+        .createSpy('querySelector')
+        .and.callFake((id: any) => {
+          return {
+            scrollIntoView() {},
+          };
+        }),
       querySelectorAll: jasmine
         .createSpy('querySelectorAll')
         .and.callFake((id: any) => {
@@ -39,10 +49,19 @@ class MockWindowRef {
 
 describe('PageAnchorService', () => {
   let service: StachePageAnchorService;
-  let windowRef = new MockWindowRef();
 
   beforeEach(() => {
-    service = new StachePageAnchorService(windowRef as any);
+    TestBed.configureTestingModule({
+      providers: [
+        StachePageAnchorService,
+        {
+          provide: StacheWindowRef,
+          useClass: MockWindowRef,
+        },
+      ],
+    });
+
+    service = TestBed.inject(StachePageAnchorService);
   });
 
   it('should request page anchors update when body height changes', () => {
@@ -116,5 +135,13 @@ describe('PageAnchorService', () => {
     const result = new Subject<StacheNavLink[]>();
     result.next([anchor1.getValue(), anchor0.getValue()]);
     expect(service['pageAnchorsStream']).toEqual(result);
+  });
+
+  it('should scroll to an anchor', () => {
+    const windowService = TestBed.inject(StacheWindowRef);
+    service.scrollToAnchor('foobar');
+    expect(
+      windowService.nativeWindow.document.querySelector
+    ).toHaveBeenCalledWith('#foobar');
   });
 });

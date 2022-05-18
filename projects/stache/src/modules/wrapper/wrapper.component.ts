@@ -13,8 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SkyAppConfig } from '@skyux/config';
 
 import { Subject } from 'rxjs';
-
-import { takeUntil } from 'rxjs/operators';
+import { take, takeUntil } from 'rxjs/operators';
 
 import { StacheTitleService } from './title.service';
 
@@ -158,16 +157,10 @@ export class StacheWrapperComponent
   }
 
   private checkRouteHash(): void {
-    this.route.fragment
-      .subscribe((fragment: string) => {
-        let url = '';
-        this.route.url
-          .subscribe((segments) => (url = segments.join('/')))
-          .unsubscribe();
-        if (fragment) {
-          this.navService.navigate({ path: url, fragment });
-        }
-      })
-      .unsubscribe();
+    this.route.fragment.pipe(take(1)).subscribe((fragment) => {
+      if (fragment) {
+        this.pageAnchorService.scrollToAnchor(fragment);
+      }
+    });
   }
 }
