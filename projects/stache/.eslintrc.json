@@ -16,7 +16,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "lib",
+            "prefix": ["lib", "stache"],
             "style": "camelCase"
           }
         ],
