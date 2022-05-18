@@ -51,9 +51,13 @@ export class StachePageAnchorService implements OnDestroy {
   }
 
   public scrollToAnchor(elementId: string): void {
-    this.windowRef.nativeWindow.document
-      .querySelector(`#${elementId}`)
-      ?.scrollIntoView();
+    const element = this.windowRef.nativeWindow.document.querySelector(
+      `#${elementId}`
+    );
+    /*istanbul ignore else*/
+    if (element) {
+      element.scrollIntoView();
+    }
   }
 
   private removeAnchor(removedAnchor: StacheNavLink) {
