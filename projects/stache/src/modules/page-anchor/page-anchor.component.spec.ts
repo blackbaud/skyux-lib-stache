@@ -1,26 +1,18 @@
 import { ChangeDetectorRef } from '@angular/core';
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
+import { expect } from '@skyux-sdk/testing';
 
 import { Subject } from 'rxjs';
 
-import { By } from '@angular/platform-browser';
-
-import { expect } from '@skyux-sdk/testing';
-
-import { StachePageAnchorTestComponent } from './fixtures/page-anchor.component.fixture';
-
-import { StachePageAnchorComponent } from './page-anchor.component';
-
-import { StachePageAnchorModule } from './page-anchor.module';
-
-import { StachePageAnchorService } from './page-anchor.service';
-
+import { StacheRouteService } from '../router/route.service';
 import { StacheWindowRef } from '../shared/window-ref';
 
-import { StacheRouteService } from '../router/route.service';
+import { StachePageAnchorTestComponent } from './fixtures/page-anchor.component.fixture';
+import { StachePageAnchorComponent } from './page-anchor.component';
+import { StachePageAnchorModule } from './page-anchor.module';
+import { StachePageAnchorService } from './page-anchor.service';
 
 describe('StachePageAnchorComponent', () => {
   let fixtureComponent: StachePageAnchorTestComponent;
@@ -35,7 +27,7 @@ describe('StachePageAnchorComponent', () => {
 
     public addAnchor = (anchor: any) => true;
 
-    public scrollToAnchor() {}
+    public scrollToAnchor(elementId: string) {}
   }
 
   class MockWindowService {
@@ -87,9 +79,14 @@ describe('StachePageAnchorComponent', () => {
   });
 
   it('should scroll to anchor', () => {
-    const spy = spyOn(mockAnchorService, 'scrollToAnchor');
+    const scrollSpy = spyOn(mockAnchorService, 'scrollToAnchor');
+
+    fixtureComponent.anchorContent = 'foo';
+    fixture.detectChanges();
+
     anchorComponent.scrollToAnchor();
-    expect(spy).toHaveBeenCalled();
+
+    expect(scrollSpy).toHaveBeenCalledWith('foo');
   });
 
   it('should populate data after view init', () => {

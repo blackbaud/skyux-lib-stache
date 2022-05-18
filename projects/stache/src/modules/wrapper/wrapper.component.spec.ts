@@ -130,7 +130,7 @@ describe('StacheWrapperComponent', () => {
       } as StacheNavLink,
     ]);
     public refreshRequestedStream = new Subject();
-    public scrollToAnchor() {}
+    public scrollToAnchor(elementId: string) {}
     public addAnchor = function () {};
   }
 

@@ -29,6 +29,6 @@ export class StacheWindowRef {
   }
 
   private onResize(event: UIEvent): void {
-    this.resizeSubject.next(<Window>event.target);
+    this.resizeSubject.next(event.target as Window);
   }
 }
