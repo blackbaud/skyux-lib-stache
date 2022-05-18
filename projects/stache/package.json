@@ -1,6 +1,6 @@
 {
   "name": "@blackbaud/skyux-lib-stache",
-  "version": "5.0.0-beta.3",
+  "version": "5.0.0-beta.4",
   "peerDependencies": {
     "@angular/common": "^12.2.16",
     "@angular/core": "^12.2.16",
