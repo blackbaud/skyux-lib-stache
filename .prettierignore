@@ -1,3 +1,7 @@
+/src/app/lib/
+/projects/*/src/assets/
+/src/assets/
+/.angular/cache
 /.angular
 /coverage
 /dist

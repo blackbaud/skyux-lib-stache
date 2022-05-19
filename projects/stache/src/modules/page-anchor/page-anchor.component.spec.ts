@@ -34,6 +34,8 @@ describe('StachePageAnchorComponent', () => {
     public refreshRequestedStream = new Subject();
 
     public addAnchor = (anchor: any) => true;
+
+    public scrollToAnchor(elementId: string) {}
   }
 
   class MockWindowService {
@@ -85,8 +87,14 @@ describe('StachePageAnchorComponent', () => {
   });
 
   it('should scroll to anchor', () => {
+    const scrollSpy = spyOn(mockAnchorService, 'scrollToAnchor');
+
+    fixtureComponent.anchorContent = 'foo';
+    fixture.detectChanges();
+
     anchorComponent.scrollToAnchor();
-    expect(mockWindowService.testElement.scrollIntoView).toHaveBeenCalled();
+
+    expect(scrollSpy).toHaveBeenCalledWith('foo');
   });
 
   it('should populate data after view init', () => {

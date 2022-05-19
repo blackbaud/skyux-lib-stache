@@ -13,7 +13,7 @@ export class StachePageAnchorService implements OnDestroy {
   public pageAnchorsStream = new Subject<StacheNavLink[]>();
   public pageAnchors: BehaviorSubject<StacheNavLink>[] = [];
   public refreshRequestedStream = new Subject();
-  private ngUnsubscribe: Subject<any> = new Subject();
+  private ngUnsubscribe: Subject<void> = new Subject();
 
   constructor(private windowRef: StacheWindowRef) {
     this.windowRef.scrollEventStream
@@ -50,6 +50,16 @@ export class StachePageAnchorService implements OnDestroy {
 
   public refreshAnchors() {
     this.refreshRequestedStream.next();
+  }
+
+  public scrollToAnchor(elementId: string): void {
+    const element = this.windowRef.nativeWindow.document.querySelector(
+      `#${elementId}`
+    );
+    /*istanbul ignore else*/
+    if (element) {
+      element.scrollIntoView();
+    }
   }
 
   private removeAnchor(removedAnchor: StacheNavLink) {

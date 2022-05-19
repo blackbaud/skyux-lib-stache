@@ -14,8 +14,6 @@ import { BehaviorSubject, Subject } from 'rxjs';
 
 import { takeUntil } from 'rxjs/operators';
 
-import { StacheWindowRef } from '../shared/window-ref';
-
 import { StacheRouteService } from '../router/route.service';
 
 import { StacheNavLink } from '../nav/nav-link';
@@ -49,20 +47,17 @@ export class StachePageAnchorComponent
   public anchorId?: string;
 
   private textContent = '';
-  private ngUnsubscribe: Subject<any> = new Subject();
+  private ngUnsubscribe: Subject<void> = new Subject();
 
   public constructor(
     private elementRef: ElementRef,
-    private windowRef: StacheWindowRef,
     private anchorService: StachePageAnchorService,
     private changeDetectorRef: ChangeDetectorRef,
     private routeService: StacheRouteService
   ) {}
 
   public scrollToAnchor(): void {
-    this.windowRef.nativeWindow.document
-      .querySelector(`#${this.fragment}`)
-      .scrollIntoView();
+    this.anchorService.scrollToAnchor(this.fragment);
   }
 
   public ngOnInit() {
