@@ -13,7 +13,7 @@ export class StachePageAnchorService implements OnDestroy {
   public pageAnchorsStream = new Subject<StacheNavLink[]>();
   public pageAnchors: BehaviorSubject<StacheNavLink>[] = [];
   public refreshRequestedStream = new Subject();
-  private ngUnsubscribe: Subject<any> = new Subject();
+  private ngUnsubscribe: Subject<void> = new Subject();
 
   constructor(private windowRef: StacheWindowRef) {
     this.windowRef.scrollEventStream

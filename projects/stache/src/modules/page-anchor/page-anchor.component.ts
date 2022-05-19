@@ -47,7 +47,7 @@ export class StachePageAnchorComponent
   public anchorId?: string;
 
   private textContent = '';
-  private ngUnsubscribe: Subject<any> = new Subject();
+  private ngUnsubscribe: Subject<void> = new Subject();
 
   public constructor(
     private elementRef: ElementRef,

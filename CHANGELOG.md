@@ -1,3 +1,7 @@
+# 6.0.0-beta.1 (2022-05-19)
+
+- Fixed the wrapper component to handle route fragments on page load. [#131](https://github.com/blackbaud/skyux-lib-stache/pull/131)
+
 # 6.0.0-beta.0 (2022-04-20)
 
 - Fixed the wrapper component to ignore route fragments if in-page routes are not found. [#126](https://github.com/blackbaud/skyux-lib-stache/pull/126)
