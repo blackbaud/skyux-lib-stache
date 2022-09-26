@@ -1,3 +1,9 @@
+# 6.0.0 (2022-09-26)
+
+- Added support for Angular 13. [#126](https://github.com/blackbaud/skyux-lib-stache/pull/126)
+- Fixed the wrapper component to handle route fragments on page load. [#131](https://github.com/blackbaud/skyux-lib-stache/pull/131)
+- Fixed the wrapper component to ignore route fragments if in-page routes are not found. [#126](https://github.com/blackbaud/skyux-lib-stache/pull/126)
+
 # 6.0.0-beta.1 (2022-05-19)
 
 - Fixed the wrapper component to handle route fragments on page load. [#131](https://github.com/blackbaud/skyux-lib-stache/pull/131)
