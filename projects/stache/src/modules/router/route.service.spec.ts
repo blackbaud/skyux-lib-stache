@@ -233,7 +233,7 @@ describe('StacheRouteService', () => {
   });
 
   it('should only unset the active routes on NavigationStart', () => {
-    router.events = observableOf(new NavigationEnd(0, '', ''));
+    (router as any).events = observableOf(new NavigationEnd(0, '', ''));
     spyOn(StacheRouteService.prototype, 'clearActiveRoutes');
     routeService = new StacheRouteService(
       router as Router,
