@@ -2,19 +2,19 @@
   "name": "@blackbaud/skyux-lib-stache",
   "version": "7.0.0-beta.0",
   "peerDependencies": {
-    "@angular/common": "^14.2.3",
-    "@angular/core": "^14.2.3",
-    "@angular/platform-browser": "^14.2.3",
-    "@angular/router": "^14.2.3",
-    "@skyux/config": "^7.0.0-beta.0",
-    "@skyux/core": "^7.0.0-beta.0",
-    "@skyux/i18n": "^7.0.0-beta.0",
-    "@skyux/layout": "^7.0.0-beta.0",
-    "@skyux/lookup": "^7.0.0-beta.0",
-    "@skyux/theme": "^7.0.0-beta.0"
+    "@angular/common": "^14.2.9",
+    "@angular/core": "^14.2.9",
+    "@angular/platform-browser": "^14.2.9",
+    "@angular/router": "^14.2.9",
+    "@skyux/config": "^7.0.0-beta.12",
+    "@skyux/core": "^7.0.0-beta.12",
+    "@skyux/i18n": "^7.0.0-beta.12",
+    "@skyux/layout": "^7.0.0-beta.12",
+    "@skyux/lookup": "^7.0.0-beta.12",
+    "@skyux/theme": "^7.0.0-beta.12"
   },
   "dependencies": {
     "lodash.get": "4.4.2",
-    "tslib": "^2.4.0"
+    "tslib": "^2.4.1"
   }
 }
