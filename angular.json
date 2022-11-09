@@ -98,7 +98,8 @@
             "styles": [
               "node_modules/@skyux/theme/css/sky.css",
               "node_modules/@skyux/theme/css/themes/modern/styles.css",
-              "projects/stache-showcase/src/styles.scss"
+              "projects/stache-showcase/src/styles.scss",
+              "projects/stache-showcase/src/app/skyux7-compat.css"
             ],
             "scripts": []
           },
@@ -168,7 +169,8 @@
             "styles": [
               "node_modules/@skyux/theme/css/sky.css",
               "node_modules/@skyux/theme/css/themes/modern/styles.css",
-              "projects/stache-showcase/src/styles.scss"
+              "projects/stache-showcase/src/styles.scss",
+              "projects/stache-showcase/src/app/skyux7-compat.css"
             ],
             "scripts": []
           }

@@ -8,7 +8,6 @@
 
 - Added support for Angular 14. [#133](https://github.com/blackbaud/skyux-lib-stache/pull/133)
 
-
 # 6.0.0 (2022-09-26)
 
 - Added support for Angular 13. [#126](https://github.com/blackbaud/skyux-lib-stache/pull/126)
