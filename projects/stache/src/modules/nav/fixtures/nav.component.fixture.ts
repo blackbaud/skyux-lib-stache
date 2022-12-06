@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { StacheNavLink } from '../../nav/nav-link';
+import { StacheNavLink } from '../nav-link';
 
 @Component({
   selector: 'stache-test-component',
