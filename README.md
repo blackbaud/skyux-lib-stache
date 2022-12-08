@@ -1,3 +1,7 @@
-# @blackbaud/skyux-lib-stache Workspace
+# @blackbaud/skyux-lib-stache (moved)
 
-For information about `@blackbaud/skyux-lib-stache` please visit the library's README file, located at `projects/stache/README.md`.
+### *The source code for this project has moved to [blackbaud/stache](https://github.com/blackbaud/stache).*
+
+To work with the latest version, go to [blackbaud/stache](https://github.com/blackbaud/stache).
+
+The source code for version 4 remains in the [`4.x.x`](https://github.com/blackbaud/skyux-lib-stache/tree/4.x.x) branch of this repo.
